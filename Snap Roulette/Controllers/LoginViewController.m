@@ -7,7 +7,7 @@
 //
 
 #import "LoginViewController.h"
-#import <Facebook-iOS-SDK/FacebookSDK/FacebookSDK.h>
+#import <FacebookSDK.h>
 
 @interface LoginViewController ()
 
