@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  LoginViewController.h
 //  Snap Roulette
 //
 //  Created by Jason Fieldman on 2/19/15.
@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface LoginViewController : UIViewController
 
+@property (nonatomic, strong) UIButton *facebookLoginButton;
 
 @end
 

@@ -24,11 +24,22 @@
 	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
-	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
+	</array>
+	<key>FacebookAppID</key>
+	<string>404010823106831</string>
+	<key>FacebookDisplayName</key>
+	<string>Snap Roulette</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb404010823106831</string>
+			</array>
+		</dict>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>

@@ -6,7 +6,10 @@
 //  Copyright (c) 2015 Jason Fieldman. All rights reserved.
 //
 
+#import <FacebookSDK.h>
+
 #import "AppDelegate.h"
+#import "LoginViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,7 +20,20 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.rootViewController = [[LoginViewController alloc] init];
+    [self.window makeKeyAndVisible];
+    
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -36,6 +52,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [FBAppEvents activateApp];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
