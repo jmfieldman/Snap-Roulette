@@ -1,0 +1,427 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		35B3988A1A96711900975CDD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 35B398891A96711900975CDD /* main.m */; };
+		35B3988D1A96711900975CDD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 35B3988C1A96711900975CDD /* AppDelegate.m */; };
+		35B398901A96711900975CDD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35B3988F1A96711900975CDD /* ViewController.m */; };
+		35B398931A96711900975CDD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35B398911A96711900975CDD /* Main.storyboard */; };
+		35B398951A96711900975CDD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35B398941A96711900975CDD /* Images.xcassets */; };
+		35B398981A96711900975CDD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35B398961A96711900975CDD /* LaunchScreen.xib */; };
+		35B398A41A96711900975CDD /* Snap_RouletteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 35B398A31A96711900975CDD /* Snap_RouletteTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		35B3989E1A96711900975CDD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 35B3987C1A96711900975CDD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 35B398831A96711900975CDD;
+			remoteInfo = "Snap Roulette";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		35B398841A96711900975CDD /* Snap Roulette.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Snap Roulette.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		35B398881A96711900975CDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		35B398891A96711900975CDD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		35B3988B1A96711900975CDD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		35B3988C1A96711900975CDD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		35B3988E1A96711900975CDD /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		35B3988F1A96711900975CDD /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		35B398921A96711900975CDD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		35B398941A96711900975CDD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		35B398971A96711900975CDD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		35B3989D1A96711900975CDD /* Snap RouletteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Snap RouletteTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		35B398A21A96711900975CDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		35B398A31A96711900975CDD /* Snap_RouletteTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Snap_RouletteTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		35B398811A96711900975CDD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		35B3989A1A96711900975CDD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		35B3987B1A96711900975CDD = {
+			isa = PBXGroup;
+			children = (
+				35B398861A96711900975CDD /* Snap Roulette */,
+				35B398A01A96711900975CDD /* Snap RouletteTests */,
+				35B398851A96711900975CDD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		35B398851A96711900975CDD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				35B398841A96711900975CDD /* Snap Roulette.app */,
+				35B3989D1A96711900975CDD /* Snap RouletteTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		35B398861A96711900975CDD /* Snap Roulette */ = {
+			isa = PBXGroup;
+			children = (
+				35B3988B1A96711900975CDD /* AppDelegate.h */,
+				35B3988C1A96711900975CDD /* AppDelegate.m */,
+				35B3988E1A96711900975CDD /* ViewController.h */,
+				35B3988F1A96711900975CDD /* ViewController.m */,
+				35B398911A96711900975CDD /* Main.storyboard */,
+				35B398941A96711900975CDD /* Images.xcassets */,
+				35B398961A96711900975CDD /* LaunchScreen.xib */,
+				35B398871A96711900975CDD /* Supporting Files */,
+			);
+			path = "Snap Roulette";
+			sourceTree = "<group>";
+		};
+		35B398871A96711900975CDD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				35B398881A96711900975CDD /* Info.plist */,
+				35B398891A96711900975CDD /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		35B398A01A96711900975CDD /* Snap RouletteTests */ = {
+			isa = PBXGroup;
+			children = (
+				35B398A31A96711900975CDD /* Snap_RouletteTests.m */,
+				35B398A11A96711900975CDD /* Supporting Files */,
+			);
+			path = "Snap RouletteTests";
+			sourceTree = "<group>";
+		};
+		35B398A11A96711900975CDD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				35B398A21A96711900975CDD /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		35B398831A96711900975CDD /* Snap Roulette */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 35B398A71A96711900975CDD /* Build configuration list for PBXNativeTarget "Snap Roulette" */;
+			buildPhases = (
+				35B398801A96711900975CDD /* Sources */,
+				35B398811A96711900975CDD /* Frameworks */,
+				35B398821A96711900975CDD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Snap Roulette";
+			productName = "Snap Roulette";
+			productReference = 35B398841A96711900975CDD /* Snap Roulette.app */;
+			productType = "com.apple.product-type.application";
+		};
+		35B3989C1A96711900975CDD /* Snap RouletteTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 35B398AA1A96711900975CDD /* Build configuration list for PBXNativeTarget "Snap RouletteTests" */;
+			buildPhases = (
+				35B398991A96711900975CDD /* Sources */,
+				35B3989A1A96711900975CDD /* Frameworks */,
+				35B3989B1A96711900975CDD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				35B3989F1A96711900975CDD /* PBXTargetDependency */,
+			);
+			name = "Snap RouletteTests";
+			productName = "Snap RouletteTests";
+			productReference = 35B3989D1A96711900975CDD /* Snap RouletteTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		35B3987C1A96711900975CDD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Jason Fieldman";
+				TargetAttributes = {
+					35B398831A96711900975CDD = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					35B3989C1A96711900975CDD = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = 35B398831A96711900975CDD;
+					};
+				};
+			};
+			buildConfigurationList = 35B3987F1A96711900975CDD /* Build configuration list for PBXProject "Snap Roulette" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 35B3987B1A96711900975CDD;
+			productRefGroup = 35B398851A96711900975CDD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				35B398831A96711900975CDD /* Snap Roulette */,
+				35B3989C1A96711900975CDD /* Snap RouletteTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		35B398821A96711900975CDD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				35B398931A96711900975CDD /* Main.storyboard in Resources */,
+				35B398981A96711900975CDD /* LaunchScreen.xib in Resources */,
+				35B398951A96711900975CDD /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		35B3989B1A96711900975CDD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		35B398801A96711900975CDD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				35B398901A96711900975CDD /* ViewController.m in Sources */,
+				35B3988D1A96711900975CDD /* AppDelegate.m in Sources */,
+				35B3988A1A96711900975CDD /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		35B398991A96711900975CDD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				35B398A41A96711900975CDD /* Snap_RouletteTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		35B3989F1A96711900975CDD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 35B398831A96711900975CDD /* Snap Roulette */;
+			targetProxy = 35B3989E1A96711900975CDD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		35B398911A96711900975CDD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				35B398921A96711900975CDD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		35B398961A96711900975CDD /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				35B398971A96711900975CDD /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		35B398A51A96711900975CDD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		35B398A61A96711900975CDD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		35B398A81A96711900975CDD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Snap Roulette/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		35B398A91A96711900975CDD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Snap Roulette/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		35B398AB1A96711900975CDD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Snap RouletteTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Snap Roulette.app/Snap Roulette";
+			};
+			name = Debug;
+		};
+		35B398AC1A96711900975CDD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Snap RouletteTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Snap Roulette.app/Snap Roulette";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		35B3987F1A96711900975CDD /* Build configuration list for PBXProject "Snap Roulette" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				35B398A51A96711900975CDD /* Debug */,
+				35B398A61A96711900975CDD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		35B398A71A96711900975CDD /* Build configuration list for PBXNativeTarget "Snap Roulette" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				35B398A81A96711900975CDD /* Debug */,
+				35B398A91A96711900975CDD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		35B398AA1A96711900975CDD /* Build configuration list for PBXNativeTarget "Snap RouletteTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				35B398AB1A96711900975CDD /* Debug */,
+				35B398AC1A96711900975CDD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 35B3987C1A96711900975CDD /* Project object */;
+}
