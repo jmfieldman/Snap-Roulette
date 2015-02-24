@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3560A1091A9CD64B005E29DE /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3560A1081A9CD64B005E29DE /* LoginViewController.m */; };
 		35B3988A1A96711900975CDD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 35B398891A96711900975CDD /* main.m */; };
 		35B3988D1A96711900975CDD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 35B3988C1A96711900975CDD /* AppDelegate.m */; };
 		35B398951A96711900975CDD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35B398941A96711900975CDD /* Images.xcassets */; };
 		35B398981A96711900975CDD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35B398961A96711900975CDD /* LaunchScreen.xib */; };
 		35B398A41A96711900975CDD /* Snap_RouletteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 35B398A31A96711900975CDD /* Snap_RouletteTests.m */; };
-		35B398B01A96745F00975CDD /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35B398AF1A96745F00975CDD /* LoginViewController.m */; };
 		7F4D1B9B0B931F10758A1355 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B61EF3F9BF2F583C5D823126 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +28,8 @@
 
 /* Begin PBXFileReference section */
 		238C12ACCCBE7E5D7252B156 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		3560A1071A9CD64B005E29DE /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		3560A1081A9CD64B005E29DE /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		35B398841A96711900975CDD /* Snap Roulette.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Snap Roulette.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35B398881A96711900975CDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35B398891A96711900975CDD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -38,8 +40,6 @@
 		35B3989D1A96711900975CDD /* Snap RouletteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Snap RouletteTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35B398A21A96711900975CDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35B398A31A96711900975CDD /* Snap_RouletteTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Snap_RouletteTests.m; sourceTree = "<group>"; };
-		35B398AE1A96745F00975CDD /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		35B398AF1A96745F00975CDD /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		66E71F3445FEF093252D2DE5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B61EF3F9BF2F583C5D823126 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -71,6 +71,23 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3560A1051A9CD64B005E29DE /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				3560A1061A9CD64B005E29DE /* Controllers */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		3560A1061A9CD64B005E29DE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3560A1071A9CD64B005E29DE /* LoginViewController.h */,
+				3560A1081A9CD64B005E29DE /* LoginViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		35B3987B1A96711900975CDD = {
 			isa = PBXGroup;
 			children = (
@@ -94,7 +111,7 @@
 		35B398861A96711900975CDD /* Snap Roulette */ = {
 			isa = PBXGroup;
 			children = (
-				35B398AD1A96745F00975CDD /* Controllers */,
+				3560A1051A9CD64B005E29DE /* Classes */,
 				35B3988B1A96711900975CDD /* AppDelegate.h */,
 				35B3988C1A96711900975CDD /* AppDelegate.m */,
 				35B398941A96711900975CDD /* Images.xcassets */,
@@ -128,15 +145,6 @@
 				35B398A21A96711900975CDD /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		35B398AD1A96745F00975CDD /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				35B398AE1A96745F00975CDD /* LoginViewController.h */,
-				35B398AF1A96745F00975CDD /* LoginViewController.m */,
-			);
-			path = Controllers;
 			sourceTree = "<group>";
 		};
 		860DF25DF7FD6FCEA999EDFD /* Pods */ = {
@@ -284,7 +292,7 @@
 			files = (
 				35B3988D1A96711900975CDD /* AppDelegate.m in Sources */,
 				35B3988A1A96711900975CDD /* main.m in Sources */,
-				35B398B01A96745F00975CDD /* LoginViewController.m in Sources */,
+				3560A1091A9CD64B005E29DE /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
