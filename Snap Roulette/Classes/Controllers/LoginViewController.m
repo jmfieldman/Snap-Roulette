@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "MainSnapViewController.h"
 #import <FacebookSDK.h>
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 
@@ -23,7 +24,7 @@
         self.view.backgroundColor = [UIColor redColor];
         
         UILabel *helloWorld = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, self.view.frame.size.width, 50)];
-        helloWorld.text = @"Hello World!";
+        helloWorld.text = @"Snap Routlette";
         helloWorld.textAlignment = NSTextAlignmentCenter;
         [self.view addSubview:helloWorld];
         
@@ -37,6 +38,13 @@
     return self;
 }
 
+- (void) viewDidAppear:(BOOL)animated {
+    if ([PFUser currentUser]) {
+        /* Successfully logged in here */
+        UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:[MainSnapViewController sharedInstance]];
+        [self presentViewController:controller animated:NO completion:nil];
+    }
+}
 
 
 - (void) loginButtonPressed:(id)sender {
@@ -61,6 +69,12 @@
                     user[@"name"]      = result[@"name"];
                     user[@"gender"]    = result[@"gender"];
                     [user saveInBackground];
+                    
+                    
+                    /* Successfully logged in here */
+                    UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:[MainSnapViewController sharedInstance]];
+                    [self presentViewController:controller animated:YES completion:nil];
+                    
                 }
             }];
         }
