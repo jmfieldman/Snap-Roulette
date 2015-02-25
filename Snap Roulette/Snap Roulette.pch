@@ -18,5 +18,6 @@
 #import <SVProgressHUD.h>
 #import <AFNetworking.h>
 #import <pop.h>
+#import <iCarousel.h>
 
 #endif

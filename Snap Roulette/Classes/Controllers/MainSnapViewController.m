@@ -7,6 +7,7 @@
 //
 
 #import "MainSnapViewController.h"
+#import "SnapListViewController.h"
 
 @interface MainSnapViewController ()
 
@@ -28,12 +29,19 @@
         
         self.title = @"Snap Roulette";
         
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Snaps" style:UIBarButtonItemStyleDone target:self action:@selector(handleSnapList:)];
+        
         _takePhotoButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _takePhotoButton.frame = CGRectMake(self.view.frame.size.width/2 - 20, self.view.frame.size.height - 60, 40, 40);
         _takePhotoButton.backgroundColor = [UIColor blueColor];
         [self.view addSubview:_takePhotoButton];
     }
     return self;
+}
+
+- (void) handleSnapList:(id)sender {
+    SnapListViewController *controller = [[SnapListViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 @end

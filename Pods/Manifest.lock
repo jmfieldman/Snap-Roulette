@@ -23,6 +23,7 @@ PODS:
   - Bolts (1.1.3)
   - Facebook-iOS-SDK (3.23.0):
     - Bolts (~> 1.0)
+  - iCarousel (1.8.1)
   - Parse (1.6.2):
     - Bolts (~> 1.1)
   - ParseFacebookUtils (1.6.2):
@@ -34,6 +35,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - Facebook-iOS-SDK
+  - iCarousel
   - Parse
   - ParseFacebookUtils
   - pop
@@ -43,6 +45,7 @@ SPEC CHECKSUMS:
   AFNetworking: 8bee59492a6ff15d69130efa4d0dc67e0094a52a
   Bolts: 3db0a875235e0c9042b013af13af0f00f79b102c
   Facebook-iOS-SDK: 3d65f685348b789e46a9aacf92bfa85b60b63755
+  iCarousel: 5acab560f10dc13da2440c89f35a0ad278b5147d
   Parse: 60d65108fe39da77ec16c9e51d74b4d296b21424
   ParseFacebookUtils: 0b86cd67283c60d10e3ddc8427f989f5e60ebbd7
   pop: 2f14a1ea61339767af9e66741b418c831b3844df
