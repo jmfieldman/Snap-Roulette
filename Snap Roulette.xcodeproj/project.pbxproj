@@ -33,6 +33,7 @@
 		3560A1081A9CD64B005E29DE /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		3560A1101A9D0C70005E29DE /* MainSnapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainSnapViewController.h; sourceTree = "<group>"; };
 		3560A1111A9D0C70005E29DE /* MainSnapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainSnapViewController.m; sourceTree = "<group>"; };
+		3560A1191A9E322A005E29DE /* Snap Roulette.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Snap Roulette.pch"; sourceTree = "<group>"; };
 		35B398841A96711900975CDD /* Snap Roulette.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Snap Roulette.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35B398881A96711900975CDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35B398891A96711900975CDD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -129,6 +130,7 @@
 		35B398871A96711900975CDD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3560A1191A9E322A005E29DE /* Snap Roulette.pch */,
 				35B398881A96711900975CDD /* Info.plist */,
 				35B398891A96711900975CDD /* main.m */,
 			);
@@ -355,6 +357,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREFIX_HEADER = "Snap Roulette/Snap Roulette.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -395,6 +398,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREFIX_HEADER = "Snap Roulette/Snap Roulette.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -413,6 +417,7 @@
 			baseConfigurationReference = 238C12ACCCBE7E5D7252B156 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "Snap Roulette/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -424,6 +429,7 @@
 			baseConfigurationReference = 66E71F3445FEF093252D2DE5 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "Snap Roulette/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -438,6 +444,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
+				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -457,6 +464,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
+				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "Snap RouletteTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
