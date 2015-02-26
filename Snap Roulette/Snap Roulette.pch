@@ -19,5 +19,6 @@
 #import <AFNetworking.h>
 #import <pop.h>
 #import <iCarousel.h>
+#import <UIImageView+WebCache.h>
 
 #endif
