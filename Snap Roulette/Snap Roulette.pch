@@ -20,5 +20,6 @@
 #import <pop.h>
 #import <iCarousel.h>
 #import <UIImageView+WebCache.h>
+#import "JFParseFBFriends.h"
 
 #endif

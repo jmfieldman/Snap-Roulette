@@ -1,0 +1,1 @@
+../../../JFParseFBFriends/Pod/Classes/JFParseFBFriends.h

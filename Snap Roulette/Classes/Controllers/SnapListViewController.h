@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SnapListViewController : UIViewController <iCarouselDataSource, iCarouselDelegate>
+@interface SnapListViewController : UIViewController 
 
-@property (nonatomic, strong) iCarousel *carousel;
 
 @end

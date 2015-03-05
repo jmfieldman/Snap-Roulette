@@ -24,6 +24,7 @@
     // Override point for customization after application launch.
     
     /* Parse Activation */
+    [Parse enableLocalDatastore];
     [Parse setApplicationId:@"mzrtdhojgIK8CdBWhfODDytlsrQRzWOrR7c9Bscf" clientKey:@"b7raZZ1FDwSPRTfbuIhAOT8NdW3jhrizcqKA51nn"];
     [PFFacebookUtils initializeFacebook];
     

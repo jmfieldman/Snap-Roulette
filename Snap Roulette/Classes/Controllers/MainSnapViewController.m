@@ -8,7 +8,6 @@
 
 #import "MainSnapViewController.h"
 #import "SnapListViewController.h"
-#import "FriendManager.h"
 
 @interface MainSnapViewController ()
 
@@ -38,8 +37,6 @@
         [_takePhotoButton addTarget:self action:@selector(handleTakePhoto:) forControlEvents:UIControlEventTouchUpInside];        
         [self.view addSubview:_takePhotoButton];
         
-        /* Load friends */
-        [[FriendManager sharedInstance] loadFriends];
     }
     return self;
 }
@@ -55,6 +52,7 @@
     NSLog(@"%@", info);
     UIImage *image = info[UIImagePickerControllerOriginalImage];
     
+    /*
     PFObject *snap = [PFObject objectWithClassName:@"Snap"];
     snap[@"taker"] = [PFUser currentUser];
     snap[@"data"]  = [PFFile fileWithData:UIImagePNGRepresentation(image)];
@@ -68,7 +66,7 @@
             NSLog(@"SAVED!");
         }];
     }];
-    
+    */
 }
 
 - (void) handleSnapList:(id)sender {
