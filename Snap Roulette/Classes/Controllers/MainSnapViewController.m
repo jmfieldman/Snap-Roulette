@@ -8,6 +8,7 @@
 
 #import "MainSnapViewController.h"
 #import "SnapListViewController.h"
+#import "LoginViewController.h"
 
 @interface MainSnapViewController ()
 
@@ -39,6 +40,16 @@
         
     }
     return self;
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    /* Show login screen if we do not have a user */
+    if (!PFUser.currentUser) {
+        LoginViewController *controller = [[LoginViewController alloc] init];
+        [self presentViewController:controller animated:NO completion:nil];
+    }
 }
 
 - (void) handleTakePhoto:(id)sender {

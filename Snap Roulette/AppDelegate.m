@@ -11,7 +11,7 @@
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 
 #import "AppDelegate.h"
-#import "LoginViewController.h"
+#import "MainSnapViewController.h"
 
 @interface AppDelegate ()
 
@@ -30,7 +30,7 @@
     
     /* Create window */
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.rootViewController = [[LoginViewController alloc] init];
+    self.window.rootViewController = [MainSnapViewController sharedInstance];
     [self.window makeKeyAndVisible];
     
     return YES;
