@@ -12,6 +12,8 @@
 
 @interface MainSnapViewController ()
 
+@property (nonatomic, strong) NSArray *fbFriends;
+
 @end
 
 @implementation MainSnapViewController
@@ -37,9 +39,21 @@
         _takePhotoButton.backgroundColor = [UIColor blueColor];
         [_takePhotoButton addTarget:self action:@selector(handleTakePhoto:) forControlEvents:UIControlEventTouchUpInside];        
         [self.view addSubview:_takePhotoButton];
-        
+     
+        /* Get FB Friends */
+        _fbFriends = [NSArray array];
+        [self updateFriends];
     }
     return self;
+}
+
+- (void) updateFriends {
+    [JFParseFBFriends findFriendsAndUpdate:YES completion:^(BOOL success, BOOL localStore, NSArray *pfusers, NSError *error) {
+        NSLog(@"friends: suc:%d ld:%d users:%@ error:%@", success, localStore, pfusers, error);
+        if (success) {
+            _fbFriends = pfusers;
+        }
+    }];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -63,7 +77,8 @@
     NSLog(@"%@", info);
     UIImage *image = info[UIImagePickerControllerOriginalImage];
     
-    /*
+    if (_fbFriends.count == 0) return;
+    
     PFObject *snap = [PFObject objectWithClassName:@"Snap"];
     snap[@"taker"] = [PFUser currentUser];
     snap[@"data"]  = [PFFile fileWithData:UIImagePNGRepresentation(image)];
@@ -72,12 +87,14 @@
         PFObject *sentsnap    = [PFObject objectWithClassName:@"SentSnap"];
         sentsnap[@"taker"]    = [PFUser currentUser];
         sentsnap[@"snap"]     = snap;
-        sentsnap[@"receiver"] = [FriendManager sharedInstance].parseFriends[0];
+        sentsnap[@"receiver"] = _fbFriends[0];
         [sentsnap saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             NSLog(@"SAVED!");
         }];
     }];
-    */
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
 
 - (void) handleSnapList:(id)sender {

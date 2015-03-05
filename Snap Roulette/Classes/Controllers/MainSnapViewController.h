@@ -14,4 +14,6 @@
 
 + (MainSnapViewController*) sharedInstance;
 
+- (void) updateFriends;
+
 @end

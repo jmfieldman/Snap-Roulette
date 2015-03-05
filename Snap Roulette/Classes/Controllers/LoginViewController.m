@@ -54,6 +54,7 @@
         if (user) {
             [JFParseFBFriends updateCurrentUserWithCompletion:^(BOOL success, NSError *error) {
                 [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+                [[MainSnapViewController sharedInstance] updateFriends];
             }];
         }
         
