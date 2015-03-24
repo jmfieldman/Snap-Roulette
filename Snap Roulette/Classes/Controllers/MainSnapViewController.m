@@ -22,8 +22,9 @@
 @property (nonatomic, strong) AVCaptureSession           *captureSession;
 @property (nonatomic, strong) AVCaptureDevice            *captureDevice;
 @property (nonatomic, strong) AVCaptureDeviceInput       *captureInput;
-@property (nonatomic, strong) AVCaptureVideoDataOutput   *captureVideoOutput;
+@property (nonatomic, strong) AVCaptureStillImageOutput  *captureImageOutput;
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer *capturePreviewLayer;
+@property (nonatomic, strong) AVCaptureConnection        *captureConnection;
 
 @end
 
@@ -111,10 +112,10 @@
         [_captureSession addInput:_captureInput];
         
         /* capture output */
-        _captureVideoOutput = [[AVCaptureVideoDataOutput alloc] init];
-        [_captureSession addOutput:_captureVideoOutput];
-        _captureVideoOutput.videoSettings = @{ (NSString *)kCVPixelBufferPixelFormatTypeKey : @(kCVPixelFormatType_32BGRA) };
-
+        _captureImageOutput = [[AVCaptureStillImageOutput alloc] init];
+        _captureImageOutput.outputSettings = @{ AVVideoCodecKey : AVVideoCodecJPEG };
+        [_captureSession addOutput:_captureImageOutput];
+        
         /* Preview */
         _capturePreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:_captureSession];
         _capturePreviewLayer.frame = self.view.bounds;
@@ -147,10 +148,31 @@
 }
 
 - (void) handleTakePhoto:(id)sender {
+    
+    for (AVCaptureConnection *connection in [_captureImageOutput connections]) {
+        for (AVCaptureInputPort *port in [connection inputPorts]) {
+            if ([[port mediaType] isEqual:AVMediaTypeVideo] ) {
+                _captureConnection = connection;
+                break;
+            }
+        }
+        if (_captureConnection) {
+            break;
+        }
+    }
+    
+    [_captureImageOutput captureStillImageAsynchronouslyFromConnection:_captureConnection completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
+        NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
+        UIImage *image = [[UIImage alloc] initWithData:imageData];
+        NSLog(@"took image: %f %f", image.size.width, image.size.height);
+    }];
+    
+    #if 0
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     picker.delegate = self;
     [self presentViewController:picker animated:YES completion:nil];
+    #endif
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
