@@ -17,6 +17,7 @@
 #import <FacebookSDK.h>
 #import <SVProgressHUD.h>
 #import <AFNetworking.h>
+#import <AVFoundation/AVFoundation.h>
 #import <pop.h>
 #import <iCarousel.h>
 #import <UIImageView+WebCache.h>

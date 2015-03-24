@@ -14,8 +14,16 @@
 @interface MainSnapViewController ()
 
 @property (nonatomic, strong) NSArray *fbFriends;
-
 @property (nonatomic, strong) UIView *photoCover;
+
+@property (nonatomic, strong) UIView *previewView;
+
+/* capture session */
+@property (nonatomic, strong) AVCaptureSession           *captureSession;
+@property (nonatomic, strong) AVCaptureDevice            *captureDevice;
+@property (nonatomic, strong) AVCaptureDeviceInput       *captureInput;
+@property (nonatomic, strong) AVCaptureVideoDataOutput   *captureVideoOutput;
+@property (nonatomic, strong) AVCaptureVideoPreviewLayer *capturePreviewLayer;
 
 @end
 
@@ -36,6 +44,11 @@
         self.title = @"Snap Roulette";
         
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Snaps" style:UIBarButtonItemStyleDone target:self action:@selector(handleSnapList:)];
+        
+        /* Add preview */
+        _previewView = [[UIView alloc] initWithFrame:self.view.bounds];
+        _previewView.backgroundColor = [UIColor clearColor];
+        [self.view addSubview:_previewView];
         
         /* Build the photo cover */
         float viewfinder_size = self.view.bounds.size.width * 0.95;
@@ -87,6 +100,29 @@
         /* Get FB Friends */
         _fbFriends = [NSArray array];
         [self updateFriends];
+        
+        /* Create capture session */
+        _captureSession = [[AVCaptureSession alloc] init];
+        _captureSession.sessionPreset = AVCaptureSessionPresetPhoto;
+        
+        /* Create capture device */
+        _captureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+        _captureInput  = [AVCaptureDeviceInput deviceInputWithDevice:_captureDevice error:nil];
+        [_captureSession addInput:_captureInput];
+        
+        /* capture output */
+        _captureVideoOutput = [[AVCaptureVideoDataOutput alloc] init];
+        [_captureSession addOutput:_captureVideoOutput];
+        _captureVideoOutput.videoSettings = @{ (NSString *)kCVPixelBufferPixelFormatTypeKey : @(kCVPixelFormatType_32BGRA) };
+
+        /* Preview */
+        _capturePreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:_captureSession];
+        _capturePreviewLayer.frame = self.view.bounds;
+        _capturePreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+        [_previewView.layer addSublayer:_capturePreviewLayer];
+        
+        [_captureSession startRunning];
+        
     }
     return self;
 }

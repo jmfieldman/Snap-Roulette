@@ -16,6 +16,8 @@
 		35B398981A96711900975CDD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35B398961A96711900975CDD /* LaunchScreen.xib */; };
 		35B398A41A96711900975CDD /* Snap_RouletteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 35B398A31A96711900975CDD /* Snap_RouletteTests.m */; };
 		35F98A4A1AC1AD970058C346 /* FlatWheelImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F98A491AC1AD970058C346 /* FlatWheelImage.m */; };
+		35F98A4D1AC1EAD00058C346 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35F98A4B1AC1EAD00058C346 /* AVFoundation.framework */; };
+		35F98A4E1AC1EAD00058C346 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35F98A4C1AC1EAD00058C346 /* AVKit.framework */; };
 		7F4D1B9B0B931F10758A1355 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B61EF3F9BF2F583C5D823126 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +52,8 @@
 		35B398A31A96711900975CDD /* Snap_RouletteTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Snap_RouletteTests.m; sourceTree = "<group>"; };
 		35F98A481AC1AD970058C346 /* FlatWheelImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlatWheelImage.h; sourceTree = "<group>"; };
 		35F98A491AC1AD970058C346 /* FlatWheelImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlatWheelImage.m; sourceTree = "<group>"; };
+		35F98A4B1AC1EAD00058C346 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		35F98A4C1AC1EAD00058C346 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		66E71F3445FEF093252D2DE5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B61EF3F9BF2F583C5D823126 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -59,6 +63,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35F98A4D1AC1EAD00058C346 /* AVFoundation.framework in Frameworks */,
+				35F98A4E1AC1EAD00058C346 /* AVKit.framework in Frameworks */,
 				7F4D1B9B0B931F10758A1355 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -76,6 +82,8 @@
 		2C23D53DBA511193C0F15805 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				35F98A4B1AC1EAD00058C346 /* AVFoundation.framework */,
+				35F98A4C1AC1EAD00058C346 /* AVKit.framework */,
 				B61EF3F9BF2F583C5D823126 /* libPods.a */,
 			);
 			name = Frameworks;
