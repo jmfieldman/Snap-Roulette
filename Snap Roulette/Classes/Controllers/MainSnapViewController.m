@@ -9,6 +9,7 @@
 #import "MainSnapViewController.h"
 #import "SnapListViewController.h"
 #import "LoginViewController.h"
+#import "FlatWheelImage.h"
 
 @interface MainSnapViewController ()
 
@@ -35,10 +36,16 @@
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Snaps" style:UIBarButtonItemStyleDone target:self action:@selector(handleSnapList:)];
         
         _takePhotoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _takePhotoButton.frame = CGRectMake(self.view.frame.size.width/2 - 20, self.view.frame.size.height - 60, 40, 40);
-        _takePhotoButton.backgroundColor = [UIColor blueColor];
+        _takePhotoButton.frame = CGRectMake(self.view.frame.size.width/2 - 40, self.view.frame.size.height - 100, 80, 80);
+        //_takePhotoButton.backgroundColor = [UIColor blueColor];
+        [_takePhotoButton setImage:[FlatWheelImage flatWheelImageWithSize:CGSizeMake(80,80) slices:18 green:YES] forState:UIControlStateNormal];
         [_takePhotoButton addTarget:self action:@selector(handleTakePhoto:) forControlEvents:UIControlEventTouchUpInside];        
         [self.view addSubview:_takePhotoButton];
+        
+        _takePhotoButton.layer.shadowColor = [UIColor blackColor].CGColor;
+        _takePhotoButton.layer.shadowOffset = CGSizeMake(0,0);
+        _takePhotoButton.layer.shadowOpacity = 0.5;
+        _takePhotoButton.layer.shadowRadius = 5;
      
         /* Get FB Friends */
         _fbFriends = [NSArray array];
@@ -83,7 +90,7 @@
     snap[@"taker"] = [PFUser currentUser];
     snap[@"data"]  = [PFFile fileWithData:UIImagePNGRepresentation(image)];
     [snap saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-       
+
         PFObject *sentsnap    = [PFObject objectWithClassName:@"SentSnap"];
         sentsnap[@"taker"]    = [PFUser currentUser];
         sentsnap[@"snap"]     = snap;
