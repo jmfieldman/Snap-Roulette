@@ -15,6 +15,8 @@
 
 @property (nonatomic, strong) NSArray *fbFriends;
 
+@property (nonatomic, strong) UIView *photoCover;
+
 @end
 
 @implementation MainSnapViewController
@@ -34,6 +36,41 @@
         self.title = @"Snap Roulette";
         
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Snaps" style:UIBarButtonItemStyleDone target:self action:@selector(handleSnapList:)];
+        
+        /* Build the photo cover */
+        float viewfinder_size = self.view.bounds.size.width * 0.95;
+        float viewfinder_border_alpha = 0.5;
+        _photoCover = [[UIView alloc] initWithFrame:self.view.bounds];
+        _photoCover.backgroundColor = [UIColor clearColor];
+        [self.view addSubview:_photoCover];
+        {
+            UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, (self.view.bounds.size.height - viewfinder_size)/2)];
+            v.backgroundColor = [UIColor colorWithWhite:0 alpha:viewfinder_border_alpha];
+            [_photoCover addSubview:v];
+        }
+        {
+            UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - (self.view.bounds.size.height - viewfinder_size)/2, self.view.bounds.size.width, (self.view.bounds.size.height - viewfinder_size)/2)];
+            v.backgroundColor = [UIColor colorWithWhite:0 alpha:viewfinder_border_alpha];
+            [_photoCover addSubview:v];
+        }
+        {
+            UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, (self.view.bounds.size.height - viewfinder_size)/2, (self.view.bounds.size.width - viewfinder_size)/2, viewfinder_size)];
+            v.backgroundColor = [UIColor colorWithWhite:0 alpha:viewfinder_border_alpha];
+            [_photoCover addSubview:v];
+        }
+        {
+            UIView *v = [[UIView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - (self.view.bounds.size.width - viewfinder_size)/2, (self.view.bounds.size.height - viewfinder_size)/2, (self.view.bounds.size.width - viewfinder_size)/2, viewfinder_size)];
+            v.backgroundColor = [UIColor colorWithWhite:0 alpha:viewfinder_border_alpha];
+            [_photoCover addSubview:v];
+        }
+        {
+            UIView *v = [[UIView alloc] initWithFrame:CGRectMake((self.view.bounds.size.width - viewfinder_size)/2, (self.view.bounds.size.height - viewfinder_size)/2, viewfinder_size, viewfinder_size)];
+            v.layer.borderColor = [UIColor colorWithWhite:1 alpha:viewfinder_border_alpha].CGColor;
+            v.layer.borderWidth = 2;
+            v.backgroundColor = [UIColor clearColor];
+            v.clipsToBounds = NO;
+            [_photoCover addSubview:v];
+        }
         
         _takePhotoButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _takePhotoButton.frame = CGRectMake(self.view.frame.size.width/2 - 40, self.view.frame.size.height - 100, 80, 80);
