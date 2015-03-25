@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SnapListViewController : UIViewController 
+@interface SnapListViewController : UITableViewController
 
++ (SnapListViewController*) sharedInstance;
 
 @end

@@ -14,6 +14,15 @@
 
 @implementation SnapListViewController
 
++ (SnapListViewController*) sharedInstance {
+    __strong static SnapListViewController *singleton = nil;
+    @synchronized(self) {
+        if (singleton == nil) singleton = [[SnapListViewController alloc] init];
+    }
+    return singleton;
+}
+
+
 - (id) init {
     if ((self = [super init])) {
         

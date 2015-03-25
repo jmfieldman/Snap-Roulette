@@ -18,6 +18,8 @@
 
 @property (nonatomic, strong) UIView *previewView;
 
+@property (nonatomic, strong) UIImageView *titleView;
+
 /* capture session */
 @property (nonatomic, strong) AVCaptureSession           *captureSession;
 @property (nonatomic, strong) AVCaptureDevice            *captureDevice;
@@ -98,6 +100,11 @@
         _takePhotoButton.layer.shadowOpacity = 0.5;
         _takePhotoButton.layer.shadowRadius = 5;
      
+        /* Add title */
+        _titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"snap_roulette"]];
+        _titleView.center = CGPointMake(self.view.bounds.size.width/2, 70);
+        [self.view addSubview:_titleView];
+        
         /* Get FB Friends */
         _fbFriends = [NSArray array];
         [self updateFriends];
@@ -109,7 +116,7 @@
         /* Create capture device */
         _captureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
         _captureInput  = [AVCaptureDeviceInput deviceInputWithDevice:_captureDevice error:nil];
-        [_captureSession addInput:_captureInput];
+        if (_captureInput) [_captureSession addInput:_captureInput];
         
         /* capture output */
         _captureImageOutput = [[AVCaptureStillImageOutput alloc] init];
@@ -164,11 +171,11 @@
     [_captureImageOutput captureStillImageAsynchronouslyFromConnection:_captureConnection completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
         NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
         UIImage *image = [[UIImage alloc] initWithData:imageData];
-        NSLog(@"took image: %f %f %ld", image.size.width, image.size.height, image.imageOrientation);
+        NSLog(@"took image: %f %f %d", image.size.width, image.size.height, (int)image.imageOrientation);
         
         CGFloat edge = MIN(image.size.width, image.size.height);
         UIImage *cropped = [self imageByCroppingImage:image toSize:CGSizeMake(edge, edge)];
-        NSLog(@"cropped image: %f %f %ld", cropped.size.width, cropped.size.height, cropped.imageOrientation);
+        NSLog(@"cropped image: %f %f %d", cropped.size.width, cropped.size.height, (int)cropped.imageOrientation);
         
     }];
     
