@@ -164,8 +164,15 @@
     [_captureImageOutput captureStillImageAsynchronouslyFromConnection:_captureConnection completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
         NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
         UIImage *image = [[UIImage alloc] initWithData:imageData];
-        NSLog(@"took image: %f %f", image.size.width, image.size.height);
+        NSLog(@"took image: %f %f %ld", image.size.width, image.size.height, image.imageOrientation);
+        
+        CGFloat edge = MIN(image.size.width, image.size.height);
+        UIImage *cropped = [self imageByCroppingImage:image toSize:CGSizeMake(edge, edge)];
+        NSLog(@"cropped image: %f %f %ld", cropped.size.width, cropped.size.height, cropped.imageOrientation);
+        
     }];
+    
+    
     
     #if 0
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
@@ -203,5 +210,24 @@
     SnapListViewController *controller = [[SnapListViewController alloc] init];
     [self.navigationController pushViewController:controller animated:YES];
 }
+
+
+- (UIImage *)imageByCroppingImage:(UIImage *)image toSize:(CGSize)size {
+    // not equivalent to image.size (which depends on the imageOrientation)!
+    double refWidth = CGImageGetWidth(image.CGImage);
+    double refHeight = CGImageGetHeight(image.CGImage);
+    
+    double x = (refWidth - size.width) / 2.0;
+    double y = (refHeight - size.height) / 2.0;
+    
+    CGRect cropRect = CGRectMake(x, y, size.height, size.width);
+    CGImageRef imageRef = CGImageCreateWithImageInRect([image CGImage], cropRect);
+    
+    UIImage *cropped = [UIImage imageWithCGImage:imageRef scale:0.0 orientation:image.imageOrientation];
+    CGImageRelease(imageRef);
+    
+    return cropped;
+}
+
 
 @end
