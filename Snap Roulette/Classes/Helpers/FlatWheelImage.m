@@ -26,7 +26,7 @@
     double arc = 2 * M_PI / slices;
     
     for (int slice = 0; slice < slices; slice++) {
-        CGContextBeginPage(c, NULL);
+        CGContextBeginPath(c);
         CGContextMoveToPoint(c, middle.x, middle.y);
         CGContextAddArc(c, middle.x, middle.y, middle.x * 0.95, arc * slice, arc * (slice + 1), 0);
         CGContextAddLineToPoint(c, middle.x, middle.y);
