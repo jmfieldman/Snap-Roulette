@@ -104,6 +104,7 @@
         /* Add title */
         _titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"snap_roulette"]];
         _titleView.center = CGPointMake(self.view.bounds.size.width/2, 70);
+        _titleView.transform = CGAffineTransformMakeScale(0.75, 0.75);
         [self.view addSubview:_titleView];
         
         /* Get FB Friends */
@@ -166,7 +167,7 @@
 
 - (void) handleTakePhoto:(id)sender {
     
-    #ifdef TARGET_IPHONE_SIMULATOR
+    #if TARGET_IPHONE_SIMULATOR
     [self handleImageSnapped:[UIImage imageNamed:@"test"]];
     return;
     #else
