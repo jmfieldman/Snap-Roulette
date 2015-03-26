@@ -132,6 +132,15 @@
         
         [_captureSession startRunning];
         
+        
+        /* Take photo button rotation */
+        POPBasicAnimation *rotanim = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerRotation];
+        rotanim.toValue = @(M_PI*0.95);
+        rotanim.repeatForever = YES;
+        //rotanim.removedOnCompletion = NO;
+        rotanim.additive = YES;
+        rotanim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+        [_takePhotoButton.layer pop_addAnimation:rotanim forKey:@"rot"];
     }
     return self;
 }
