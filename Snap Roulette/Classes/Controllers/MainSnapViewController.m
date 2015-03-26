@@ -17,8 +17,9 @@
 @property (nonatomic, strong) UIView *photoCover;
 
 @property (nonatomic, strong) UIView *previewView;
-
 @property (nonatomic, strong) UIImageView *titleView;
+
+@property (nonatomic, strong) UIView *polaroidShot;
 
 /* capture session */
 @property (nonatomic, strong) AVCaptureSession           *captureSession;
@@ -156,6 +157,11 @@
 
 - (void) handleTakePhoto:(id)sender {
     
+    #ifdef TARGET_IPHONE_SIMULATOR
+    [self handleImageSnapped:[UIImage imageNamed:@"test"]];
+    return;
+    #else
+    
     for (AVCaptureConnection *connection in [_captureImageOutput connections]) {
         for (AVCaptureInputPort *port in [connection inputPorts]) {
             if ([[port mediaType] isEqual:AVMediaTypeVideo] ) {
@@ -177,9 +183,12 @@
         UIImage *cropped = [self imageByCroppingImage:image toSize:CGSizeMake(edge, edge)];
         NSLog(@"cropped image: %f %f %d", cropped.size.width, cropped.size.height, (int)cropped.imageOrientation);
         
+        
+        [self handleImageSnapped:cropped];
+        
     }];
     
-    
+    #endif
     
     #if 0
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
@@ -210,6 +219,47 @@
     }];
     
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+- (void) handleImageSnapped:(UIImage*)image {
+ 
+    float iW = self.view.bounds.size.width * 1.35;
+    float iH = iW;
+    float picRatio = 0.8;
+    
+    _polaroidShot = [[UIView alloc] initWithFrame:CGRectMake(0, 0, iW, iH)];
+    
+    UIImageView *pic = [[UIImageView alloc] initWithImage:image];
+    pic.frame = CGRectMake(iW * 0.1, iH * 0.05, iW * picRatio, iH * picRatio);
+    [_polaroidShot addSubview:pic];
+    
+    UIImageView *pol = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"polaroid"]];
+    pol.frame = _polaroidShot.bounds;
+    [_polaroidShot addSubview:pol];
+    
+    [self.view addSubview:_polaroidShot];
+    
+    _polaroidShot.center = CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height * 0.58);
+    //_polaroidShot.alpha = 0.3;
+    
+    POPSpringAnimation *anim = [POPSpringAnimation animationWithPropertyNamed:kPOPViewScaleXY];
+    anim.toValue = [NSValue valueWithCGSize:CGSizeMake(0.75, 0.75)];
+    [_polaroidShot pop_addAnimation:anim forKey:@"scalexy"];
+    
+    POPSpringAnimation *animC = [POPSpringAnimation animationWithPropertyNamed:kPOPViewCenter];
+    animC.toValue = [NSValue valueWithCGPoint:CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height * 0.5)];
+    [_polaroidShot pop_addAnimation:animC forKey:@"center"];
+    
+    POPSpringAnimation *animR = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerRotation];
+    animR.toValue = @(-0.15);
+    [_polaroidShot.layer pop_addAnimation:animR forKey:@"rot"];
+    
+    POPBasicAnimation *anim2 = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
+    anim2.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    anim2.fromValue = @(0.0);
+    anim2.toValue = @(1.0);
+    [_polaroidShot pop_addAnimation:anim2 forKey:@"fade"];
     
 }
 
