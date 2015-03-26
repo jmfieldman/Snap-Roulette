@@ -270,6 +270,20 @@
     anim2.toValue = @(1.0);
     [_polaroidShot pop_addAnimation:anim2 forKey:@"fade"];
     
+    
+    /* Wind down rotation */
+    CGFloat angle = [(NSNumber *)[_takePhotoButton.layer.presentationLayer valueForKeyPath:@"transform.rotation.z"] floatValue];
+    
+    POPBasicAnimation *rotanim = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerRotation];
+    rotanim.fromValue = @(angle);
+    rotanim.duration = 0.7;
+    rotanim.toValue = @(angle + M_PI*0.95);
+    rotanim.repeatForever = NO;
+    rotanim.removedOnCompletion = NO;
+    rotanim.additive = NO;
+    rotanim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+    [_takePhotoButton.layer pop_addAnimation:rotanim forKey:@"rot"];
+    
 }
 
 - (void) handleSnapList:(id)sender {
