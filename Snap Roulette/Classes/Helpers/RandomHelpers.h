@@ -11,7 +11,7 @@
 @interface RandomHelpers : NSObject
 
 + (NSString*) urlForFBPicture:(PFUser*)user;
-
 + (NSArray*) randomSubsetOfUsers:(NSArray*)users ofMaxSize:(int)size;
++ (UIImageView*) roundPortraitViewForUser:(PFUser*)user ofSize:(int)size;
 
 @end

@@ -293,7 +293,12 @@
     rotanim.additive = NO;
     rotanim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
     [_takePhotoButton.layer pop_addAnimation:rotanim forKey:@"rot"];
-    
+	
+    /* ----------------- GET RECEIVERS ---------------- */
+	
+	NSArray *receivers = [RandomHelpers randomSubsetOfUsers:_fbFriends ofMaxSize:5];
+	
+	
 }
 
 - (void) handleSnapList:(id)sender {

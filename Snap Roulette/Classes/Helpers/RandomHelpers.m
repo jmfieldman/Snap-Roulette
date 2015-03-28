@@ -30,4 +30,11 @@
 	return result;
 }
 
++ (UIImageView*) roundPortraitViewForUser:(PFUser*)user ofSize:(int)size {
+	UIImageView *result = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size, size)];
+	result.layer.cornerRadius = size / 2.0;
+	
+	
+}
+
 @end
