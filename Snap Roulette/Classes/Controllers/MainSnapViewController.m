@@ -296,7 +296,60 @@
 	
     /* ----------------- GET RECEIVERS ---------------- */
 	
-	NSArray *receivers = [RandomHelpers randomSubsetOfUsers:_fbFriends ofMaxSize:5];
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+		NSArray *receivers = [RandomHelpers randomSubsetOfUsers:_fbFriends ofMaxSize:5];
+		
+		//receivers = @[receivers[0], receivers[0], receivers[0], receivers[0], receivers[0]];
+		
+		int index = 0;
+		for (PFUser *friend in receivers) {
+			
+			int indexOffset = index - 2;
+			float portraitSpacing = _polaroidShot.bounds.size.width * 0.15;
+			float pX = (_polaroidShot.bounds.size.width / 2) + (indexOffset * portraitSpacing);
+			float pY = (_polaroidShot.bounds.size.height * 0.822);
+			float sz = (_polaroidShot.bounds.size.width * 0.12);
+			
+			UIImageView *portrait = [RandomHelpers roundPortraitViewForUser:friend ofSize:sz];
+			portrait.center = CGPointMake(160, 300);
+			portrait.alpha = 0;
+			[_polaroidShot addSubview:portrait];
+			
+			CGPoint p = [_polaroidShot convertPoint:_takePhotoButton.center fromView:self.view];
+			portrait.center = p;
+			
+			POPSpringAnimation *move = [POPSpringAnimation animationWithPropertyNamed:kPOPViewCenter];
+			move.toValue = [NSValue valueWithCGPoint:CGPointMake(pX, pY)];
+			move.beginTime = CACurrentMediaTime() + index*0.05;
+			[portrait pop_addAnimation:move forKey:@"move"];
+			
+			POPBasicAnimation *alpha = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
+			alpha.toValue = @1;
+			alpha.beginTime = move.beginTime;
+			alpha.duration = 0.05;
+			[portrait pop_addAnimation:alpha forKey:@"alpha"];
+			
+			
+			UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, portraitSpacing * 0.95, sz * 0.3)];
+			name.text = friend[@"firstname"];
+			name.textAlignment = NSTextAlignmentCenter;
+			name.textColor = [UIColor colorWithWhite:0.2 alpha:1];
+			name.font = [UIFont fontWithName:@"Lato Regular" size:14];
+			name.minimumScaleFactor = 0.5;
+			name.alpha = 0;
+			name.center = CGPointMake(pX, pY + sz*0.75);
+			[_polaroidShot addSubview:name];
+			
+			POPBasicAnimation *alphaN = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
+			alphaN.toValue = @1;
+			alphaN.beginTime = move.beginTime + 0.25;
+			alphaN.duration = 0.15;
+			[name pop_addAnimation:alphaN forKey:@"alpha"];
+			
+			index++;
+		}
+	});
+	
 	
 	
 }

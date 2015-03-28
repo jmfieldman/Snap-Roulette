@@ -32,9 +32,11 @@
 
 + (UIImageView*) roundPortraitViewForUser:(PFUser*)user ofSize:(int)size {
 	UIImageView *result = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size, size)];
-	result.layer.cornerRadius = size / 2.0;
-	
-	
+	result.layer.cornerRadius  = size / 2.0;
+	result.layer.masksToBounds = YES;
+		
+	[result sd_setImageWithURL:[NSURL URLWithString:[RandomHelpers urlForFBPicture:user]] placeholderImage:[UIImage imageNamed:@"facebook_default_portrait"] options:SDWebImageRefreshCached completed:nil];
+	return result;
 }
 
 @end
