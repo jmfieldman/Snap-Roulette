@@ -20,6 +20,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <pop.h>
 #import <iCarousel.h>
+#import <BlocksKit+UIKit.h>
 #import <UIImageView+WebCache.h>
 #import "JFParseFBFriends.h"
 

@@ -364,6 +364,43 @@
 	//[PFCloud callFunctionInBackground:@"submit_snap" withParameters:@{@"receivers":@[u.objectId], @"snap_image_data":b64} block:^(id object, NSError *error) {
 	//	NSLog(@"submit_snap result obj: %@ error: %@", object, error);
 	//}];
+	
+	/* Create the dismissal layer */
+	UIButton *dismissButton = [UIButton buttonWithType:UIButtonTypeCustom];
+	dismissButton.frame = self.view.bounds;
+	[self.view addSubview:dismissButton];
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+		[dismissButton bk_addEventHandler:^(id sender) {
+			
+			POPSpringAnimation *animR = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerRotation];
+			animR.toValue = @(-0.45 + (arc4random()%100/100.0)*0.5);
+			animR.springSpeed = 0.3;
+			[_polaroidShot.layer pop_addAnimation:animR forKey:@"rot"];
+			
+			POPSpringAnimation *animP = [POPSpringAnimation animationWithPropertyNamed:kPOPViewCenter];
+			animP.toValue = [NSValue valueWithCGPoint:CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height * 1.5)];
+			animP.springSpeed = 0.05;
+			animP.dynamicsTension = 30;
+			[_polaroidShot pop_addAnimation:animP forKey:@"pos"];
+			
+			[_polaroidShot performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:2];
+			
+			[(UIButton*)sender removeFromSuperview];
+			
+			
+			/* Take photo button rotation */
+			POPBasicAnimation *rotanim = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerRotation];
+			rotanim.toValue = @(M_PI*0.95);
+			rotanim.repeatForever = YES;
+			//rotanim.removedOnCompletion = NO;
+			rotanim.additive = YES;
+			rotanim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+			[_takePhotoButton.layer pop_removeAllAnimations];
+			_takePhotoButton.layer.transform = CATransform3DIdentity;
+			[_takePhotoButton.layer pop_addAnimation:rotanim forKey:@"rot"];
+			
+		} forControlEvents:UIControlEventTouchUpInside];
+	});
 }
 
 - (void) handleSnapList:(id)sender {
