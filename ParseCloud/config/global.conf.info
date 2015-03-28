@@ -1,0 +1,1 @@
+global.conf is hidden because of master key issues; create new parse app in temp directory to generate global.json.
