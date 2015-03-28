@@ -13,5 +13,6 @@
 + (NSString*) urlForFBPicture:(PFUser*)user;
 + (NSArray*) randomSubsetOfUsers:(NSArray*)users ofMaxSize:(int)size;
 + (UIImageView*) roundPortraitViewForUser:(PFUser*)user ofSize:(int)size;
++ (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize;
 
 @end

@@ -243,6 +243,8 @@
 
 - (void) handleImageSnapped:(UIImage*)image {
  
+	image = [RandomHelpers imageWithImage:image scaledToSize:CGSizeMake(512, 512)];
+	
     float iW = self.view.bounds.size.width * 1.35;
     float iH = iW;
     float picRatio = 0.8;
@@ -350,8 +352,22 @@
 		}
 	});
 	
-	
-	
+	/*
+	PFObject *snap = [PFObject objectWithClassName:@"Snap"];
+	snap[@"taker"] = [PFUser currentUser];
+	snap[@"data"]  = [PFFile fileWithData:UIImagePNGRepresentation(image)];
+	[snap saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+		
+		NSLog(@"snap result: %d %@", succeeded, error);
+	}];
+	*/
+	 
+	PFUser *u = _fbFriends[0];
+	NSData *iData = UIImagePNGRepresentation(image);
+	NSString *b64 = [iData base64EncodedStringWithOptions:0];
+	[PFCloud callFunctionInBackground:@"submit_snap" withParameters:@{@"receivers":@[u.objectId], @"snap_image_data":b64} block:^(id object, NSError *error) {
+		NSLog(@"submit_snap result obj: %@ error: %@", object, error);
+	}];
 }
 
 - (void) handleSnapList:(id)sender {
