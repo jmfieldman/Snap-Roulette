@@ -175,7 +175,19 @@
 }
 
 - (void) handleTakePhoto:(id)sender {
-    
+	
+	UIView *white = [[UIView alloc] initWithFrame:self.view.bounds];
+	white.backgroundColor = [UIColor whiteColor];
+	[self.view addSubview:white];
+	[UIView animateWithDuration:0.5
+						  delay:0
+						options:UIViewAnimationOptionCurveEaseOut
+					 animations:^{
+						 white.alpha = 0;
+					 } completion:^(BOOL finished) {
+						 [white removeFromSuperview];
+					 }];
+	
     #if TARGET_IPHONE_SIMULATOR
 	[self handleImageSnapped:[RandomHelpers imageWithImage:[UIImage imageNamed:@"test"] scaledToSize:CGSizeMake(512, 512)]];
     return;
@@ -229,7 +241,7 @@
     UIImage *image = info[UIImagePickerControllerOriginalImage];
     
     if (_fbFriends.count == 0) return;
-    
+	
     PFObject *snap = [PFObject objectWithClassName:@"Snap"];
     snap[@"taker"] = [PFUser currentUser];
     snap[@"data"]  = [PFFile fileWithData:UIImagePNGRepresentation(image)];
@@ -249,6 +261,8 @@
 }
 
 - (void) handleImageSnapped:(UIImage*)image {
+	
+	//[PreloadedSFX playSFX:PLSFX_SHUTTER];
 	
     float iW = self.view.bounds.size.width * 1.35;
     float iH = iW;
