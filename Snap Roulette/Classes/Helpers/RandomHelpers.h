@@ -12,4 +12,6 @@
 
 + (NSString*) urlForFBPicture:(PFUser*)user;
 
++ (NSArray*) randomSubsetOfUsers:(NSArray*)users ofMaxSize:(int)size;
+
 @end
