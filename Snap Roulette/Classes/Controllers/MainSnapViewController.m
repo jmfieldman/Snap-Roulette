@@ -177,7 +177,7 @@
 - (void) handleTakePhoto:(id)sender {
     
     #if TARGET_IPHONE_SIMULATOR
-    [self handleImageSnapped:[UIImage imageNamed:@"test"]];
+	[self handleImageSnapped:[RandomHelpers imageWithImage:[UIImage imageNamed:@"test"] scaledToSize:CGSizeMake(512, 512)]];
     return;
     #else
     
@@ -194,17 +194,24 @@
     }
     
     [_captureImageOutput captureStillImageAsynchronouslyFromConnection:_captureConnection completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
-        NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
-        UIImage *image = [[UIImage alloc] initWithData:imageData];
-        NSLog(@"took image: %f %f %d", image.size.width, image.size.height, (int)image.imageOrientation);
-        
-        CGFloat edge = MIN(image.size.width, image.size.height);
-        UIImage *cropped = [self imageByCroppingImage:image toSize:CGSizeMake(edge, edge)];
-        NSLog(@"cropped image: %f %f %d", cropped.size.width, cropped.size.height, (int)cropped.imageOrientation);
-        
-        
-        [self handleImageSnapped:cropped];
-        
+
+		NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
+		
+		dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+			
+			UIImage *image = [[UIImage alloc] initWithData:imageData];
+			NSLog(@"took image: %f %f %d", image.size.width, image.size.height, (int)image.imageOrientation);
+			
+			CGFloat edge = MIN(image.size.width, image.size.height);
+			UIImage *cropped = [self imageByCroppingImage:image toSize:CGSizeMake(edge, edge)];
+			NSLog(@"cropped image: %f %f %d", cropped.size.width, cropped.size.height, (int)cropped.imageOrientation);
+			
+			cropped = [RandomHelpers imageWithImage:cropped scaledToSize:CGSizeMake(512, 512)];
+
+			dispatch_main_async_safe(^(){
+				[self handleImageSnapped:cropped];
+			});
+		});
     }];
     
     #endif
@@ -242,8 +249,6 @@
 }
 
 - (void) handleImageSnapped:(UIImage*)image {
- 
-	image = [RandomHelpers imageWithImage:image scaledToSize:CGSizeMake(512, 512)];
 	
     float iW = self.view.bounds.size.width * 1.35;
     float iH = iW;
@@ -302,7 +307,7 @@
 	//receivers = @[receivers[0], receivers[0], receivers[0], receivers[0], receivers[0]];
 	
 	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-				
+		
 		int index = 0;
 		for (PFUser *friend in receivers) {
 			
@@ -356,9 +361,9 @@
 	PFUser *u = _fbFriends[0];
 	NSData *iData = UIImagePNGRepresentation(image);
 	NSString *b64 = [iData base64EncodedStringWithOptions:0];
-	[PFCloud callFunctionInBackground:@"submit_snap" withParameters:@{@"receivers":@[u.objectId], @"snap_image_data":b64} block:^(id object, NSError *error) {
-		NSLog(@"submit_snap result obj: %@ error: %@", object, error);
-	}];
+	//[PFCloud callFunctionInBackground:@"submit_snap" withParameters:@{@"receivers":@[u.objectId], @"snap_image_data":b64} block:^(id object, NSError *error) {
+	//	NSLog(@"submit_snap result obj: %@ error: %@", object, error);
+	//}];
 }
 
 - (void) handleSnapList:(id)sender {
