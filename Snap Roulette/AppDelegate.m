@@ -22,7 +22,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-	[PreloadedSFX initializePreloadedSFX];
+	//[PreloadedSFX initializePreloadedSFX];
 	
     /* Parse Activation */
     [Parse enableLocalDatastore];
