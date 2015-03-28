@@ -151,7 +151,16 @@
         NSLog(@"friends: suc:%d ld:%d users:%@ error:%@", success, localStore, pfusers, error);
         if (success) {
             _fbFriends = pfusers;
-        }
+			
+			/* Check image cache for user portraits */
+			for (PFUser *friend in pfusers) {
+				NSString *picUrl = [RandomHelpers urlForFBPicture:friend];
+				SDWebImageManager *manager = [SDWebImageManager sharedManager];
+				if (![manager cachedImageExistsForURL:[NSURL URLWithString:picUrl]]) {
+					[manager downloadImageWithURL:[NSURL URLWithString:picUrl] options:0 progress:nil completed:nil];
+				}
+			}
+		}
     }];
 }
 

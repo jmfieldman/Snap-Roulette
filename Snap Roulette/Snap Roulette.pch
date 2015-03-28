@@ -23,4 +23,6 @@
 #import <UIImageView+WebCache.h>
 #import "JFParseFBFriends.h"
 
+#import "RandomHelpers.h"
+
 #endif

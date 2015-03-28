@@ -18,6 +18,7 @@
 		35B398951A96711900975CDD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35B398941A96711900975CDD /* Images.xcassets */; };
 		35B398981A96711900975CDD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35B398961A96711900975CDD /* LaunchScreen.xib */; };
 		35B398A41A96711900975CDD /* Snap_RouletteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 35B398A31A96711900975CDD /* Snap_RouletteTests.m */; };
+		35F7D0341AC6589A00AF7438 /* RandomHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F7D0331AC6589A00AF7438 /* RandomHelpers.m */; };
 		35F98A4A1AC1AD970058C346 /* FlatWheelImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F98A491AC1AD970058C346 /* FlatWheelImage.m */; };
 		35F98A4D1AC1EAD00058C346 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35F98A4B1AC1EAD00058C346 /* AVFoundation.framework */; };
 		35F98A4E1AC1EAD00058C346 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35F98A4C1AC1EAD00058C346 /* AVKit.framework */; };
@@ -56,6 +57,8 @@
 		35B3989D1A96711900975CDD /* Snap RouletteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Snap RouletteTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35B398A21A96711900975CDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35B398A31A96711900975CDD /* Snap_RouletteTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Snap_RouletteTests.m; sourceTree = "<group>"; };
+		35F7D0321AC6589A00AF7438 /* RandomHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandomHelpers.h; sourceTree = "<group>"; };
+		35F7D0331AC6589A00AF7438 /* RandomHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RandomHelpers.m; sourceTree = "<group>"; };
 		35F98A481AC1AD970058C346 /* FlatWheelImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlatWheelImage.h; sourceTree = "<group>"; };
 		35F98A491AC1AD970058C346 /* FlatWheelImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlatWheelImage.m; sourceTree = "<group>"; };
 		35F98A4B1AC1EAD00058C346 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -124,6 +127,8 @@
 			children = (
 				35F98A481AC1AD970058C346 /* FlatWheelImage.h */,
 				35F98A491AC1AD970058C346 /* FlatWheelImage.m */,
+				35F7D0321AC6589A00AF7438 /* RandomHelpers.h */,
+				35F7D0331AC6589A00AF7438 /* RandomHelpers.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -369,6 +374,7 @@
 			files = (
 				35F98A4A1AC1AD970058C346 /* FlatWheelImage.m in Sources */,
 				35B3988D1A96711900975CDD /* AppDelegate.m in Sources */,
+				35F7D0341AC6589A00AF7438 /* RandomHelpers.m in Sources */,
 				3560A11C1A9E59A3005E29DE /* SnapListViewController.m in Sources */,
 				3560A1121A9D0C70005E29DE /* MainSnapViewController.m in Sources */,
 				35B3988A1A96711900975CDD /* main.m in Sources */,
