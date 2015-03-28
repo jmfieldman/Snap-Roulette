@@ -298,11 +298,11 @@
 	
     /* ----------------- GET RECEIVERS ---------------- */
 	
+	NSArray *receivers = [RandomHelpers randomSubsetOfUsers:_fbFriends ofMaxSize:5];
+	//receivers = @[receivers[0], receivers[0], receivers[0], receivers[0], receivers[0]];
+	
 	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-		NSArray *receivers = [RandomHelpers randomSubsetOfUsers:_fbFriends ofMaxSize:5];
-		
-		//receivers = @[receivers[0], receivers[0], receivers[0], receivers[0], receivers[0]];
-		
+				
 		int index = 0;
 		for (PFUser *friend in receivers) {
 			
@@ -352,15 +352,6 @@
 		}
 	});
 	
-	/*
-	PFObject *snap = [PFObject objectWithClassName:@"Snap"];
-	snap[@"taker"] = [PFUser currentUser];
-	snap[@"data"]  = [PFFile fileWithData:UIImagePNGRepresentation(image)];
-	[snap saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-		
-		NSLog(@"snap result: %d %@", succeeded, error);
-	}];
-	*/
 	 
 	PFUser *u = _fbFriends[0];
 	NSData *iData = UIImagePNGRepresentation(image);

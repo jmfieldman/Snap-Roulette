@@ -39,9 +39,12 @@ Parse.Cloud.define("submit_snap", function(request, response) {
 	
 	snap.set("taker", taker);
 	snap.set("data", file);
-	
+		
 	snap.save(null, {
 		success: function(snap) {
+	
+			taker.increment("snapCount");
+			taker.save();
 			
 			/* Now we have to make the SnapSent objects */
 			var sent_snaps = [];
@@ -73,7 +76,7 @@ Parse.Cloud.define("submit_snap", function(request, response) {
 			response.error(error.message);
 	  	}
 	});
-	
+
 });
 
 /*
