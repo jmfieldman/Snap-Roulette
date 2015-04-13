@@ -10,6 +10,7 @@
 #import "SnapListViewController.h"
 #import "LoginViewController.h"
 #import "FlatWheelImage.h"
+#import "RandomHelpers.h"
 
 @interface MainSnapViewController ()
 
@@ -135,6 +136,7 @@
         
         
         /* Take photo button rotation */
+        #if 0
         POPBasicAnimation *rotanim = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerRotation];
         rotanim.toValue = @(M_PI*0.95);
         rotanim.repeatForever = YES;
@@ -142,6 +144,15 @@
         rotanim.additive = YES;
         rotanim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
         [_takePhotoButton.layer pop_addAnimation:rotanim forKey:@"rot"];
+        #endif
+        
+        CABasicAnimation* rotationAnimation;
+        rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+        rotationAnimation.toValue = @(M_PI * 2.0 * 10000000);
+        rotationAnimation.duration = 10000000;
+        rotationAnimation.cumulative = YES;
+        rotationAnimation.repeatCount = 100000000;
+        [_takePhotoButton.layer addAnimation:rotationAnimation forKey:@"rot"];
     }
     return self;
 }
@@ -304,10 +315,11 @@
     
     /* Wind down rotation */
     CGFloat angle = [(NSNumber *)[_takePhotoButton.layer.presentationLayer valueForKeyPath:@"transform.rotation.z"] floatValue];
+    [_takePhotoButton.layer removeAnimationForKey:@"rot"];
     
     POPBasicAnimation *rotanim = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerRotation];
     rotanim.fromValue = @(angle);
-    rotanim.duration = 0.7;
+    rotanim.duration = 0.9;
     rotanim.toValue = @(angle + M_PI*0.95);
     rotanim.repeatForever = NO;
     rotanim.removedOnCompletion = NO;
@@ -401,7 +413,7 @@
 			
 			[(UIButton*)sender removeFromSuperview];
 			
-			
+			#if 0
 			/* Take photo button rotation */
 			POPBasicAnimation *rotanim = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerRotation];
 			rotanim.toValue = @(M_PI*0.95);
@@ -412,6 +424,20 @@
 			[_takePhotoButton.layer pop_removeAllAnimations];
 			_takePhotoButton.layer.transform = CATransform3DIdentity;
 			[_takePhotoButton.layer pop_addAnimation:rotanim forKey:@"rot"];
+            #endif
+            
+            CGFloat angle = [(NSNumber *)[_takePhotoButton.layer.presentationLayer valueForKeyPath:@"transform.rotation.z"] floatValue];
+            [_takePhotoButton.layer pop_removeAnimationForKey:@"rot"];
+            
+            CABasicAnimation* rotationAnimation;
+            rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+            rotationAnimation.fromValue = @(angle);
+            rotationAnimation.toValue = @(angle + M_PI * 2.0 * 10000000);
+            rotationAnimation.duration = 10000000;
+            rotationAnimation.cumulative = YES;
+            rotationAnimation.repeatCount = 100000000;
+            [_takePhotoButton.layer addAnimation:rotationAnimation forKey:@"rot"];
+            
 			
 		} forControlEvents:UIControlEventTouchUpInside];
 	});
