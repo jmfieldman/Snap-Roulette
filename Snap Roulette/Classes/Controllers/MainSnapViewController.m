@@ -91,7 +91,8 @@
         }
         
         _takePhotoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _takePhotoButton.frame = CGRectMake(self.view.frame.size.width/2 - 40, self.view.frame.size.height - 100, 80, 80);
+        _takePhotoButton.frame = CGRectMake(self.view.frame.size.width/2 - 40, self.view.frame.size.height - 120, 80, 80);
+        _takePhotoButton.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height - (self.view.bounds.size.height - viewfinder_size)/4);
         //_takePhotoButton.backgroundColor = [UIColor blueColor];
         [_takePhotoButton setImage:[FlatWheelImage flatWheelImageWithSize:CGSizeMake(80,80) slices:18 green:YES] forState:UIControlStateNormal];
         [_takePhotoButton addTarget:self action:@selector(handleTakePhoto:) forControlEvents:UIControlEventTouchUpInside];        
@@ -102,9 +103,19 @@
         _takePhotoButton.layer.shadowOpacity = 0.5;
         _takePhotoButton.layer.shadowRadius = 5;
      
+        _switchCameraButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_switchCameraButton setImage:[UIImage imageNamed:@"switch"] forState:UIControlStateNormal];
+        _switchCameraButton.layer.shadowOpacity = 0.3;
+        _switchCameraButton.layer.shadowOffset = CGSizeZero;
+        _switchCameraButton.layer.shadowRadius = 3;
+        _switchCameraButton.frame = CGRectMake(20, 20, 32, 32);
+        _switchCameraButton.center = CGPointMake(self.view.bounds.size.width*0.2, _takePhotoButton.center.y);
+        [_switchCameraButton addTarget:self action:@selector(switchCameraTapped:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_switchCameraButton];
+        
         /* Add title */
         _titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"snap_roulette"]];
-        _titleView.center = CGPointMake(self.view.bounds.size.width/2, 70);
+        _titleView.center = CGPointMake(self.view.bounds.size.width/2, (self.view.bounds.size.height - viewfinder_size)/4);
         _titleView.transform = CGAffineTransformMakeScale(0.75, 0.75);
         [self.view addSubview:_titleView];
         
@@ -148,8 +159,8 @@
         
         CABasicAnimation* rotationAnimation;
         rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-        rotationAnimation.toValue = @(M_PI * 2.0 * 10000000);
-        rotationAnimation.duration = 10000000;
+        rotationAnimation.toValue = @(M_PI * 0.99 * 10000000);
+        rotationAnimation.duration = 5000000;
         rotationAnimation.cumulative = YES;
         rotationAnimation.repeatCount = 100000000;
         [_takePhotoButton.layer addAnimation:rotationAnimation forKey:@"rot"];
@@ -477,6 +488,47 @@
     CGImageRelease(imageRef);
     
     return cropped;
+}
+
+-(void)switchCameraTapped:(id)sender {
+    //Change camera source
+    if(_captureSession) {
+        //Indicate that some changes will be made to the session
+        [_captureSession beginConfiguration];
+        
+        //Remove existing input
+        AVCaptureInput* currentCameraInput = [_captureSession.inputs objectAtIndex:0];
+        [_captureSession removeInput:currentCameraInput];
+        
+        //Get new input
+        AVCaptureDevice *newCamera = nil;
+        if(((AVCaptureDeviceInput*)currentCameraInput).device.position == AVCaptureDevicePositionBack) {
+            newCamera = [self cameraWithPosition:AVCaptureDevicePositionFront];
+        } else {
+            newCamera = [self cameraWithPosition:AVCaptureDevicePositionBack];
+        }
+        
+        //Add input to session
+        NSError *err = nil;
+        AVCaptureDeviceInput *newVideoInput = [[AVCaptureDeviceInput alloc] initWithDevice:newCamera error:&err];
+        if(!newVideoInput || err) {
+            NSLog(@"Error creating capture device input: %@", err.localizedDescription);
+        } else {
+            [_captureSession addInput:newVideoInput];
+        }
+        
+        //Commit all the configuration changes at once
+        [_captureSession commitConfiguration];
+    }
+}
+
+// Find a camera with the specified AVCaptureDevicePosition, returning nil if one is not found
+- (AVCaptureDevice *) cameraWithPosition:(AVCaptureDevicePosition) position {
+    NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
+    for (AVCaptureDevice *device in devices) {
+        if ([device position] == position) return device;
+    }
+    return nil;
 }
 
 

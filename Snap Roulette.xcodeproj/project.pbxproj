@@ -20,6 +20,7 @@
 		35B398951A96711900975CDD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35B398941A96711900975CDD /* Images.xcassets */; };
 		35B398981A96711900975CDD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35B398961A96711900975CDD /* LaunchScreen.xib */; };
 		35B398A41A96711900975CDD /* Snap_RouletteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 35B398A31A96711900975CDD /* Snap_RouletteTests.m */; };
+		35CAA7951ADD6787002ED2C8 /* switch.png in Resources */ = {isa = PBXBuildFile; fileRef = 35CAA7941ADD6787002ED2C8 /* switch.png */; };
 		35F7D0341AC6589A00AF7438 /* RandomHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F7D0331AC6589A00AF7438 /* RandomHelpers.m */; };
 		35F7D0361AC65C5100AF7438 /* facebook_default_portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 35F7D0351AC65C5100AF7438 /* facebook_default_portrait.png */; };
 		35F7D0391AC6613F00AF7438 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35F7D0381AC6613F00AF7438 /* Lato-Regular.ttf */; };
@@ -64,6 +65,7 @@
 		35B3989D1A96711900975CDD /* Snap RouletteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Snap RouletteTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35B398A21A96711900975CDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35B398A31A96711900975CDD /* Snap_RouletteTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Snap_RouletteTests.m; sourceTree = "<group>"; };
+		35CAA7941ADD6787002ED2C8 /* switch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = switch.png; sourceTree = "<group>"; };
 		35F7D0321AC6589A00AF7438 /* RandomHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandomHelpers.h; sourceTree = "<group>"; };
 		35F7D0331AC6589A00AF7438 /* RandomHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RandomHelpers.m; sourceTree = "<group>"; };
 		35F7D0351AC65C5100AF7438 /* facebook_default_portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook_default_portrait.png; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 		358A459E1AC33E360019EECC /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				35CAA7941ADD6787002ED2C8 /* switch.png */,
 				35F7D0351AC65C5100AF7438 /* facebook_default_portrait.png */,
 				358A45A31AC458E90019EECC /* test.png */,
 				358A45A11AC455F00019EECC /* polaroid.png */,
@@ -353,6 +356,7 @@
 				358A45A21AC455F00019EECC /* polaroid.png in Resources */,
 				35F7D0391AC6613F00AF7438 /* Lato-Regular.ttf in Resources */,
 				358A45A01AC33E360019EECC /* snap_roulette.png in Resources */,
+				35CAA7951ADD6787002ED2C8 /* switch.png in Resources */,
 				354E91FF1AC767A100438ECA /* shutter.wav in Resources */,
 				35B398951A96711900975CDD /* Images.xcassets in Resources */,
 			);

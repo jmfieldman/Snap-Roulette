@@ -11,6 +11,7 @@
 @interface MainSnapViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (nonatomic, strong) UIButton *takePhotoButton;
+@property (nonatomic, strong) UIButton *switchCameraButton;
 
 + (MainSnapViewController*) sharedInstance;
 
