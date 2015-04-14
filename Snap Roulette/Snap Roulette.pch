@@ -26,5 +26,6 @@
 
 #import "RandomHelpers.h"
 #import "PreloadedSFX.h"
+#import "PFObject+AKLocalDatastore.h"
 
 #endif

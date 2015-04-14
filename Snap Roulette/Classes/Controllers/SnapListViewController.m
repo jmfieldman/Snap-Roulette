@@ -37,6 +37,7 @@
 
 - (void) refreshSnaps {
     PFQuery *query = [PFQuery queryWithClassName:@"Snap"];
+    [query orderByDescending:@"createdAt"];
     [query includeKey:@"sentSnaps"];
     
     if (_sent) {
