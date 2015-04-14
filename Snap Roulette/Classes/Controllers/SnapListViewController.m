@@ -33,7 +33,7 @@
         
         self.tableView.rowHeight = self.view.bounds.size.width + 100;
         
-        if (_sent) [self refreshSnaps];
+        [self refreshSnaps];
     }
     return self;
 }
@@ -42,11 +42,14 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Snap"];
     [query orderByDescending:@"createdAt"];
     [query includeKey:@"sentSnaps"];
+    [query includeKey:@"sentToUserArray"];
+    [query includeKey:@"taker"];
     
     if (_sent) {
         [query whereKey:@"taker" equalTo:[PFUser currentUser]];
     } else {
-        [query whereKey:@"sentToUsers" equalTo:@[[PFUser currentUser]]];
+        //[query whereKey:@"sentToUsers" containsAllObjectsInArray:@[[PFUser currentUser]]]
+        [query whereKey:@"sentToUsers" equalTo:[PFUser currentUser]];
     }
     
     [query dualQueryObjectsInBackgroundWithBlock:^(BOOL fromLocalDatastore, NSArray *objects, NSError *error) {

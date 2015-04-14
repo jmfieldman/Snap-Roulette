@@ -12,6 +12,9 @@
 
 @property (nonatomic, strong) UIImageView *snapImageView;
 
+@property (nonatomic, strong) UIImageView *takerImageView;
+@property (nonatomic, strong) UILabel     *takerNameLabel;
+
 @end
 
 
@@ -20,23 +23,43 @@
 - (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
         
-        _snapImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, [UIScreen mainScreen].bounds.size.width - 20, [UIScreen mainScreen].bounds.size.width - 20)];
+        _snapImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 52, [UIScreen mainScreen].bounds.size.width - 20, [UIScreen mainScreen].bounds.size.width - 20)];
         _snapImageView.layer.cornerRadius = 10;
         _snapImageView.layer.masksToBounds = YES;
-        
+        _snapImageView.userInteractionEnabled = YES;
         
         [self.contentView addSubview:_snapImageView];
+     
+        UITapGestureRecognizer *tap = [UITapGestureRecognizer bk_recognizerWithHandler:^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
+            NSLog(@"tapped!");
+        }];
+        tap.numberOfTapsRequired = 2;
+        [_snapImageView addGestureRecognizer:tap];
         
+        
+        _takerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 32, 32)];
+        _takerImageView.layer.cornerRadius = 16;
+        [self.contentView addSubview:_takerImageView];
     }
     return self;
 }
 
+- (void) setSelected:(BOOL)selected animated:(BOOL)animated {
+    
+}
+
+- (void) setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+    
+}
 
 - (void) setSnap:(PFObject *)snap {
     _snap = snap;
     
-    _snapImageView.image = nil;
+    /* Taker */
     
+    
+    /* Snap */
+    _snapImageView.image = nil;
     _snap.fileColumnName = @"data";
     [_snap getFileDataWithBlock:^(NSData *fileData, AKFileDataRetrievalType retrievalType) {
         _snapImageView.image = [[UIImage alloc] initWithData:fileData];

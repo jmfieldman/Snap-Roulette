@@ -58,6 +58,7 @@ Parse.Cloud.define("submit_snap", function(request, response) {
 				var robjId = receivers[r];				
 				var ruser  = new Parse.User();
 				ruser.set("objectId", robjId);
+				snap.add("sentToUserArray", ruser);
 				//rec_users.push(ruser);
 				sent_to_relation.add(ruser);
 				
