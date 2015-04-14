@@ -22,6 +22,7 @@
 		35B398A41A96711900975CDD /* Snap_RouletteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 35B398A31A96711900975CDD /* Snap_RouletteTests.m */; };
 		35CAA7951ADD6787002ED2C8 /* switch.png in Resources */ = {isa = PBXBuildFile; fileRef = 35CAA7941ADD6787002ED2C8 /* switch.png */; };
 		35CAA7981ADD7023002ED2C8 /* SnapListTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CAA7971ADD7023002ED2C8 /* SnapListTabBarController.m */; };
+		35CAA79B1ADD8821002ED2C8 /* PFQuery+DualQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CAA79A1ADD8821002ED2C8 /* PFQuery+DualQuery.m */; };
 		35F7D0341AC6589A00AF7438 /* RandomHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F7D0331AC6589A00AF7438 /* RandomHelpers.m */; };
 		35F7D0361AC65C5100AF7438 /* facebook_default_portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 35F7D0351AC65C5100AF7438 /* facebook_default_portrait.png */; };
 		35F7D0391AC6613F00AF7438 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35F7D0381AC6613F00AF7438 /* Lato-Regular.ttf */; };
@@ -69,6 +70,8 @@
 		35CAA7941ADD6787002ED2C8 /* switch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = switch.png; sourceTree = "<group>"; };
 		35CAA7961ADD7023002ED2C8 /* SnapListTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnapListTabBarController.h; sourceTree = "<group>"; };
 		35CAA7971ADD7023002ED2C8 /* SnapListTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnapListTabBarController.m; sourceTree = "<group>"; };
+		35CAA7991ADD8821002ED2C8 /* PFQuery+DualQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PFQuery+DualQuery.h"; sourceTree = "<group>"; };
+		35CAA79A1ADD8821002ED2C8 /* PFQuery+DualQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PFQuery+DualQuery.m"; sourceTree = "<group>"; };
 		35F7D0321AC6589A00AF7438 /* RandomHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandomHelpers.h; sourceTree = "<group>"; };
 		35F7D0331AC6589A00AF7438 /* RandomHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RandomHelpers.m; sourceTree = "<group>"; };
 		35F7D0351AC65C5100AF7438 /* facebook_default_portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook_default_portrait.png; sourceTree = "<group>"; };
@@ -155,6 +158,8 @@
 				35F98A491AC1AD970058C346 /* FlatWheelImage.m */,
 				35F7D0321AC6589A00AF7438 /* RandomHelpers.h */,
 				35F7D0331AC6589A00AF7438 /* RandomHelpers.m */,
+				35CAA7991ADD8821002ED2C8 /* PFQuery+DualQuery.h */,
+				35CAA79A1ADD8821002ED2C8 /* PFQuery+DualQuery.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -423,6 +428,7 @@
 				35B3988A1A96711900975CDD /* main.m in Sources */,
 				35CAA7981ADD7023002ED2C8 /* SnapListTabBarController.m in Sources */,
 				3560A1091A9CD64B005E29DE /* LoginViewController.m in Sources */,
+				35CAA79B1ADD8821002ED2C8 /* PFQuery+DualQuery.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

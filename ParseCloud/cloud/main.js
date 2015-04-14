@@ -48,11 +48,18 @@ Parse.Cloud.define("submit_snap", function(request, response) {
 			
 			/* Now we have to make the SnapSent objects */
 			var sent_snaps = [];
+			var rec_users  = [];
+			
+			/* The users this snap was sent to */
+			var sent_to_relation    = snap.relation("sentToUsers");
+			//var sent_snaps_relation = snap.relation("sentSnaps");
 			
 			for (r = 0; r < receivers.length; r++) {
 				var robjId = receivers[r];				
 				var ruser  = new Parse.User();
 				ruser.set("objectId", robjId);
+				//rec_users.push(ruser);
+				sent_to_relation.add(ruser);
 				
 				var sentsnap = new SentSnap();
 				sentsnap.set("taker", taker);
@@ -65,10 +72,23 @@ Parse.Cloud.define("submit_snap", function(request, response) {
 			
 			Parse.Object.saveAll(sent_snaps, {
 				success: function(objs) {
-					response.success("All good!");
+										
+					for (o = 0; o < objs.length; o++) {
+						//sent_snaps_relation.add(objs[o]);
+						snap.add("sentSnaps", objs[o]);
+					}
+					
+					snap.save(null, {
+						success: function(snap) {
+							response.success("All good!");
+						},
+						error: function(error) { 
+							response.error("save sentsnaps for snap error: " + error.message);
+						}
+					});										
 				},
 				error: function(error) { 
-					response.error("save all snaps error: " + error);
+					response.error("save all snaps error: " + error.message);
 				}
 			});
 		},
