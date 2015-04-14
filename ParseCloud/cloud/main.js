@@ -35,7 +35,7 @@ Parse.Cloud.define("submit_snap", function(request, response) {
 	var Snap = Parse.Object.extend("Snap");
 	var snap = new Snap();
 	
-	var file = new Parse.File("snap.png", { base64: snap_img_data });
+	var file = new Parse.File("snap.jpg", { base64: snap_img_data });
 	
 	snap.set("taker", taker);
 	snap.set("data", file);
@@ -58,6 +58,7 @@ Parse.Cloud.define("submit_snap", function(request, response) {
 				sentsnap.set("taker", taker);
 				sentsnap.set("receiver", ruser);
 				sentsnap.set("snap", snap);
+				sentsnap.set("heart", false);
 				
 				sent_snaps.push(sentsnap);				
 			}

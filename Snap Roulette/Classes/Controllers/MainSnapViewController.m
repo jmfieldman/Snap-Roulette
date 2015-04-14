@@ -391,13 +391,18 @@
 		}
 	});
 	
+    NSMutableArray *recIds = [NSMutableArray array];
+    for (PFUser *u in receivers) {
+        [recIds addObject:u.objectId];
+    }
 	 
-	PFUser *u = _fbFriends[0];
-	NSData *iData = UIImagePNGRepresentation(image);
+	//PFUser *u = _fbFriends[0];
+	//NSData *iData = UIImagePNGRepresentation(image);
+    NSData *iData = UIImageJPEGRepresentation(image, 0.4);
 	NSString *b64 = [iData base64EncodedStringWithOptions:0];
-	//[PFCloud callFunctionInBackground:@"submit_snap" withParameters:@{@"receivers":@[u.objectId], @"snap_image_data":b64} block:^(id object, NSError *error) {
-	//	NSLog(@"submit_snap result obj: %@ error: %@", object, error);
-	//}];
+	[PFCloud callFunctionInBackground:@"submit_snap" withParameters:@{@"receivers":recIds, @"snap_image_data":b64} block:^(id object, NSError *error) {
+		NSLog(@"submit_snap result obj: %@ error: %@", object, error);
+	}];
 	
 	/* Create the dismissal layer */
 	UIButton *dismissButton = [UIButton buttonWithType:UIButtonTypeCustom];
