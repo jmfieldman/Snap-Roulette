@@ -31,7 +31,7 @@
     
     /* Create window */
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.rootViewController = [MainSnapViewController sharedInstance];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[MainSnapViewController sharedInstance]];
     [self.window makeKeyAndVisible];
     
     return YES;

@@ -186,6 +186,15 @@
     }];
 }
 
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
+
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
