@@ -14,20 +14,18 @@
 
 @implementation SnapListViewController
 
-+ (SnapListViewController*) sharedInstance {
-    __strong static SnapListViewController *singleton = nil;
-    @synchronized(self) {
-        if (singleton == nil) singleton = [[SnapListViewController alloc] init];
-    }
-    return singleton;
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.tabBarController.title = self.title;
 }
 
-
-- (id) init {
+- (id) initWithDirection:(BOOL)sent {
     if ((self = [super init])) {
         
-        self.view.backgroundColor = [UIColor magentaColor];
-        self.title = @"Snaps";
+        _sent = sent;
+        
+        self.view.backgroundColor = [UIColor whiteColor];
+        self.title = sent ? @"Sent Photos" : @"Received Photos";
         
     }
     return self;

@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) UIButton *takePhotoButton;
 @property (nonatomic, strong) UIButton *switchCameraButton;
+@property (nonatomic, strong) UIButton *snapListButton;
 
 + (MainSnapViewController*) sharedInstance;
 

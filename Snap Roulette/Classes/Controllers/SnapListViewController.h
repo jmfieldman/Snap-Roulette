@@ -10,6 +10,8 @@
 
 @interface SnapListViewController : UITableViewController
 
-+ (SnapListViewController*) sharedInstance;
+@property (nonatomic, readonly) BOOL sent;
+
+- (id) initWithDirection:(BOOL)sent;
 
 @end

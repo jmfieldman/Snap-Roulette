@@ -7,7 +7,7 @@
 //
 
 #import "MainSnapViewController.h"
-#import "SnapListViewController.h"
+#import "SnapListTabBarController.h"
 #import "LoginViewController.h"
 #import "FlatWheelImage.h"
 #import "RandomHelpers.h"
@@ -44,9 +44,7 @@
 
 - (id) init {
     if ((self = [super init])) {
-        self.view.backgroundColor = [UIColor orangeColor];
-        
-        self.title = @"Snap Roulette";
+        self.view.backgroundColor = [UIColor orangeColor];                
         
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Snaps" style:UIBarButtonItemStyleDone target:self action:@selector(handleSnapList:)];
         
@@ -112,6 +110,18 @@
         _switchCameraButton.center = CGPointMake(self.view.bounds.size.width*0.2, _takePhotoButton.center.y);
         [_switchCameraButton addTarget:self action:@selector(switchCameraTapped:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_switchCameraButton];
+
+        
+        _snapListButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_snapListButton setImage:[UIImage imageNamed:@"switch"] forState:UIControlStateNormal];
+        _snapListButton.layer.shadowOpacity = 0.3;
+        _snapListButton.layer.shadowOffset = CGSizeZero;
+        _snapListButton.layer.shadowRadius = 3;
+        _snapListButton.frame = CGRectMake(20, 20, 32, 32);
+        _snapListButton.center = CGPointMake(self.view.bounds.size.width*0.8, _takePhotoButton.center.y);
+        [_snapListButton addTarget:self action:@selector(snapListButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_snapListButton];
+        
         
         /* Add title */
         _titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"snap_roulette"]];
@@ -540,5 +550,9 @@
     return nil;
 }
 
+
+- (void) snapListButtonPressed:(id)sender {
+    [self.navigationController pushViewController:[SnapListTabBarController sharedInstance] animated:YES];
+}
 
 @end
