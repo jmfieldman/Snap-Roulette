@@ -8,6 +8,7 @@
 
 #import "SnapListViewController.h"
 #import "PFQuery+DualQuery.h"
+#import "SnapTableViewCell.h"
 
 @interface SnapListViewController ()
 
@@ -29,6 +30,8 @@
         
         self.view.backgroundColor = [UIColor whiteColor];
         self.title = sent ? @"Sent Photos" : @"Received Photos";
+        
+        self.tableView.rowHeight = self.view.bounds.size.width + 100;
         
         if (_sent) [self refreshSnaps];
     }
@@ -57,7 +60,26 @@
         }
          */
         
+        _snaps = objects;
+        [self.tableView reloadData];
+        
     } pinResults:YES];
+}
+
+
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    SnapTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"snap"];
+    if (!cell) {
+        cell = [[SnapTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"snap"];
+    }
+    
+    cell.snap = _snaps[indexPath.row];
+    
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return _snaps.count;
 }
 
 
