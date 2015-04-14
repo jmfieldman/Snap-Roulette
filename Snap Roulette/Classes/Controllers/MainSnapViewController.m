@@ -224,13 +224,21 @@
 			
 			UIImage *image = [[UIImage alloc] initWithData:imageData];
 			NSLog(@"took image: %f %f %d", image.size.width, image.size.height, (int)image.imageOrientation);
-			
+            
+            #if 0
+            /* OLD WAY; SQUARE FIRST */
 			CGFloat edge = MIN(image.size.width, image.size.height);
 			UIImage *cropped = [self imageByCroppingImage:image toSize:CGSizeMake(edge, edge)];
 			NSLog(@"cropped image: %f %f %d", cropped.size.width, cropped.size.height, (int)cropped.imageOrientation);
 			
 			cropped = [RandomHelpers imageWithImage:cropped scaledToSize:CGSizeMake(512, 512)];
-
+            #endif
+            
+            CGFloat newsize = 512;
+            image = [RandomHelpers imageWithImage:image scaledToSize:CGSizeMake(newsize, newsize * (image.size.height / image.size.width))];
+            UIImage *cropped = [RandomHelpers imageWithImage:image scaledToSize:CGSizeMake(newsize, newsize)];
+            NSLog(@"cropped image: %f %f %d", cropped.size.width, cropped.size.height, (int)cropped.imageOrientation);
+            
 			dispatch_main_async_safe(^(){
 				[self handleImageSnapped:cropped];
 			});
