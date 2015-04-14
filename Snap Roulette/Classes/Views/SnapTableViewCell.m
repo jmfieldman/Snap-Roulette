@@ -27,7 +27,8 @@
         _snapImageView.layer.cornerRadius = 10;
         _snapImageView.layer.masksToBounds = YES;
         _snapImageView.userInteractionEnabled = YES;
-        
+        _snapImageView.layer.shouldRasterize = YES;
+        _snapImageView.layer.rasterizationScale = [UIScreen mainScreen].scale;
         [self.contentView addSubview:_snapImageView];
      
         UITapGestureRecognizer *tap = [UITapGestureRecognizer bk_recognizerWithHandler:^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
@@ -39,6 +40,9 @@
         
         _takerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 32, 32)];
         _takerImageView.layer.cornerRadius = 16;
+        _takerImageView.layer.masksToBounds = YES;
+        _takerImageView.layer.shouldRasterize = YES;
+        _takerImageView.layer.rasterizationScale = [UIScreen mainScreen].scale;
         [self.contentView addSubview:_takerImageView];
     }
     return self;
@@ -56,7 +60,8 @@
     _snap = snap;
     
     /* Taker */
-    
+    _takerImageView.image = [UIImage imageNamed:@"facebook_default_portrait"];
+    [_takerImageView sd_setImageWithURL:[NSURL URLWithString:[RandomHelpers urlForFBPicture:snap[@"taker"]]] placeholderImage:[UIImage imageNamed:@"facebook_default_portrait"] options:0 completed:nil];
     
     /* Snap */
     _snapImageView.image = nil;
