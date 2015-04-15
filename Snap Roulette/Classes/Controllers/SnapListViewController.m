@@ -31,7 +31,7 @@
         self.view.backgroundColor = [UIColor whiteColor];
         self.title = sent ? @"Sent Photos" : @"Received Photos";
         
-        self.tableView.rowHeight = self.view.bounds.size.width + 100;
+        self.tableView.rowHeight = self.view.bounds.size.width * 1.33 + 42;
         
         [self refreshSnaps];
     }

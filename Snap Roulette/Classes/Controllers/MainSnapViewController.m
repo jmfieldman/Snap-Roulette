@@ -167,16 +167,10 @@
         [_takePhotoButton.layer pop_addAnimation:rotanim forKey:@"rot"];
         #endif
         
-        CABasicAnimation* rotationAnimation;
-        rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-        rotationAnimation.toValue = @(M_PI * 0.99 * 10000000);
-        rotationAnimation.duration = 5000000;
-        rotationAnimation.cumulative = YES;
-        rotationAnimation.repeatCount = 100000000;
-        [_takePhotoButton.layer addAnimation:rotationAnimation forKey:@"rot"];
     }
     return self;
 }
+
 
 - (void) updateFriends {
     [JFParseFBFriends findFriendsAndUpdate:YES completion:^(BOOL success, BOOL localStore, NSArray *pfusers, NSError *error) {
@@ -199,6 +193,16 @@
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
+    
+    [_takePhotoButton.layer removeAnimationForKey:@"rot"];
+    
+    CABasicAnimation* rotationAnimation;
+    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    rotationAnimation.toValue = @(M_PI * 0.99 * 10000000);
+    rotationAnimation.duration = 5000000;
+    rotationAnimation.cumulative = YES;
+    rotationAnimation.repeatCount = 100000000;
+    [_takePhotoButton.layer addAnimation:rotationAnimation forKey:@"rot"];
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
@@ -213,6 +217,7 @@
         LoginViewController *controller = [[LoginViewController alloc] init];
         [self presentViewController:controller animated:NO completion:nil];
     }
+    
 }
 
 - (void) handleTakePhoto:(id)sender {
@@ -405,7 +410,7 @@
 			name.text = friend[@"firstname"];
 			name.textAlignment = NSTextAlignmentCenter;
 			name.textColor = [UIColor colorWithWhite:0.2 alpha:1];
-			name.font = [UIFont fontWithName:@"Lato Regular" size:14];
+			name.font = [UIFont fontWithName:@"Lato-Regular" size:14];
 			name.minimumScaleFactor = 0.5;
 			name.alpha = 0;
 			name.center = CGPointMake(pX, pY + sz*0.75);

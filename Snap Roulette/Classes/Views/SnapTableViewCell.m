@@ -15,6 +15,10 @@
 @property (nonatomic, strong) UIImageView *takerImageView;
 @property (nonatomic, strong) UILabel     *takerNameLabel;
 
+@property (nonatomic, strong) NSMutableArray *receiverPortraits;
+@property (nonatomic, strong) NSMutableArray *receiverNames;
+@property (nonatomic, strong) NSMutableArray *receiverLike;
+
 @end
 
 
@@ -23,12 +27,12 @@
 - (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
         
-        _snapImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 52, [UIScreen mainScreen].bounds.size.width - 20, [UIScreen mainScreen].bounds.size.width - 20)];
-        _snapImageView.layer.cornerRadius = 10;
-        _snapImageView.layer.masksToBounds = YES;
+        _snapImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 42, [UIScreen mainScreen].bounds.size.width - 0, [UIScreen mainScreen].bounds.size.width - 0)];
+        //_snapImageView.layer.cornerRadius = 10;
+        //_snapImageView.layer.masksToBounds = YES;
         _snapImageView.userInteractionEnabled = YES;
-        _snapImageView.layer.shouldRasterize = YES;
-        _snapImageView.layer.rasterizationScale = [UIScreen mainScreen].scale;
+        //_snapImageView.layer.shouldRasterize = YES;
+        //_snapImageView.layer.rasterizationScale = [UIScreen mainScreen].scale;
         [self.contentView addSubview:_snapImageView];
      
         UITapGestureRecognizer *tap = [UITapGestureRecognizer bk_recognizerWithHandler:^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
@@ -38,17 +42,40 @@
         [_snapImageView addGestureRecognizer:tap];
         
         
-        _takerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 32, 32)];
+        _takerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 32, 32)];
         _takerImageView.layer.cornerRadius = 16;
         _takerImageView.layer.masksToBounds = YES;
         _takerImageView.layer.shouldRasterize = YES;
         _takerImageView.layer.rasterizationScale = [UIScreen mainScreen].scale;
         [self.contentView addSubview:_takerImageView];
         
-        _takerNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(52, 10, 200, 32)];
+        _takerNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(42, 5, 200, 32)];
         _takerNameLabel.font = [UIFont fontWithName:@"Lato Regular" size:14];
         _takerNameLabel.textColor = [UIColor colorWithWhite:0.1 alpha:1];
         [self.contentView addSubview:_takerNameLabel];
+        
+        
+        /* Receiver stuff */
+        #define NUM_RECEIVERS 5
+        CGFloat w = [UIScreen mainScreen].bounds.size.width;
+        CGFloat prad = w / 15;
+        
+        CGFloat w_occ_by_port = prad * NUM_RECEIVERS * 2;
+        CGFloat w_occ_by_sp = w - w_occ_by_port;
+        
+        CGFloat xoff = w_occ_by_sp / (NUM_RECEIVERS+1) + prad;
+        CGFloat xmar = w_occ_by_sp / (NUM_RECEIVERS+1) + prad * 2;
+        
+        CGFloat yoff = w + 60 + prad;
+        for (int r = 0; r < NUM_RECEIVERS; r++) {
+            
+            UIImageView *portrait = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, prad*2, prad*2)];
+            portrait.center = CGPointMake(xoff + xmar * r, yoff);
+            portrait.backgroundColor = [UIColor redColor];
+            [self.contentView addSubview:portrait];
+            
+        }
+        
     }
     return self;
 }
@@ -72,9 +99,9 @@
     
     //_takerNameLabel.text = taker[@"fullname"];
     
-    NSMutableAttributedString *namestr = [[NSMutableAttributedString alloc] initWithString:taker[@"fullname"] attributes:@{ NSFontAttributeName : [UIFont boldSystemFontOfSize:14] }];
+    NSMutableAttributedString *namestr = [[NSMutableAttributedString alloc] initWithString:taker[@"fullname"] attributes:@{ NSFontAttributeName : [UIFont fontWithName:@"Lato-Regular" size:14] }];
     [namestr appendAttributedString:[[NSAttributedString alloc] initWithString:@" " attributes:@{}]];
-    [namestr appendAttributedString:[[NSAttributedString alloc] initWithString:@"10m ago" attributes:@{ NSFontAttributeName : [UIFont systemFontOfSize:10], NSForegroundColorAttributeName : [UIColor blueColor] }]];
+    [namestr appendAttributedString:[[NSAttributedString alloc] initWithString:@"10m ago" attributes:@{ NSFontAttributeName : [UIFont fontWithName:@"Lato-Regular" size:10], NSForegroundColorAttributeName : [UIColor colorWithRed:0 green:122.0/255.0 blue:1 alpha:1] }]];
     _takerNameLabel.attributedText = namestr;
     
     /* Snap */
