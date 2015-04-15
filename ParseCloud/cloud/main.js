@@ -66,7 +66,6 @@ Parse.Cloud.define("submit_snap", function(request, response) {
 				sentsnap.set("taker", taker);
 				sentsnap.set("receiver", ruser);
 				sentsnap.set("snap", snap);
-				sentsnap.set("heart", false);
 				
 				sent_snaps.push(sentsnap);				
 			}
