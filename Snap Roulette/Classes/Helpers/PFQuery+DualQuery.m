@@ -19,7 +19,7 @@
         block(NO, objects, error);
         
         if (!error && objects.count && pin) {
-            [PFObject pinAll:objects];
+            [PFObject pinAllInBackground:objects];
         }
     }];
     

@@ -56,6 +56,10 @@
         
         
         /* Receiver stuff */
+        _receiverPortraits = [NSMutableArray array];
+        _receiverNames     = [NSMutableArray array];
+        _receiverLike      = [NSMutableArray array];
+        
         #define NUM_RECEIVERS 5
         CGFloat w = [UIScreen mainScreen].bounds.size.width;
         CGFloat prad = w / 15;
@@ -72,8 +76,18 @@
             UIImageView *portrait = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, prad*2, prad*2)];
             portrait.center = CGPointMake(xoff + xmar * r, yoff);
             portrait.backgroundColor = [UIColor redColor];
+            portrait.layer.cornerRadius = prad;
+            portrait.layer.masksToBounds = YES;
             [self.contentView addSubview:portrait];
+            [_receiverPortraits addObject:portrait];
             
+            UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 32, 32)];
+            [self.contentView addSubview:name];
+            [_receiverNames addObject:name];
+            
+            UIImageView *like = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 32, 32)];
+            [self.contentView addSubview:like];
+            [_receiverLike addObject:like];
         }
         
     }
@@ -110,6 +124,28 @@
     [_snap getFileDataWithBlock:^(NSData *fileData, AKFileDataRetrievalType retrievalType) {
         _snapImageView.image = [[UIImage alloc] initWithData:fileData];
     }];
+    
+    
+    /* Set up receivers */
+    NSArray *sentTo = snap[@"sentToUserArray"];
+    int howmany = (int)sentTo.count;
+    
+    for (int i = howmany; i < NUM_RECEIVERS; i++) {
+        ((UIView*)_receiverLike[i]).alpha = 0;
+        ((UIView*)_receiverNames[i]).alpha = 0;
+        ((UIView*)_receiverPortraits[i]).alpha = 0;
+    }
+    
+    for (int r = 0; r < howmany; r++) {
+        ((UIView*)_receiverLike[r]).alpha = 1;
+        ((UIView*)_receiverNames[r]).alpha = 1;
+        ((UIView*)_receiverPortraits[r]).alpha = 1;
+        
+        PFUser *u = sentTo[r];
+        
+        ((UIImageView*)_receiverPortraits[r]).image = [UIImage imageNamed:@"facebook_default_portrait"];
+        [((UIImageView*)_receiverPortraits[r]) sd_setImageWithURL:[NSURL URLWithString:[RandomHelpers urlForFBPicture:u]] placeholderImage:[UIImage imageNamed:@"facebook_default_portrait"] options:0 completed:nil];
+    }
     
 }
 
