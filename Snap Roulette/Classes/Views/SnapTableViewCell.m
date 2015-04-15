@@ -75,13 +75,15 @@
             
             UIImageView *portrait = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, prad*2, prad*2)];
             portrait.center = CGPointMake(xoff + xmar * r, yoff);
-            portrait.backgroundColor = [UIColor redColor];
             portrait.layer.cornerRadius = prad;
             portrait.layer.masksToBounds = YES;
             [self.contentView addSubview:portrait];
             [_receiverPortraits addObject:portrait];
             
-            UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 32, 32)];
+            UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, prad*2.2, prad)];
+            name.center = CGPointMake(portrait.center.x, portrait.center.y + prad * 1.6);
+            name.textAlignment = NSTextAlignmentCenter;
+            name.minimumScaleFactor = 0.5;
             [self.contentView addSubview:name];
             [_receiverNames addObject:name];
             
@@ -145,6 +147,8 @@
         
         ((UIImageView*)_receiverPortraits[r]).image = [UIImage imageNamed:@"facebook_default_portrait"];
         [((UIImageView*)_receiverPortraits[r]) sd_setImageWithURL:[NSURL URLWithString:[RandomHelpers urlForFBPicture:u]] placeholderImage:[UIImage imageNamed:@"facebook_default_portrait"] options:0 completed:nil];
+        
+        ((UILabel*)_receiverNames[r]).text = u[@"firstname"];
     }
     
 }
