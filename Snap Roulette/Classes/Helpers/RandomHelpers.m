@@ -47,4 +47,11 @@
 	return newImage;
 }
 
++ (NSString*) timeToAbbrev:(int)t {
+    if (t < 60)        return [NSString stringWithFormat:@"%ds", t];
+    if (t < 3600)      return [NSString stringWithFormat:@"%dm", t/60];
+    if (t < 86400)     return [NSString stringWithFormat:@"%dh", t/3600];
+    return [NSString stringWithFormat:@"%dd", t/86400];
+}
+
 @end

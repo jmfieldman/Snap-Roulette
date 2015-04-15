@@ -15,4 +15,6 @@
 + (UIImageView*) roundPortraitViewForUser:(PFUser*)user ofSize:(int)size;
 + (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize;
 
++ (NSString*) timeToAbbrev:(int)t;
+
 @end
