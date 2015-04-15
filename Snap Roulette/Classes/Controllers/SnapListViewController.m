@@ -33,10 +33,19 @@
         
         self.tableView.rowHeight = self.view.bounds.size.width * 1.33 + 42;
         
+        self.refreshControl = [[UIRefreshControl alloc] init];
+        //self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Hello" attributes:@{}];
+        [self.refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
+        
         [self refreshSnaps];
     }
     return self;
 }
+
+- (void) handleRefresh:(id)sender {
+    [self refreshSnaps];
+}
+
 
 - (void) refreshSnaps {
     PFQuery *query = [PFQuery queryWithClassName:@"Snap"];
@@ -65,6 +74,8 @@
         
         _snaps = objects;
         [self.tableView reloadData];
+        
+        if (!fromLocalDatastore) [self.refreshControl endRefreshing];
         
     } pinResults:YES];
 }
