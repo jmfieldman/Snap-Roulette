@@ -7,9 +7,11 @@
 //
 
 #import "SnapTableViewCell.h"
+#import "RadialEmoteSelector.h"
 
 @interface SnapTableViewCell ()
 
+@property (nonatomic, strong) RadialEmoteSelector *radialSelector;
 @property (nonatomic, strong) UIImageView *snapImageView;
 
 @property (nonatomic, strong) UIImageView *takerImageView;
@@ -34,13 +36,23 @@
         //_snapImageView.layer.shouldRasterize = YES;
         //_snapImageView.layer.rasterizationScale = [UIScreen mainScreen].scale;
         [self.contentView addSubview:_snapImageView];
-     
+        
+        _radialSelector = [[RadialEmoteSelector alloc] initWithFrame:_snapImageView.bounds];
+        _radialSelector.userInteractionEnabled = NO;
+        [_snapImageView addSubview:_radialSelector];
+        
+        __weak SnapTableViewCell *weakself = self;
         UITapGestureRecognizer *tap = [UITapGestureRecognizer bk_recognizerWithHandler:^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
             NSLog(@"tapped!");
+            [weakself.snapImageView removeGestureRecognizer:_snapImageView.gestureRecognizers[0]];
+            [weakself.radialSelector animateOpen];
         }];
         tap.numberOfTapsRequired = 2;
         [_snapImageView addGestureRecognizer:tap];
         
+        _radialSelector.resultHandler = ^(int emote) {
+            [weakself.snapImageView addGestureRecognizer:tap];
+        };
         
         _takerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 32, 32)];
         _takerImageView.layer.cornerRadius = 16;
