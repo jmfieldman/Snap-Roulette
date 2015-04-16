@@ -15,6 +15,7 @@ static unsigned short s_emotes[NUM_EMOTES] = {0xe04f, 0xe04e, 0xe04d, 0xe04f, 0x
 @property (nonatomic, strong) NSMutableArray *emoteButtons;
 @property (nonatomic, strong) NSMutableArray *openAnimations;
 @property (nonatomic, strong) NSMutableArray *closeAnimations;
+@property (nonatomic, strong) UIButton *closeButton;
 @end
 
 @implementation RadialEmoteSelector
@@ -25,8 +26,21 @@ static unsigned short s_emotes[NUM_EMOTES] = {0xe04f, 0xe04e, 0xe04d, 0xe04f, 0x
         float cenx = frame.size.width/2;
         float ceny = frame.size.height/2;
         float outer_rad = cenx * 0.65;
-        float emote_rad = outer_rad * 0.2;
+        float emote_rad = outer_rad * 0.25;
         float arc = M_PI * 2 / NUM_EMOTES;
+        
+        __weak RadialEmoteSelector *weakself = self;
+        
+        /* Close button */
+        _closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _closeButton.frame = self.bounds;
+        _closeButton.backgroundColor = [UIColor colorWithWhite:0 alpha:0.45];
+        _closeButton.alpha = 0;
+        [_closeButton bk_addEventHandler:^(id sender) {
+            [weakself animateClose];
+            weakself.resultHandler(0);
+        } forControlEvents:UIControlEventTouchDown];
+        [self addSubview:_closeButton];
         
         _emoteButtons = [NSMutableArray array];
         _openAnimations = [NSMutableArray array];
@@ -38,6 +52,7 @@ static unsigned short s_emotes[NUM_EMOTES] = {0xe04f, 0xe04e, 0xe04d, 0xe04f, 0x
             [button setTitle:[NSString stringWithFormat:@"%C", s_emotes[e]] forState:UIControlStateNormal];
             button.titleLabel.font = [UIFont systemFontOfSize:emote_rad*1.2];
             button.titleLabel.minimumScaleFactor = 0.25;
+            button.tag = e;
             [self addSubview:button];
             [_emoteButtons addObject:button];
             
@@ -48,11 +63,12 @@ static unsigned short s_emotes[NUM_EMOTES] = {0xe04f, 0xe04e, 0xe04d, 0xe04f, 0x
             button.titleLabel.layer.shadowOpacity = 0.6;
             button.titleLabel.layer.shadowRadius = 3;
             
-            __weak RadialEmoteSelector *weakself = self;
-            [button bk_addEventHandler:^(id sender) {
-                NSLog(@"yo");
+            button.alpha = 0;
+            
+            [button bk_addEventHandler:^(UIButton *sender) {
+                //NSLog(@"yo");
                 [weakself animateClose];
-                weakself.resultHandler(0);
+                weakself.resultHandler(s_emotes[sender.tag]);
             } forControlEvents:UIControlEventTouchDown];
             
             POPSpringAnimation *oa = [POPSpringAnimation animationWithPropertyNamed:kPOPViewCenter];
@@ -88,7 +104,15 @@ static unsigned short s_emotes[NUM_EMOTES] = {0xe04f, 0xe04e, 0xe04d, 0xe04f, 0x
         [b pop_addAnimation:a forKey:@"cen"];
         
         i++;
+        
+        [UIView animateWithDuration:0.15 delay:0 options:0 animations:^{
+            b.alpha = 1;
+        } completion:nil];
     }
+    
+    [UIView animateWithDuration:0.15 delay:0 options:0 animations:^{
+        _closeButton.alpha = 1;
+    } completion:nil];
 }
 
 - (void) animateClose {
@@ -102,7 +126,15 @@ static unsigned short s_emotes[NUM_EMOTES] = {0xe04f, 0xe04e, 0xe04d, 0xe04f, 0x
         [b pop_addAnimation:a forKey:@"cen"];
         
         i++;
+        
+        [UIView animateWithDuration:0.15 delay:0 options:0 animations:^{
+            b.alpha = 0;
+        } completion:nil];
     }
+    
+    [UIView animateWithDuration:0.07 delay:0 options:0 animations:^{
+        _closeButton.alpha = 0;
+    } completion:nil];
 }
 
 @end

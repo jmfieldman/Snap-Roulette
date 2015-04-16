@@ -43,15 +43,22 @@
         
         __weak SnapTableViewCell *weakself = self;
         UITapGestureRecognizer *tap = [UITapGestureRecognizer bk_recognizerWithHandler:^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
-            NSLog(@"tapped!");
+            //NSLog(@"tapped!");
             [weakself.snapImageView removeGestureRecognizer:_snapImageView.gestureRecognizers[0]];
             [weakself.radialSelector animateOpen];
         }];
-        tap.numberOfTapsRequired = 2;
+        tap.numberOfTapsRequired = 1;
         [_snapImageView addGestureRecognizer:tap];
         
         _radialSelector.resultHandler = ^(int emote) {
             [weakself.snapImageView addGestureRecognizer:tap];
+            
+            /* Set the emote */
+            if (emote > 0) {
+                [PFCloud callFunctionInBackground:@"set_emote" withParameters:@{@"snapId":weakself.snap.objectId, @"emote":@(emote)} block:^(id object, NSError *error) {
+                    NSLog(@"set_emote result obj: %@ error: %@", object, error);
+                }];
+            }
         };
         
         _takerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 32, 32)];
