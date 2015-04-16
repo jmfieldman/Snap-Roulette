@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^PFDQArrayResultBlock)(BOOL fromLocalDatastore, PF_NULLABLE_S NSArray *objects, PF_NULLABLE_S NSError *error);
+typedef void (^PFDQArrayResultBlock)(BOOL fromLocalDatastore, NSArray *PF_NULLABLE_S objects, NSError *PF_NULLABLE_S error);
 
 @interface PFQuery (DualQuery)
 
-- (void) dualQueryObjectsInBackgroundWithBlock:(PFDQArrayResultBlock)block pinResults:(BOOL)pin;
+- (void) dualQueryObjectsInBackgroundWithBlock:(PF_NULLABLE_S PFDQArrayResultBlock)block pinResults:(BOOL)pin;
 
 @end

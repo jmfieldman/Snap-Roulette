@@ -43,11 +43,11 @@ PODS:
     - Facebook-iOS-SDK
     - Parse
     - ParseFacebookUtils
-  - Parse (1.7.0):
+  - Parse (1.7.1):
     - Bolts (~> 1.1)
-  - ParseFacebookUtils (1.7.0):
+  - ParseFacebookUtils (1.7.1):
     - Facebook-iOS-SDK (~> 3.23)
-    - Parse (~> 1.7.0)
+    - Parse (~> 1.7.1)
   - pop (1.0.7)
   - SDWebImage (3.7.2):
     - SDWebImage/Core (= 3.7.2)
@@ -68,14 +68,14 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: fefbce9660acb17f48ae0011292d4da0f457bf36
-  BlocksKit: 4439e7f30a9f90743462ca63545a15c1f4304cef
-  Bolts: dd9fb8433d67f5acc3b6b4d1379bbc5513d716c1
+  BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
+  Bolts: f8e2f94edbf9fec7bb8de5ecaaa3aa6b7de6f64e
   Facebook-iOS-SDK: cd87f0b2f0c1d9574b44e8fa2baacc275524bac3
-  iCarousel: 5acab560f10dc13da2440c89f35a0ad278b5147d
-  JFParseFBFriends: 2f20dd7671b318dad27e7d04507118c31308b2dd
-  Parse: 3c2d4e6ade7b59d31c0bc8106340c6b81b31bc0f
-  ParseFacebookUtils: f0c954253a65e945d7cb73400c33bc661f516b85
-  pop: 2f14a1ea61339767af9e66741b418c831b3844df
+  iCarousel: dace1cb858e3f4dc2614bee3201041247f82feda
+  JFParseFBFriends: 1734a46f4627e09f3069c9fb7211a32c926c3236
+  Parse: fa8ec29de6d82035635986c11946299fb1b38316
+  ParseFacebookUtils: fa09adf78372b589163b5a71a34d6ebc7eb83395
+  pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
   SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
 
