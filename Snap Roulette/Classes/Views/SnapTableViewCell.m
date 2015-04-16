@@ -55,7 +55,10 @@
             
             /* Set the emote */
             if (emote > 0) {
-                [PFCloud callFunctionInBackground:@"set_emote" withParameters:@{@"snapId":weakself.snap.objectId, @"emote":@(emote)} block:^(id object, NSError *error) {
+                PFUser *taker = weakself.snap[@"taker"];
+                BOOL takerB = ([taker.objectId isEqualToString:PFUser.currentUser.objectId]);
+                
+                [PFCloud callFunctionInBackground:@"set_emote" withParameters:@{@"snapId":weakself.snap.objectId, @"isTaker":@(takerB), @"emote":@(emote)} block:^(id object, NSError *error) {
                     NSLog(@"set_emote result obj: %@ error: %@", object, error);
                 }];
             }
