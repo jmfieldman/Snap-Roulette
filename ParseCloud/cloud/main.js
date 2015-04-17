@@ -176,3 +176,13 @@ Parse.Cloud.define("set_emote", function(request, response) {
 	
 
 });
+
+
+Parse.Cloud.beforeSave(Parse.User, function(request, response) {
+	
+	if (request.user.objectId !== request.object.objectId) {
+		response.error("User must be the current user");
+	} else {
+		response.success();
+	}	
+});
