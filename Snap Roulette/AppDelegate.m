@@ -34,6 +34,15 @@
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[MainSnapViewController sharedInstance]];
     [self.window makeKeyAndVisible];
     
+    /* Get remote notification token */
+    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
+                                                    UIUserNotificationTypeBadge |
+                                                    UIUserNotificationTypeSound);
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
+                                                                             categories:nil];
+    [application registerUserNotificationSettings:settings];
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+    
     return YES;
 }
 
@@ -44,6 +53,27 @@
     return [FBAppCall handleOpenURL:url
                   sourceApplication:sourceApplication
                         withSession:[PFFacebookUtils session]];
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    
+    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+    NSData *oldToken = [def dataForKey:@"deviceToken"];
+    if ([oldToken isEqualToData:deviceToken]) return;
+    
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    if ([PFUser currentUser]) {
+        currentInstallation[@"user"] = [PFUser currentUser];
+    }
+    [currentInstallation saveInBackgroundWithBlock:^(BOOL succ, NSError* err) {
+        if (!succ || err) { NSLog(@"reg error: %@", err); return; }
+        [def setObject:deviceToken forKey:@"deviceToken"];
+        if ([PFUser currentUser]) {
+            [def setObject:PFUser.currentUser.objectId forKey:@"curUserID"];
+        }
+    }];
+    NSLog(@"reg token: %@", deviceToken);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

@@ -175,7 +175,9 @@
     PFUser *taker = snap[@"taker"];
     
     _takerImageView.image = [UIImage imageNamed:@"facebook_default_portrait"];
-    [_takerImageView sd_setImageWithURL:[NSURL URLWithString:[RandomHelpers urlForFBPicture:taker]] placeholderImage:[UIImage imageNamed:@"facebook_default_portrait"] options:0 completed:nil];
+    [_takerImageView sd_setImageWithURL:[NSURL URLWithString:[RandomHelpers urlForFBPicture:taker]] placeholderImage:[UIImage imageNamed:@"facebook_default_portrait"] options:0 completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        
+    }];
     
     //_takerNameLabel.text = taker[@"fullname"];
     
@@ -212,7 +214,9 @@
         PFUser *u = sentTo[r];
         
         ((UIImageView*)_receiverPortraits[r]).image = [UIImage imageNamed:@"facebook_default_portrait"];
-        [((UIImageView*)_receiverPortraits[r]) sd_setImageWithURL:[NSURL URLWithString:[RandomHelpers urlForFBPicture:u]] placeholderImage:[UIImage imageNamed:@"facebook_default_portrait"] options:0 completed:nil];
+        [((UIImageView*)_receiverPortraits[r]) sd_setImageWithURL:[NSURL URLWithString:[RandomHelpers urlForFBPicture:u]] placeholderImage:[UIImage imageNamed:@"facebook_default_portrait"] options:0 completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            
+        }];
         
         ((UILabel*)_receiverNames[r]).text = u[@"firstname"];
     }

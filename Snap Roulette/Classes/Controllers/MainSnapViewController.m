@@ -183,11 +183,27 @@
 				NSString *picUrl = [RandomHelpers urlForFBPicture:friend];
 				SDWebImageManager *manager = [SDWebImageManager sharedManager];
 				if (![manager cachedImageExistsForURL:[NSURL URLWithString:picUrl]]) {
-					[manager downloadImageWithURL:[NSURL URLWithString:picUrl] options:0 progress:nil completed:nil];
+                    [manager downloadImageWithURL:[NSURL URLWithString:picUrl] options:0 progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                        
+                    }];
 				}
 			}
 		}
     }];
+    
+    if (PFUser.currentUser) {
+        NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+        NSString *oldUser = [def stringForKey:@"curUserID"];
+        if ([oldUser isEqualToString:PFUser.currentUser.objectId]) return;
+        
+        PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+        currentInstallation[@"user"] = [PFUser currentUser];
+        
+        [currentInstallation saveInBackgroundWithBlock:^(BOOL succ, NSError* err) {
+            if (!succ || err) { NSLog(@"reg error: %@", err); return; }
+            [def setObject:PFUser.currentUser.objectId forKey:@"curUserID"];
+        }];
+    }
 }
 
 - (void) viewWillAppear:(BOOL)animated {

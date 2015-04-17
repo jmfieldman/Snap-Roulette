@@ -35,7 +35,9 @@
 	result.layer.cornerRadius  = size / 2.0;
 	result.layer.masksToBounds = YES;
 		
-	[result sd_setImageWithURL:[NSURL URLWithString:[RandomHelpers urlForFBPicture:user]] placeholderImage:[UIImage imageNamed:@"facebook_default_portrait"] options:SDWebImageRefreshCached completed:nil];
+	[result sd_setImageWithURL:[NSURL URLWithString:[RandomHelpers urlForFBPicture:user]] placeholderImage:[UIImage imageNamed:@"facebook_default_portrait"] options:SDWebImageRefreshCached completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        
+    }];
 	return result;
 }
 
