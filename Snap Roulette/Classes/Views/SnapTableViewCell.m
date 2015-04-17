@@ -55,11 +55,33 @@
             
             /* Set the emote */
             if (emote > 0) {
+				if (emote == 1) emote = 0;
                 PFUser *taker = weakself.snap[@"taker"];
                 BOOL takerB = ([taker.objectId isEqualToString:PFUser.currentUser.objectId]);
                 
                 [PFCloud callFunctionInBackground:@"set_emote" withParameters:@{@"snapId":weakself.snap.objectId, @"isTaker":@(takerB), @"emote":@(emote)} block:^(id object, NSError *error) {
                     NSLog(@"set_emote result obj: %@ error: %@", object, error);
+					
+					if (takerB) {
+						weakself.snap[@"emote"] = @(emote);
+						[weakself.snap pinInBackgroundWithBlock:^(BOOL success, NSError *error) {
+							if (error) NSLog(@"(A) pinning emote error: %@", error);
+							[weakself updateEmotes];
+						}];
+					} else {
+						NSArray *sentSnaps = weakself.snap[@"sentSnaps"];
+						NSLog(@"sent snap array: %@", sentSnaps);
+						for (PFObject *sentSnap in sentSnaps) {
+							PFUser *receiver = sentSnap[@"receiver"];
+							if ([receiver.objectId isEqualToString:PFUser.currentUser.objectId]) {
+								sentSnap[@"emote"] = @(emote);
+								[sentSnap pinInBackgroundWithBlock:^(BOOL success, NSError *error) {
+									if (error) NSLog(@"(B) pinning emote error: %@", error);
+									[weakself updateEmotes];
+								}];
+							}
+						}
+					}
                 }];
             }
         };
@@ -174,7 +196,13 @@
         
         ((UILabel*)_receiverNames[r]).text = u[@"firstname"];
     }
-    
+	
+	[self updateEmotes];
 }
+
+- (void) updateEmotes {
+	
+}
+
 
 @end
