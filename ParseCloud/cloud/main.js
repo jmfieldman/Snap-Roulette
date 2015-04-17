@@ -100,29 +100,69 @@ Parse.Cloud.define("submit_snap", function(request, response) {
 
 });
 
-/*
-Parse.Cloud.beforeSave("Snap", function(request, response) {
-	
-	var user  = request.user;
-	var taker = request.object.get("taker");
-	
-	if (user.objectId !== taker.objectId) {
-		response.error("Taker must be the current user");
-	} else {
-		response.success();
-	}	
-});
+Parse.Cloud.define("set_emote", function(request, response) {
 
-
-Parse.Cloud.beforeSave("SentSnap", function(request, response) {
+	Parse.Cloud.useMasterKey();
 	
-	var user  = request.user;
-	var taker = request.object.get("taker");
+	var user          = request.user;
+	var emote_val     = request.params.emote;
+	var is_taker      = request.params.isTaker;
+	var snapId        = request.params.snapId;
 	
-	if (user.objectId !== taker.objectId) {
-		response.error("Taker must be the current user");
+	if (is_taker) {
+		/* This is for users emoting their own snaps! */
+		var Snap = Parse.Object.extend("Snap");
+		var query = new Parse.Query(Snap);
+		query.include("taker");
+		query.get(snapId, {
+			success: function(snap) {
+				var takerObj = snap.get("taker");
+				if (takerObj.objectId == user.objectId) {
+					snap.set("emote", emote_val);
+					snap.save(null, {
+						success: function(snap) {
+							response.success("All good!");
+						},
+						error: function(error) { 
+							response.error("save snaps isTaker=1 error: " + error.message);
+						}
+					});
+				} else {
+					response.error("snap query isTaker=1 user mismatch: user: " + user.objectId + " taker: " + snap.taker.objectId);
+				}
+			},
+			error: function(object, error) {
+				response.error("snap query failed isTaker=1: " + error.message);
+			}
+		});
 	} else {
-		response.success();
-	}	
+		/* Setting emote for another user's snap; modify SentSnap */
+		var Snap = Parse.Object.extend("Snap");
+		var snap = new Snap();
+		snap.id = snapId;
+		
+		var SentSnap = Parse.Object.extend("SentSnap");
+		var query = new Parse.Query(SentSnap);
+		query.equalTo("snap", snap);
+		query.equalTo("receiver", user);
+		
+		query.first({
+		  success: function(object) {
+		    	object.set("emote", emote_val);
+				object.save(null, {
+					success: function(obj) {
+						response.success("All good!");
+					},
+					error: function(error) {
+						response.error("save snaps isTaker=0 save SentSnap error: " + error.message);
+					}
+				});
+		  },
+		  error: function(error) {
+		    	response.error("snap query failed isTaker=0: " + error.message);
+		  }
+		});
+	}
+	
+
 });
-*/

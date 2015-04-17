@@ -32,7 +32,8 @@
         self.title = sent ? @"Sent Photos" : @"Received Photos";
         
         self.tableView.rowHeight = self.view.bounds.size.width * 1.33 + 42;
-        
+		self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 48, 0);
+		
         self.refreshControl = [[UIRefreshControl alloc] init];
         //self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Hello" attributes:@{}];
         [self.refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
