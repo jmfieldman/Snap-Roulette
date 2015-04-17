@@ -2,6 +2,29 @@
 /* Buffer module for base64 */
 var Buffer = require('buffer').Buffer;
 
+function send_push_to_one(user, txt) {
+	var query = new Parse.Query(Parse.Installation);
+	query.equalTo('user', user);
+	Parse.Push.send({ 
+		where: query,
+		data: {
+			alert: txt
+		}
+	});
+}
+
+function send_push_to_all(users, txt) {
+	var query = new Parse.Query(Parse.Installation);
+	query.containedIn('user', users);
+	Parse.Push.send({ 
+		where: query,
+		data: {
+			alert: txt
+		}
+	});
+}
+
+
 Parse.Cloud.define("submit_snap", function(request, response) {
 	
 	Parse.Cloud.useMasterKey();
@@ -46,6 +69,8 @@ Parse.Cloud.define("submit_snap", function(request, response) {
 			taker.increment("snapCount");
 			taker.save();
 			
+			var msg = taker.get('firstname') + " sent you a random snap!";
+			
 			/* Now we have to make the SnapSent objects */
 			var sent_snaps = [];
 			var rec_users  = [];
@@ -59,7 +84,7 @@ Parse.Cloud.define("submit_snap", function(request, response) {
 				var ruser  = new Parse.User();
 				ruser.set("objectId", robjId);
 				snap.add("sentToUserArray", ruser);
-				//rec_users.push(ruser);
+				rec_users.push(ruser);
 				sent_to_relation.add(ruser);
 				
 				var sentsnap = new SentSnap();
@@ -68,7 +93,7 @@ Parse.Cloud.define("submit_snap", function(request, response) {
 				sentsnap.set("snap", snap);
 				
 				sent_snaps.push(sentsnap);				
-			}
+			}						
 			
 			Parse.Object.saveAll(sent_snaps, {
 				success: function(objs) {
@@ -80,6 +105,7 @@ Parse.Cloud.define("submit_snap", function(request, response) {
 					
 					snap.save(null, {
 						success: function(snap) {
+							send_push_to_all(rec_users, msg);
 							response.success("All good!");
 						},
 						error: function(error) { 
