@@ -11,18 +11,30 @@
 @implementation PFQuery (DualQuery)
 
 
-- (void) dualQueryObjectsInBackgroundWithBlock:(PFDQArrayResultBlock)block pinResults:(BOOL)pin {
+- (void) dualQueryObjectsInBackgroundWithBlock:(PFDQArrayResultBlock)block since:(NSDate*)date pinResults:(BOOL)pin {
 
+    NSLog(@"dual query since: %ld", (long)date.timeIntervalSince1970);
+    
     PFQuery *copy = [self copy];
     
+    if (date) {
+        [self whereKey:@"updatedAt" greaterThan:date];
+    }
+    
     [self findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        block(NO, objects, error);
+        if (error) NSLog(@"findObjects error: %@", error); else NSLog(@"found %d objects", (int)objects.count);
+        
+        if (!pin) block(NO, objects, error);
         
         if (!error && objects.count && pin) {
-            [PFObject pinAllInBackground:objects];
+            [PFObject pinAllInBackground:objects block:^(BOOL succ, NSError *error) {
+                NSLog(@"PINNED %d OBJECTS with error: %@", (int)objects.count, error);
+                if (pin) block(NO, objects, error);
+            }];
         }
     }];
     
+    //[copy whereKey:@"updatedAt" greaterThan:[NSDate dateWithTimeIntervalSince1970:0]];    
     [copy fromLocalDatastore];
     [copy ignoreACLs];
     

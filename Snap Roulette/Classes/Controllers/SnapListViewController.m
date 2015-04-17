@@ -58,9 +58,11 @@
     if (_sent) {
         [query whereKey:@"taker" equalTo:[PFUser currentUser]];
     } else {
-        //[query whereKey:@"sentToUsers" containsAllObjectsInArray:@[[PFUser currentUser]]]
-        [query whereKey:@"sentToUsers" equalTo:[PFUser currentUser]];
+        [query whereKey:@"sentToUserArray" equalTo:[PFUser currentUser]];
     }
+    
+    NSString *lastUpKey = _sent ? @"lastUpdateSent" : @"lastUpdateRecv";
+    NSDate *lastUpdate = [NSDate dateWithTimeIntervalSince1970:[[NSUserDefaults standardUserDefaults] integerForKey:lastUpKey]];
     
     [query dualQueryObjectsInBackgroundWithBlock:^(BOOL fromLocalDatastore, NSArray *objects, NSError *error) {
         NSLog(@"dualQueryObjectsInBackgroundWithBlock [%d] (local: %d): (error:%@) %@", (int)_sent, (int)fromLocalDatastore, error, objects);
@@ -78,7 +80,9 @@
         
         if (!fromLocalDatastore) [self.refreshControl endRefreshing];
         
-    } pinResults:YES];
+        [[NSUserDefaults standardUserDefaults] setInteger:[NSDate date].timeIntervalSince1970-10 forKey:lastUpKey];
+        
+    } since:lastUpdate pinResults:YES];
 }
 
 

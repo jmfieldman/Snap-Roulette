@@ -12,6 +12,6 @@ typedef void (^PFDQArrayResultBlock)(BOOL fromLocalDatastore, NSArray *PF_NULLAB
 
 @interface PFQuery (DualQuery)
 
-- (void) dualQueryObjectsInBackgroundWithBlock:(PF_NULLABLE_S PFDQArrayResultBlock)block pinResults:(BOOL)pin;
+- (void) dualQueryObjectsInBackgroundWithBlock:(PF_NULLABLE_S PFDQArrayResultBlock)block since:(NSDate* PF_NULLABLE_S)date pinResults:(BOOL)pin;
 
 @end
