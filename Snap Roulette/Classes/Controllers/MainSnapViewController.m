@@ -271,7 +271,8 @@
             
             CGFloat newsize = 512;
             image = [RandomHelpers imageWithImage:image scaledToSize:CGSizeMake(newsize, newsize * (image.size.height / image.size.width))];
-            UIImage *cropped = [RandomHelpers imageWithImage:image scaledToSize:CGSizeMake(newsize, newsize)];
+			NSLog(@"shrunk image: %f %f %d", image.size.width, image.size.height, (int)image.imageOrientation);
+			UIImage *cropped = [self imageByCroppingImage:image toSize:CGSizeMake(newsize, newsize)];
             NSLog(@"cropped image: %f %f %d", cropped.size.width, cropped.size.height, (int)cropped.imageOrientation);
             
 			dispatch_main_async_safe(^(){
