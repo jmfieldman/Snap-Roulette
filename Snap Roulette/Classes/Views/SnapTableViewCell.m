@@ -106,7 +106,7 @@
 		_takerEmote.layer.shadowRadius = 4;
 		[self.contentView addSubview:_takerEmote];
 		
-        _takerNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(42, 5, 200, 32)];
+        _takerNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(47, 5, 200, 32)];
         _takerNameLabel.font = [UIFont fontWithName:@"Lato Regular" size:14];
         _takerNameLabel.textColor = [UIColor colorWithWhite:0.1 alpha:1];
         [self.contentView addSubview:_takerNameLabel];

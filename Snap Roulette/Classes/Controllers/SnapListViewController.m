@@ -31,6 +31,8 @@
         self.view.backgroundColor = [UIColor whiteColor];
         self.title = sent ? @"Sent Photos" : @"Received Photos";
         
+        self.tabBarItem.image = [UIImage imageNamed:sent ? @"sent" : @"recv"];
+        
         self.tableView.rowHeight = self.view.bounds.size.width * 1.33 + 42;
 		self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 48, 0);
 		
