@@ -30,7 +30,7 @@
 - (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
         
-        _snapImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 42, [UIScreen mainScreen].bounds.size.width - 0, [UIScreen mainScreen].bounds.size.width - 0)];
+        _snapImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 48, [UIScreen mainScreen].bounds.size.width - 0, [UIScreen mainScreen].bounds.size.width - 0)];
         //_snapImageView.layer.cornerRadius = 10;
         //_snapImageView.layer.masksToBounds = YES;
         _snapImageView.userInteractionEnabled = YES;
@@ -89,7 +89,7 @@
             }
         };
         
-        _takerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 32, 32)];
+        _takerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 8, 32, 32)];
         _takerImageView.layer.cornerRadius = 16;
         _takerImageView.layer.masksToBounds = YES;
         _takerImageView.layer.shouldRasterize = YES;
@@ -106,7 +106,7 @@
 		_takerEmote.layer.shadowRadius = 4;
 		[self.contentView addSubview:_takerEmote];
 		
-        _takerNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(47, 5, 200, 32)];
+        _takerNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 8, 200, 32)];
         _takerNameLabel.font = [UIFont fontWithName:@"Lato Regular" size:14];
         _takerNameLabel.textColor = [UIColor colorWithWhite:0.1 alpha:1];
         [self.contentView addSubview:_takerNameLabel];

@@ -29,8 +29,13 @@
         if (!error && objects.count && pin) {
             [PFObject pinAllInBackground:objects block:^(BOOL succ, NSError *error) {
                 NSLog(@"PINNED %d OBJECTS with error: %@", (int)objects.count, error);
-                if (pin) block(NO, objects, error);
+                //block(NO, objects, error);
+                [copy findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                    block(YES, objects, error);
+                }];
             }];
+        } else {
+            //block(NO, objects, error);
         }
     }];
     

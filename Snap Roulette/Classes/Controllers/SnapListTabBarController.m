@@ -8,6 +8,10 @@
 
 #import "SnapListTabBarController.h"
 
+@interface SnapListTabBarController ()
+@property (nonatomic, strong) UIImageView *glass;
+@end
+
 @implementation SnapListTabBarController
 
 + (SnapListTabBarController*) sharedInstance {
@@ -32,6 +36,19 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
         self.title = @"Photo Feed";
         self.viewControllers = @[ [[SnapListViewController alloc] initWithDirection:NO], [[SnapListViewController alloc] initWithDirection:YES] ];
+        
+        #if 0
+        self.tabBar.hidden = YES;
+        
+        _glass = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"glass"]];
+        _glass.alpha = 0.5;
+        _glass.frame = CGRectMake(0, 0, _glass.bounds.size.width * 1.5, _glass.bounds.size.height * 1.5);
+        [self.view addSubview:_glass];
+        
+        UIView *backing = [[UIView alloc] initWithFrame:CGRectMake(0, _glass.bounds.size.height-1, _glass.bounds.size.width, 2)];
+        backing.backgroundColor = [UIColor colorWithWhite:0 alpha:0.15];
+        [self.view insertSubview:backing aboveSubview:_glass];
+        #endif
     }
     return self;
 }

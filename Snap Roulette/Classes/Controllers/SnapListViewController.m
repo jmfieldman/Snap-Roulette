@@ -67,6 +67,8 @@
     NSDate *lastUpdate = [NSDate dateWithTimeIntervalSince1970:[[NSUserDefaults standardUserDefaults] integerForKey:lastUpKey]];
     
     [query dualQueryObjectsInBackgroundWithBlock:^(BOOL fromLocalDatastore, NSArray *objects, NSError *error) {
+        if (!fromLocalDatastore) return;
+        
         NSLog(@"dualQueryObjectsInBackgroundWithBlock [%d] (local: %d): (error:%@) %@", (int)_sent, (int)fromLocalDatastore, error, objects);
         
         /*
@@ -80,7 +82,8 @@
         _snaps = objects;
         [self.tableView reloadData];
         
-        if (!fromLocalDatastore) [self.refreshControl endRefreshing];
+        //if (!fromLocalDatastore)
+            [self.refreshControl endRefreshing];
         
         [[NSUserDefaults standardUserDefaults] setInteger:[NSDate date].timeIntervalSince1970-10 forKey:lastUpKey];
         

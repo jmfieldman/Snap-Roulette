@@ -145,13 +145,23 @@ Parse.Cloud.define("set_emote", function(request, response) {
 		var query = new Parse.Query(SentSnap);
 		query.equalTo("snap", snap);
 		query.equalTo("receiver", user);
+		query.include("snap");
 		
 		query.first({
 		  success: function(object) {
 		    	object.set("emote", emote_val);
 				object.save(null, {
-					success: function(obj) {
-						response.success("All good!");
+					success: function(obj) {						
+						
+						var s = object.get("snap");
+						s.save(null, {
+							success: function(obj2) {
+								response.success("All good!");
+							},
+							error: function(error) {
+								response.error("save snaps isTaker=0 save Snap error: " + error.message);
+							}
+						})
 					},
 					error: function(error) {
 						response.error("save snaps isTaker=0 save SentSnap error: " + error.message);
