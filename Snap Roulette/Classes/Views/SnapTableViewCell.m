@@ -16,10 +16,11 @@
 
 @property (nonatomic, strong) UIImageView *takerImageView;
 @property (nonatomic, strong) UILabel     *takerNameLabel;
+@property (nonatomic, strong) UILabel     *takerEmote;
 
 @property (nonatomic, strong) NSMutableArray *receiverPortraits;
 @property (nonatomic, strong) NSMutableArray *receiverNames;
-@property (nonatomic, strong) NSMutableArray *receiverLike;
+@property (nonatomic, strong) NSMutableArray *receiverEmotes;
 
 @end
 
@@ -94,7 +95,17 @@
         _takerImageView.layer.shouldRasterize = YES;
         _takerImageView.layer.rasterizationScale = [UIScreen mainScreen].scale;
         [self.contentView addSubview:_takerImageView];
-        
+		
+		_takerEmote = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
+		_takerEmote.center = CGPointMake(_takerImageView.center.x + 11, _takerImageView.center.y + 11);
+		_takerEmote.font = [UIFont systemFontOfSize:14];
+		_takerEmote.minimumScaleFactor = 0.5;
+		_takerEmote.textAlignment = NSTextAlignmentCenter;
+		_takerEmote.layer.shadowOffset = CGSizeZero;
+		_takerEmote.layer.shadowOpacity = 0.65;
+		_takerEmote.layer.shadowRadius = 4;
+		[self.contentView addSubview:_takerEmote];
+		
         _takerNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(42, 5, 200, 32)];
         _takerNameLabel.font = [UIFont fontWithName:@"Lato Regular" size:14];
         _takerNameLabel.textColor = [UIColor colorWithWhite:0.1 alpha:1];
@@ -104,7 +115,7 @@
         /* Receiver stuff */
         _receiverPortraits = [NSMutableArray array];
         _receiverNames     = [NSMutableArray array];
-        _receiverLike      = [NSMutableArray array];
+        _receiverEmotes    = [NSMutableArray array];
         
         #define NUM_RECEIVERS 5
         CGFloat w = [UIScreen mainScreen].bounds.size.width;
@@ -127,15 +138,22 @@
             [_receiverPortraits addObject:portrait];
             
             UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, prad*2.2, prad)];
-            name.center = CGPointMake(portrait.center.x, portrait.center.y + prad * 1.6);
+            name.center = CGPointMake(portrait.center.x, portrait.center.y + prad * 1.7);
             name.textAlignment = NSTextAlignmentCenter;
             name.minimumScaleFactor = 0.5;
             [self.contentView addSubview:name];
             [_receiverNames addObject:name];
-            
-            UIImageView *like = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 32, 32)];
-            [self.contentView addSubview:like];
-            [_receiverLike addObject:like];
+			
+			UILabel *emote = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, prad*1.3, prad*1.3)];
+			emote.center = CGPointMake(portrait.center.x + prad*0.75, portrait.center.y + prad*0.75);
+			emote.font = [UIFont systemFontOfSize:prad];
+			emote.minimumScaleFactor = 0.5;
+			emote.textAlignment = NSTextAlignmentCenter;
+			emote.layer.shadowOffset = CGSizeZero;
+			emote.layer.shadowOpacity = 0.65;
+			emote.layer.shadowRadius = 4;
+            [self.contentView addSubview:emote];
+            [_receiverEmotes addObject:emote];
         }
         
     }
@@ -181,13 +199,13 @@
     int howmany = (int)sentTo.count;
     
     for (int i = howmany; i < NUM_RECEIVERS; i++) {
-        ((UIView*)_receiverLike[i]).alpha = 0;
+        ((UIView*)_receiverEmotes[i]).alpha = 0;
         ((UIView*)_receiverNames[i]).alpha = 0;
         ((UIView*)_receiverPortraits[i]).alpha = 0;
     }
     
     for (int r = 0; r < howmany; r++) {
-        ((UIView*)_receiverLike[r]).alpha = 1;
+        ((UIView*)_receiverEmotes[r]).alpha = 1;
         ((UIView*)_receiverNames[r]).alpha = 1;
         ((UIView*)_receiverPortraits[r]).alpha = 1;
         
@@ -203,6 +221,21 @@
 }
 
 - (void) updateEmotes {
+	
+	int emote = [_snap[@"emote"] intValue];
+	_takerEmote.text = (emote > 0) ? [NSString stringWithFormat:@"%C", (unsigned short)emote] : @"";
+
+	/* Set up receivers */
+	NSArray *sentSnaps = _snap[@"sentSnaps"];
+	int howmany = (int)sentSnaps.count;
+	
+	for (int i = 0; i < howmany; i++) {
+		PFObject *sentsnap = sentSnaps[i];
+		int e = [sentsnap[@"emote"] intValue];
+		
+		UILabel *eL = _receiverEmotes[i];
+		eL.text = [NSString stringWithFormat:@"%C", (unsigned short)e];
+	}
 	
 }
 
