@@ -66,17 +66,19 @@
 						weakself.snap[@"emote"] = @(emote);
 						[weakself.snap pinInBackgroundWithBlock:^(BOOL success, NSError *error) {
 							if (error) NSLog(@"(A) pinning emote error: %@", error);
+							else NSLog(@"taker emote updated");
 							[weakself updateEmotes];
 						}];
 					} else {
 						NSArray *sentSnaps = weakself.snap[@"sentSnaps"];
-						NSLog(@"sent snap array: %@", sentSnaps);
+						//NSLog(@"sent snap array: %@", sentSnaps);
 						for (PFObject *sentSnap in sentSnaps) {
 							PFUser *receiver = sentSnap[@"receiver"];
 							if ([receiver.objectId isEqualToString:PFUser.currentUser.objectId]) {
 								sentSnap[@"emote"] = @(emote);
 								[sentSnap pinInBackgroundWithBlock:^(BOOL success, NSError *error) {
 									if (error) NSLog(@"(B) pinning emote error: %@", error);
+									else NSLog(@"receiver emote updated");
 									[weakself updateEmotes];
 								}];
 							}
