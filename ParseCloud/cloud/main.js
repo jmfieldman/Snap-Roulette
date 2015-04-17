@@ -94,10 +94,12 @@ Parse.Cloud.define("submit_snap", function(request, response) {
 				
 				sent_snaps.push(sentsnap);				
 			}						
+			//console.log("about to save snap: " + msg);
 			
 			Parse.Object.saveAll(sent_snaps, {
 				success: function(objs) {
-										
+					
+					//console.log("snap saved");					
 					for (o = 0; o < objs.length; o++) {
 						//sent_snaps_relation.add(objs[o]);
 						snap.add("sentSnaps", objs[o]);
@@ -109,7 +111,7 @@ Parse.Cloud.define("submit_snap", function(request, response) {
 							response.success("All good!");
 						},
 						error: function(error) { 
-							response.error("save sentsnaps for snap error: " + error.message);
+							response.error("save sentsnaps for snap error: " + error.message + " error: " + error);
 						}
 					});										
 				},
@@ -203,7 +205,7 @@ Parse.Cloud.define("set_emote", function(request, response) {
 
 });
 
-
+/*
 Parse.Cloud.beforeSave(Parse.User, function(request, response) {
 	
 	if (request.user.objectId !== request.object.objectId) {
@@ -212,3 +214,4 @@ Parse.Cloud.beforeSave(Parse.User, function(request, response) {
 		response.success();
 	}	
 });
+*/
