@@ -9,7 +9,7 @@
 #import "RadialEmoteSelector.h"
 
 #define NUM_EMOTES 12
-static __strong NSString *s_emotes[NUM_EMOTES] = {@"😁", @"😂", @"😃"};
+static __strong NSString *s_emotes[NUM_EMOTES] = {@"😁", @"😂", @"😃", @"😊", @"❤", @"👍", @"😱", @"😳", @"😭", @"😇", @"😮", @"😓" };
 
 @interface RadialEmoteSelector ()
 @property (nonatomic, strong) NSMutableArray *emoteButtons;
