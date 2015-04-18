@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void (^RadialEmoteSelectorResultBlock)(int emote);
+typedef void (^RadialEmoteSelectorResultBlock)(NSString *emote);
 
 @interface RadialEmoteSelector : UIView
 

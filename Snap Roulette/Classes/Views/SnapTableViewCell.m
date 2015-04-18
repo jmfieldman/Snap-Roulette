@@ -51,40 +51,40 @@
         tap.numberOfTapsRequired = 1;
         [_snapImageView addGestureRecognizer:tap];
         
-        _radialSelector.resultHandler = ^(int emote) {
+        _radialSelector.resultHandler = ^(NSString *emote) {
             [weakself.snapImageView addGestureRecognizer:tap];
             
             /* Set the emote */
-            if (emote > 0) {
-				if (emote == 1) emote = 0;
+            if (emote) {
+
                 PFUser *taker = weakself.snap[@"taker"];
                 BOOL takerB = ([taker.objectId isEqualToString:PFUser.currentUser.objectId]);
                 
-                [PFCloud callFunctionInBackground:@"set_emote" withParameters:@{@"snapId":weakself.snap.objectId, @"isTaker":@(takerB), @"emote":@(emote)} block:^(id object, NSError *error) {
+                [PFCloud callFunctionInBackground:@"set_emote" withParameters:@{@"snapId":weakself.snap.objectId, @"isTaker":@(takerB), @"emote":emote} block:^(id object, NSError *error) {
                     NSLog(@"set_emote result obj: %@ error: %@", object, error);
-					
-					if (takerB) {
-						weakself.snap[@"emote"] = @(emote);
-						[weakself.snap pinInBackgroundWithBlock:^(BOOL success, NSError *error) {
-							if (error) NSLog(@"(A) pinning emote error: %@", error);
-							else NSLog(@"taker emote updated");
-							[weakself updateEmotes];
-						}];
-					} else {
-						NSArray *sentSnaps = weakself.snap[@"sentSnaps"];
-						//NSLog(@"sent snap array: %@", sentSnaps);
-						for (PFObject *sentSnap in sentSnaps) {
-							PFUser *receiver = sentSnap[@"receiver"];
-							if ([receiver.objectId isEqualToString:PFUser.currentUser.objectId]) {
-								sentSnap[@"emote"] = @(emote);
-								[sentSnap pinInBackgroundWithBlock:^(BOOL success, NSError *error) {
-									if (error) NSLog(@"(B) pinning emote error: %@", error);
-									else NSLog(@"receiver emote updated");
-									[weakself updateEmotes];
-								}];
-							}
-						}
-					}
+                    
+                    if (takerB) {
+                        weakself.snap[@"emote"] = emote;
+                        [weakself.snap pinInBackgroundWithBlock:^(BOOL success, NSError *error) {
+                            if (error) NSLog(@"(A) pinning emote error: %@", error);
+                            else NSLog(@"taker emote updated");
+                            [weakself updateEmotes];
+                        }];
+                    } else {
+                        NSArray *sentSnaps = weakself.snap[@"sentSnaps"];
+                        //NSLog(@"sent snap array: %@", sentSnaps);
+                        for (PFObject *sentSnap in sentSnaps) {
+                            PFUser *receiver = sentSnap[@"receiver"];
+                            if ([receiver.objectId isEqualToString:PFUser.currentUser.objectId]) {
+                                sentSnap[@"emote"] = emote;
+                                [sentSnap pinInBackgroundWithBlock:^(BOOL success, NSError *error) {
+                                    if (error) NSLog(@"(B) pinning emote error: %@", error);
+                                    else NSLog(@"receiver emote updated");
+                                    [weakself updateEmotes];
+                                }];
+                            }
+                        }
+                    }
                 }];
             }
         };
@@ -95,17 +95,17 @@
         _takerImageView.layer.shouldRasterize = YES;
         _takerImageView.layer.rasterizationScale = [UIScreen mainScreen].scale;
         [self.contentView addSubview:_takerImageView];
-		
-		_takerEmote = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
-		_takerEmote.center = CGPointMake(_takerImageView.center.x + 11, _takerImageView.center.y + 11);
-		_takerEmote.font = [UIFont systemFontOfSize:14];
-		_takerEmote.minimumScaleFactor = 0.5;
-		_takerEmote.textAlignment = NSTextAlignmentCenter;
-		_takerEmote.layer.shadowOffset = CGSizeZero;
-		_takerEmote.layer.shadowOpacity = 0.65;
-		_takerEmote.layer.shadowRadius = 4;
-		[self.contentView addSubview:_takerEmote];
-		
+        
+        _takerEmote = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
+        _takerEmote.center = CGPointMake(_takerImageView.center.x + 11, _takerImageView.center.y + 11);
+        _takerEmote.font = [UIFont systemFontOfSize:14];
+        _takerEmote.minimumScaleFactor = 0.5;
+        _takerEmote.textAlignment = NSTextAlignmentCenter;
+        _takerEmote.layer.shadowOffset = CGSizeZero;
+        _takerEmote.layer.shadowOpacity = 0.65;
+        _takerEmote.layer.shadowRadius = 4;
+        [self.contentView addSubview:_takerEmote];
+        
         _takerNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 8, 200, 32)];
         _takerNameLabel.font = [UIFont fontWithName:@"Lato Regular" size:14];
         _takerNameLabel.textColor = [UIColor colorWithWhite:0.1 alpha:1];
@@ -143,15 +143,15 @@
             name.minimumScaleFactor = 0.5;
             [self.contentView addSubview:name];
             [_receiverNames addObject:name];
-			
-			UILabel *emote = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, prad*1.3, prad*1.3)];
-			emote.center = CGPointMake(portrait.center.x + prad*0.75, portrait.center.y + prad*0.75);
-			emote.font = [UIFont systemFontOfSize:prad];
-			emote.minimumScaleFactor = 0.5;
-			emote.textAlignment = NSTextAlignmentCenter;
-			emote.layer.shadowOffset = CGSizeZero;
-			emote.layer.shadowOpacity = 0.65;
-			emote.layer.shadowRadius = 4;
+            
+            UILabel *emote = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, prad*1.3, prad*1.3)];
+            emote.center = CGPointMake(portrait.center.x + prad*0.75, portrait.center.y + prad*0.75);
+            emote.font = [UIFont systemFontOfSize:prad];
+            emote.minimumScaleFactor = 0.5;
+            emote.textAlignment = NSTextAlignmentCenter;
+            emote.layer.shadowOffset = CGSizeZero;
+            emote.layer.shadowOpacity = 0.65;
+            emote.layer.shadowRadius = 4;
             [self.contentView addSubview:emote];
             [_receiverEmotes addObject:emote];
         }
@@ -220,27 +220,29 @@
         
         ((UILabel*)_receiverNames[r]).text = u[@"firstname"];
     }
-	
-	[self updateEmotes];
+    
+    [self updateEmotes];
 }
 
 - (void) updateEmotes {
-	
-	int emote = [_snap[@"emote"] intValue];
-	_takerEmote.text = (emote > 0) ? [NSString stringWithFormat:@"%C", (unsigned short)emote] : @"";
+    
+    _takerEmote.text = _snap[@"emote"];
+    
+    //int emote = [_snap[@"emote"] intValue];
+    //_takerEmote.text = (emote > 0) ? [NSString stringWithFormat:@"%C", (unsigned short)emote] : @"";
 
-	/* Set up receivers */
-	NSArray *sentSnaps = _snap[@"sentSnaps"];
-	int howmany = (int)sentSnaps.count;
-	
-	for (int i = 0; i < howmany; i++) {
-		PFObject *sentsnap = sentSnaps[i];
-		int e = [sentsnap[@"emote"] intValue];
-		
-		UILabel *eL = _receiverEmotes[i];
-		eL.text = [NSString stringWithFormat:@"%C", (unsigned short)e];
-	}
-	
+    /* Set up receivers */
+    NSArray *sentSnaps = _snap[@"sentSnaps"];
+    int howmany = (int)sentSnaps.count;
+    
+    for (int i = 0; i < howmany; i++) {
+        PFObject *sentsnap = sentSnaps[i];
+        //int e = [sentsnap[@"emote"] intValue];
+        
+        UILabel *eL = _receiverEmotes[i];
+        eL.text = sentsnap[@"emote"];// [NSString stringWithFormat:@"%C", (unsigned short)e];
+    }
+    
 }
 
 

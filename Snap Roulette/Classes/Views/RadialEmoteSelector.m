@@ -9,7 +9,7 @@
 #import "RadialEmoteSelector.h"
 
 #define NUM_EMOTES 12
-static unsigned short s_emotes[NUM_EMOTES] = {0xe04f, 0xe04e, 0xe04d, 0xe04f, 0xe04e, 0xe04d, 0xe04f, 0xe04e, 0xe04d, 0xe04f, 0xe04e, 0xe04d};
+static __strong NSString *s_emotes[NUM_EMOTES] = {@"😁", @"😂", @"😃"};
 
 @interface RadialEmoteSelector ()
 @property (nonatomic, strong) NSMutableArray *emoteButtons;
@@ -49,7 +49,7 @@ static unsigned short s_emotes[NUM_EMOTES] = {0xe04f, 0xe04e, 0xe04d, 0xe04f, 0x
             
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
             button.frame = CGRectMake(0, 0, emote_rad*2, emote_rad*2);
-            [button setTitle:[NSString stringWithFormat:@"%C", s_emotes[e]] forState:UIControlStateNormal];
+            [button setTitle:s_emotes[e] forState:UIControlStateNormal];
             button.titleLabel.font = [UIFont systemFontOfSize:emote_rad*1.2];
             button.titleLabel.minimumScaleFactor = 0.25;
             button.tag = e;

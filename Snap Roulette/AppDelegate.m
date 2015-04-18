@@ -12,6 +12,7 @@
 
 #import "AppDelegate.h"
 #import "MainSnapViewController.h"
+#import "SnapListTabBarController.h"
 
 @interface AppDelegate ()
 
@@ -42,6 +43,11 @@
                                                                              categories:nil];
     [application registerUserNotificationSettings:settings];
     [[UIApplication sharedApplication] registerForRemoteNotifications];
+ 
+    /* Load snap list */
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [SnapListTabBarController sharedInstance];
+    });
     
     return YES;
 }
