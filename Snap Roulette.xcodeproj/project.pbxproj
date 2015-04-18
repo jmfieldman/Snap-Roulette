@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		354DBA6B1AE2D0B600FD02BB /* camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 354DBA6A1AE2D0B600FD02BB /* camera@2x.png */; };
+		354DBA6D1AE2D3EF00FD02BB /* login-facebook@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 354DBA6C1AE2D3EF00FD02BB /* login-facebook@2x.png */; };
 		354E91FC1AC7679800438ECA /* PreloadedSFX.m in Sources */ = {isa = PBXBuildFile; fileRef = 354E91FB1AC7679800438ECA /* PreloadedSFX.m */; };
 		354E91FF1AC767A100438ECA /* shutter.wav in Resources */ = {isa = PBXBuildFile; fileRef = 354E91FE1AC767A100438ECA /* shutter.wav */; };
 		3560A1091A9CD64B005E29DE /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3560A1081A9CD64B005E29DE /* LoginViewController.m */; };
@@ -50,6 +52,8 @@
 
 /* Begin PBXFileReference section */
 		238C12ACCCBE7E5D7252B156 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		354DBA6A1AE2D0B600FD02BB /* camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera@2x.png"; sourceTree = "<group>"; };
+		354DBA6C1AE2D3EF00FD02BB /* login-facebook@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-facebook@2x.png"; sourceTree = "<group>"; };
 		354E91FA1AC7679800438ECA /* PreloadedSFX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreloadedSFX.h; sourceTree = "<group>"; };
 		354E91FB1AC7679800438ECA /* PreloadedSFX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreloadedSFX.m; sourceTree = "<group>"; };
 		354E91FE1AC767A100438ECA /* shutter.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = shutter.wav; sourceTree = "<group>"; };
@@ -210,6 +214,8 @@
 		358A459E1AC33E360019EECC /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				354DBA6C1AE2D3EF00FD02BB /* login-facebook@2x.png */,
+				354DBA6A1AE2D0B600FD02BB /* camera@2x.png */,
 				35F6C5921AE1815B009EA3F4 /* glass@2x.png */,
 				35F6C58E1AE17D77009EA3F4 /* sent@2x.png */,
 				35F6C58F1AE17D78009EA3F4 /* recv@2x.png */,
@@ -386,6 +392,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				354DBA6D1AE2D3EF00FD02BB /* login-facebook@2x.png in Resources */,
 				35F6C5911AE17D78009EA3F4 /* recv@2x.png in Resources */,
 				35F7D0361AC65C5100AF7438 /* facebook_default_portrait.png in Resources */,
 				35F6C5901AE17D78009EA3F4 /* sent@2x.png in Resources */,
@@ -395,6 +402,7 @@
 				35F7D0391AC6613F00AF7438 /* Lato-Regular.ttf in Resources */,
 				358A45A01AC33E360019EECC /* snap_roulette.png in Resources */,
 				35CAA7951ADD6787002ED2C8 /* switch.png in Resources */,
+				354DBA6B1AE2D0B600FD02BB /* camera@2x.png in Resources */,
 				354E91FF1AC767A100438ECA /* shutter.wav in Resources */,
 				35B398951A96711900975CDD /* Images.xcassets in Resources */,
 				35F6C5931AE1815B009EA3F4 /* glass@2x.png in Resources */,

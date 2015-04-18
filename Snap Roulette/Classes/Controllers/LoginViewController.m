@@ -11,8 +11,13 @@
 #import <FacebookSDK.h>
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 
-@interface LoginViewController ()
+#import "SnapListTabBarController.h"
+#import "FlatWheelImage.h"
 
+@interface LoginViewController ()
+@property (nonatomic, strong) UIImageView *titleView;
+@property (nonatomic, strong) UIImageView *wheel;
+@property (nonatomic, strong) UIButton *login;
 @end
 
 @implementation LoginViewController
@@ -21,23 +26,74 @@
 - (id) init {
     if ((self = [super init])) {
         
-        self.view.backgroundColor = [UIColor redColor];
+        //self.view.backgroundColor = [UIColor colorWithRed:179.0/255 green:207.0/255 blue:224.0/255 alpha:1];
+        self.view.backgroundColor = [UIColor colorWithRed:199.0/255 green:227.0/255 blue:244.0/255 alpha:1];
+        //self.view.backgroundColor = [UIColor colorWithRed:107.0/255.0 green:149.0/255.0 blue:241.0/255.0 alpha:1];
         
-        UILabel *helloWorld = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, self.view.frame.size.width, 50)];
+        /* Add title */
+        _titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"snap_roulette"]];
+        _titleView.center = CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height/4);
+        _titleView.transform = CGAffineTransformMakeScale(0.75, 0.75);
+        //[self.view addSubview:_titleView];
+        
+        UILabel *helloWorld = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height * 0.1, self.view.frame.size.width, 80)];
         helloWorld.text = @"Snap Routlette";
+        helloWorld.font = [UIFont fontWithName:@"Lato-Regular" size:36];
         helloWorld.textAlignment = NSTextAlignmentCenter;
-        [self.view addSubview:helloWorld];
+        //[self.view addSubview:helloWorld];
+
+        UILabel *helloWorld2 = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height * 0.2, self.view.frame.size.width, 50)];
+        helloWorld2.text = @"Login";
+        helloWorld2.font = [UIFont fontWithName:@"Lato-Regular" size:48];
+        helloWorld2.textAlignment = NSTextAlignmentCenter;
+        //[self.view addSubview:helloWorld2];
+
         
-        _facebookLoginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [_facebookLoginButton setTitle:@"Login with Facebook" forState:UIControlStateNormal];
-        [_facebookLoginButton addTarget:self action:@selector(loginButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        _facebookLoginButton.frame = CGRectMake(0, self.view.frame.size.height - 60, self.view.frame.size.width, 60);
+        
+        UIImageView *camera = [[UIImageView alloc] initWithFrame:CGRectMake(10, 100, self.view.bounds.size.width * 0.6, self.view.bounds.size.width * 0.6)];
+        camera.center = CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height*0.5);
+        camera.image = [UIImage imageNamed:@"camera"];
+        [self.view addSubview:camera];
+        
+        _wheel = [[UIImageView alloc] initWithFrame:CGRectMake(10, 100, self.view.bounds.size.width * 0.29, self.view.bounds.size.width * 0.29)];
+        _wheel.center = CGPointMake(camera.center.x, camera.center.y + 9);
+        _wheel.image = [FlatWheelImage flatWheelImageWithSize:_wheel.bounds.size slices:19 green:YES];
+        [self.view addSubview:_wheel];
+        
+        
+        _facebookLoginButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_facebookLoginButton addTarget:self action:@selector(loginButtonPressed:) forControlEvents:UIControlEventTouchDown];
+        _facebookLoginButton.frame = self.view.bounds;
         [self.view addSubview:_facebookLoginButton];
         
+        UIImage *li = [UIImage imageNamed:@"login-facebook"];
+        _login = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_login setImage:li forState:UIControlStateNormal];
+        _login.frame = CGRectMake(0, 0, li.size.width, li.size.height);
+        _login.center = CGPointMake(camera.center.x, self.view.bounds.size.height * 0.9);
+        [_login addTarget:self action:@selector(loginButtonPressed:) forControlEvents:UIControlEventTouchDown];
+        [self.view addSubview:_login];
     }
     return self;
 }
 
+- (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    CABasicAnimation* rotationAnimation;
+    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    rotationAnimation.toValue = @(M_PI * 0.99 * 10000000);
+    rotationAnimation.duration = 15000000;
+    rotationAnimation.cumulative = YES;
+    rotationAnimation.repeatCount = 100000000;
+    [_wheel.layer removeAllAnimations];
+    [_wheel.layer addAnimation:rotationAnimation forKey:@"rot"];
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    NSLog(@"fuck");
+}
 
 - (void) loginButtonPressed:(id)sender {
     
@@ -56,6 +112,11 @@
                 [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
                 [[MainSnapViewController sharedInstance] updateFriends];
             }];
+            
+            /* Load snap list */
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [SnapListTabBarController sharedInstance];
+            });
         }
         
     }];

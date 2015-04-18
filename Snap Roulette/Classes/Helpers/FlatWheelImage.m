@@ -18,7 +18,8 @@
     CGPoint middle = CGPointMake(imageSize.width/2, imageSize.height/2);
     
     UIColor *redC   = [UIColor colorWithRed:1 green:0.25 blue:0.25 alpha:1];
-    UIColor *blackC = [UIColor colorWithWhite:0.3 alpha:1];
+    //UIColor *blackC = [UIColor colorWithWhite:0.3 alpha:1];
+    UIColor *blackC = [UIColor colorWithWhite:0.1 alpha:1];
     UIColor *greenC = [UIColor colorWithRed:0.25 green:1 blue:0.25 alpha:1];
     
     /* Create wheel */

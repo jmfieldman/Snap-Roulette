@@ -232,6 +232,11 @@
     if (!PFUser.currentUser) {
         LoginViewController *controller = [[LoginViewController alloc] init];
         [self presentViewController:controller animated:NO completion:nil];
+    } else {
+        /* Load snap list */
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [SnapListTabBarController sharedInstance];
+        });
     }
     
 }
