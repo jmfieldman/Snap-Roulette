@@ -42,11 +42,13 @@
         helloWorld.textAlignment = NSTextAlignmentCenter;
         //[self.view addSubview:helloWorld];
 
-        UILabel *helloWorld2 = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height * 0.2, self.view.frame.size.width, 50)];
-        helloWorld2.text = @"Login";
-        helloWorld2.font = [UIFont fontWithName:@"Lato-Regular" size:48];
+        UILabel *helloWorld2 = [[UILabel alloc] initWithFrame:CGRectMake(10, self.view.bounds.size.height * 0.75, self.view.frame.size.width - 20, 50)];
+        helloWorld2.text = @"Snap Roulette needs to know who your friends are.\n We will never post to your wall.";
+        helloWorld2.font = [UIFont fontWithName:@"Lato-Regular" size:12];
+        helloWorld2.textColor = [UIColor colorWithWhite:0 alpha:0.8];
+        helloWorld2.numberOfLines = 2;
         helloWorld2.textAlignment = NSTextAlignmentCenter;
-        //[self.view addSubview:helloWorld2];
+        [self.view addSubview:helloWorld2];
 
         
         
@@ -56,7 +58,7 @@
         [self.view addSubview:camera];
         
         _wheel = [[UIImageView alloc] initWithFrame:CGRectMake(10, 100, self.view.bounds.size.width * 0.29, self.view.bounds.size.width * 0.29)];
-        _wheel.center = CGPointMake(camera.center.x, camera.center.y + 9);
+        _wheel.center = CGPointMake(camera.center.x, camera.center.y + camera.frame.size.height*0.040);
         _wheel.image = [FlatWheelImage flatWheelImageWithSize:_wheel.bounds.size slices:19 green:YES];
         [self.view addSubview:_wheel];
         
