@@ -41,6 +41,12 @@
         [self.refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
         
         [self refreshSnaps];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(handleRefresh:)
+                                                     name:_sent ? @"SentSnap" : @"RemoteNotif"
+                                                   object:nil];
+        
     }
     return self;
 }

@@ -474,6 +474,10 @@
 	NSString *b64 = [iData base64EncodedStringWithOptions:0];
 	[PFCloud callFunctionInBackground:@"submit_snap" withParameters:@{@"receivers":recIds, @"snap_image_data":b64} block:^(id object, NSError *error) {
 		NSLog(@"submit_snap result obj: %@ error: %@", object, error);
+        
+        if (!error) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"SentSnap" object:self];
+        }
 	}];
 	
 	/* Create the dismissal layer */
