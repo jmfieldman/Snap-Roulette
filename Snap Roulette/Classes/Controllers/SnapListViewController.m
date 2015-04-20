@@ -13,6 +13,7 @@
 @interface SnapListViewController ()
 
 @property (nonatomic, strong) NSArray *snaps;
+@property (nonatomic, strong) UILabel *nosnapsLabel;
 
 @end
 
@@ -41,6 +42,16 @@
         [self.refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
         
         [self refreshSnaps];
+        
+        
+        _nosnapsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 50, self.view.bounds.size.width, 50)];
+        _nosnapsLabel.text = _sent ? @"You have not sent any photos yet!" : @"You have not received any photos yet!";
+        _nosnapsLabel.textAlignment = NSTextAlignmentCenter;
+        _nosnapsLabel.font = [UIFont fontWithName:@"Lato-Regular" size:14];
+        _nosnapsLabel.textColor = [UIColor colorWithWhite:0.1 alpha:1];
+        _nosnapsLabel.alpha = 0;
+        [self.view addSubview:_nosnapsLabel];
+        
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(handleRefresh:)
@@ -92,6 +103,8 @@
             [self.refreshControl endRefreshing];
         
         [[NSUserDefaults standardUserDefaults] setInteger:[NSDate date].timeIntervalSince1970-10 forKey:lastUpKey];
+        
+        _nosnapsLabel.alpha = (_snaps.count) ? 0 : 1;
         
     } since:lastUpdate pinResults:YES];
 }
