@@ -75,8 +75,29 @@
         _login.center = CGPointMake(camera.center.x, self.view.bounds.size.height * 0.9);
         [_login addTarget:self action:@selector(loginButtonPressed:) forControlEvents:UIControlEventTouchDown];
         [self.view addSubview:_login];
+        
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(reanim:)
+                                                     name:UIApplicationDidBecomeActiveNotification object:nil];
     }
     return self;
+}
+
+- (void) viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void) reanim:(NSNotification*)notif {
+    CABasicAnimation* rotationAnimation;
+    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    rotationAnimation.toValue = @(M_PI * 0.99 * 10000000);
+    rotationAnimation.duration = 15000000;
+    rotationAnimation.cumulative = YES;
+    rotationAnimation.repeatCount = 100000000;
+    [_wheel.layer removeAllAnimations];
+    [_wheel.layer addAnimation:rotationAnimation forKey:@"rot"];
 }
 
 - (void) viewDidAppear:(BOOL)animated {

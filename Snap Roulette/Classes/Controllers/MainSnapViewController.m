@@ -102,22 +102,22 @@
         _takePhotoButton.layer.shadowRadius = 5;
      
         _switchCameraButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_switchCameraButton setImage:[UIImage imageNamed:@"switch"] forState:UIControlStateNormal];
         _switchCameraButton.layer.shadowOpacity = 0.3;
         _switchCameraButton.layer.shadowOffset = CGSizeZero;
         _switchCameraButton.layer.shadowRadius = 3;
-        _switchCameraButton.frame = CGRectMake(20, 20, 32, 32);
+        _switchCameraButton.frame = CGRectMake(20, 20, 80, 80);
+        [_switchCameraButton setImage:[UIImage imageNamed:@"switch"] forState:UIControlStateNormal];
         _switchCameraButton.center = CGPointMake(self.view.bounds.size.width*0.2, _takePhotoButton.center.y);
         [_switchCameraButton addTarget:self action:@selector(switchCameraTapped:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_switchCameraButton];
 
         
         _snapListButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_snapListButton setImage:[UIImage imageNamed:@"switch"] forState:UIControlStateNormal];
+        [_snapListButton setImage:[UIImage imageNamed:@"photolist"] forState:UIControlStateNormal];
         _snapListButton.layer.shadowOpacity = 0.3;
         _snapListButton.layer.shadowOffset = CGSizeZero;
         _snapListButton.layer.shadowRadius = 3;
-        _snapListButton.frame = CGRectMake(20, 20, 32, 32);
+        _snapListButton.frame = CGRectMake(20, 20, 80, 80);
         _snapListButton.center = CGPointMake(self.view.bounds.size.width*0.8, _takePhotoButton.center.y);
         [_snapListButton addTarget:self action:@selector(snapListButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_snapListButton];
@@ -167,10 +167,25 @@
         [_takePhotoButton.layer pop_addAnimation:rotanim forKey:@"rot"];
         #endif
         
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(reanim:)
+                                                     name:UIApplicationDidBecomeActiveNotification object:nil];
+        
     }
     return self;
 }
 
+- (void) reanim:(NSNotification*)notif {
+    [_takePhotoButton.layer removeAnimationForKey:@"rot"];
+    
+    CABasicAnimation* rotationAnimation;
+    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    rotationAnimation.toValue = @(M_PI * 0.99 * 10000000);
+    rotationAnimation.duration = 5000000;
+    rotationAnimation.cumulative = YES;
+    rotationAnimation.repeatCount = 100000000;
+    [_takePhotoButton.layer addAnimation:rotationAnimation forKey:@"rot"];
+}
 
 - (void) updateFriends {
     [JFParseFBFriends findFriendsAndUpdate:YES completion:^(BOOL success, BOOL localStore, NSArray *pfusers, NSError *error) {
