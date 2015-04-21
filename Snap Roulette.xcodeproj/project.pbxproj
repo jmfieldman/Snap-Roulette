@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3547B8391AE54D22005C9A2C /* photolist@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3547B8381AE54D22005C9A2C /* photolist@2x.png */; };
+		3547B83D1AE6AD9C005C9A2C /* camera-white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3547B83C1AE6AD9C005C9A2C /* camera-white@2x.png */; };
 		354DBA6B1AE2D0B600FD02BB /* camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 354DBA6A1AE2D0B600FD02BB /* camera@2x.png */; };
 		354DBA6D1AE2D3EF00FD02BB /* login-facebook@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 354DBA6C1AE2D3EF00FD02BB /* login-facebook@2x.png */; };
 		354E91FC1AC7679800438ECA /* PreloadedSFX.m in Sources */ = {isa = PBXBuildFile; fileRef = 354E91FB1AC7679800438ECA /* PreloadedSFX.m */; };
@@ -54,6 +55,7 @@
 /* Begin PBXFileReference section */
 		238C12ACCCBE7E5D7252B156 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		3547B8381AE54D22005C9A2C /* photolist@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photolist@2x.png"; sourceTree = "<group>"; };
+		3547B83C1AE6AD9C005C9A2C /* camera-white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-white@2x.png"; sourceTree = "<group>"; };
 		354DBA6A1AE2D0B600FD02BB /* camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera@2x.png"; sourceTree = "<group>"; };
 		354DBA6C1AE2D3EF00FD02BB /* login-facebook@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-facebook@2x.png"; sourceTree = "<group>"; };
 		354E91FA1AC7679800438ECA /* PreloadedSFX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreloadedSFX.h; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 		358A459E1AC33E360019EECC /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				3547B83C1AE6AD9C005C9A2C /* camera-white@2x.png */,
 				3547B8381AE54D22005C9A2C /* photolist@2x.png */,
 				354DBA6C1AE2D3EF00FD02BB /* login-facebook@2x.png */,
 				354DBA6A1AE2D0B600FD02BB /* camera@2x.png */,
@@ -402,6 +405,7 @@
 				35F6C5901AE17D78009EA3F4 /* sent@2x.png in Resources */,
 				35B398981A96711900975CDD /* LaunchScreen.xib in Resources */,
 				358A45A41AC458E90019EECC /* test.png in Resources */,
+				3547B83D1AE6AD9C005C9A2C /* camera-white@2x.png in Resources */,
 				358A45A21AC455F00019EECC /* polaroid@2x.png in Resources */,
 				35F7D0391AC6613F00AF7438 /* Lato-Regular.ttf in Resources */,
 				358A45A01AC33E360019EECC /* snap_roulette.png in Resources */,
