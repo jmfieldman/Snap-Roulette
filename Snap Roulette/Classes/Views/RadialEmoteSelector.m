@@ -16,6 +16,8 @@ static __strong NSString *s_emotes[NUM_EMOTES] = {@"😁", @"😂", @"😃", @"�
 @property (nonatomic, strong) NSMutableArray *openAnimations;
 @property (nonatomic, strong) NSMutableArray *closeAnimations;
 @property (nonatomic, strong) UIButton *closeButton;
+
+@property (nonatomic, strong) UIButton *flagButton;
 @end
 
 @implementation RadialEmoteSelector
@@ -41,6 +43,22 @@ static __strong NSString *s_emotes[NUM_EMOTES] = {@"😁", @"😂", @"😃", @"�
             weakself.resultHandler(0);
         } forControlEvents:UIControlEventTouchDown];
         [self addSubview:_closeButton];
+        
+        _flagButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _flagButton.frame = CGRectMake(10, 10, 80, 30);
+        _flagButton.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
+        _flagButton.alpha = 0;
+        [_flagButton setTitle:@"Flag Content" forState:UIControlStateNormal];
+        [_flagButton setTitleColor:[UIColor colorWithRed:1 green:0 blue:0 alpha:1] forState:UIControlStateNormal];
+        _flagButton.titleLabel.font = [UIFont fontWithName:@"Lato-Regular" size:11];
+        _flagButton.layer.cornerRadius = 15;
+        _flagButton.layer.borderColor = [UIColor redColor].CGColor;
+        _flagButton.layer.borderWidth = 2;
+        [_flagButton bk_addEventHandler:^(id sender) {
+            [weakself animateClose];
+            weakself.resultHandler(@"🚩");
+        } forControlEvents:UIControlEventTouchDown];
+        [self addSubview:_flagButton];
         
         _emoteButtons = [NSMutableArray array];
         _openAnimations = [NSMutableArray array];
@@ -112,6 +130,7 @@ static __strong NSString *s_emotes[NUM_EMOTES] = {@"😁", @"😂", @"😃", @"�
     
     [UIView animateWithDuration:0.15 delay:0 options:0 animations:^{
         _closeButton.alpha = 1;
+        _flagButton.alpha = 1;
     } completion:nil];
 }
 
@@ -134,6 +153,7 @@ static __strong NSString *s_emotes[NUM_EMOTES] = {@"😁", @"😂", @"😃", @"�
     
     [UIView animateWithDuration:0.07 delay:0 options:0 animations:^{
         _closeButton.alpha = 0;
+        _flagButton.alpha = 0;
     } completion:nil];
 }
 

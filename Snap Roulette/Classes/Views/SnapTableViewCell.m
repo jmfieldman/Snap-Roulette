@@ -54,6 +54,12 @@
         _radialSelector.resultHandler = ^(NSString *emote) {
             [weakself.snapImageView addGestureRecognizer:tap];
             
+            /* Flag? */
+            if ([emote isEqualToString:@"🚩"]) {
+                [[[UIAlertView alloc] initWithTitle:@"Content Flagged" message:@"Thank you. This content will be flagged for review by our moderators." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+                return;
+            }
+            
             /* Set the emote */
             if (emote) {
 
