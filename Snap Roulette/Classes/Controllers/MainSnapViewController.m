@@ -412,57 +412,75 @@
 	NSArray *receivers = [RandomHelpers randomSubsetOfUsers:_fbFriends ofMaxSize:5];
 	//receivers = @[receivers[0], receivers[0], receivers[0], receivers[0], receivers[0]];
 	
-	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-		
-		int index = 0;
-		for (PFUser *friend in receivers) {
-			
-			int indexOffset = index - 2;
-			float portraitSpacing = _polaroidShot.bounds.size.width * 0.15;
-			float pX = (_polaroidShot.bounds.size.width / 2) + (indexOffset * portraitSpacing);
-			float pY = (_polaroidShot.bounds.size.height * 0.822);
-			float sz = (_polaroidShot.bounds.size.width * 0.12);
-			
-			UIImageView *portrait = [RandomHelpers roundPortraitViewForUser:friend ofSize:sz];
-			portrait.center = CGPointMake(160, 300);
-			portrait.alpha = 0;
-			[_polaroidShot addSubview:portrait];
-			
-			CGPoint p = [_polaroidShot convertPoint:_takePhotoButton.center fromView:self.view];
-			portrait.center = p;
-			
-			POPSpringAnimation *move = [POPSpringAnimation animationWithPropertyNamed:kPOPViewCenter];
-			move.toValue = [NSValue valueWithCGPoint:CGPointMake(pX, pY)];
-			move.beginTime = CACurrentMediaTime() + index*0.05;
-			[portrait pop_addAnimation:move forKey:@"move"];
-			
-			POPBasicAnimation *alpha = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
-			alpha.toValue = @1;
-			alpha.beginTime = move.beginTime;
-			alpha.duration = 0.05;
-			[portrait pop_addAnimation:alpha forKey:@"alpha"];
-			
-			
-			UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, portraitSpacing * 0.95, sz * 0.3)];
-			name.text = friend[@"firstname"];
-			name.textAlignment = NSTextAlignmentCenter;
-			name.textColor = [UIColor colorWithWhite:0.2 alpha:1];
-			name.font = [UIFont fontWithName:@"Lato-Regular" size:14];
-			name.minimumScaleFactor = 0.5;
-			name.alpha = 0;
-			name.center = CGPointMake(pX, pY + sz*0.75);
-			[_polaroidShot addSubview:name];
-			
-			POPBasicAnimation *alphaN = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
-			alphaN.toValue = @1;
-			alphaN.beginTime = move.beginTime + 0.25;
-			alphaN.duration = 0.15;
-			[name pop_addAnimation:alphaN forKey:@"alpha"];
-			
-			index++;
-		}
-	});
-	
+    if (receivers.count) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            int index = 0;
+            for (PFUser *friend in receivers) {
+                
+                int indexOffset = index - 2;
+                float portraitSpacing = _polaroidShot.bounds.size.width * 0.15;
+                float pX = (_polaroidShot.bounds.size.width / 2) + (indexOffset * portraitSpacing);
+                float pY = (_polaroidShot.bounds.size.height * 0.822);
+                float sz = (_polaroidShot.bounds.size.width * 0.12);
+                
+                UIImageView *portrait = [RandomHelpers roundPortraitViewForUser:friend ofSize:sz];
+                portrait.center = CGPointMake(160, 300);
+                portrait.alpha = 0;
+                [_polaroidShot addSubview:portrait];
+                
+                CGPoint p = [_polaroidShot convertPoint:_takePhotoButton.center fromView:self.view];
+                portrait.center = p;
+                
+                POPSpringAnimation *move = [POPSpringAnimation animationWithPropertyNamed:kPOPViewCenter];
+                move.toValue = [NSValue valueWithCGPoint:CGPointMake(pX, pY)];
+                move.beginTime = CACurrentMediaTime() + index*0.05;
+                [portrait pop_addAnimation:move forKey:@"move"];
+                
+                POPBasicAnimation *alpha = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
+                alpha.toValue = @1;
+                alpha.beginTime = move.beginTime;
+                alpha.duration = 0.05;
+                [portrait pop_addAnimation:alpha forKey:@"alpha"];
+                
+                
+                UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, portraitSpacing * 0.95, sz * 0.3)];
+                name.text = friend[@"firstname"];
+                name.textAlignment = NSTextAlignmentCenter;
+                name.textColor = [UIColor colorWithWhite:0.2 alpha:1];
+                name.font = [UIFont fontWithName:@"Lato-Regular" size:14];
+                name.minimumScaleFactor = 0.5;
+                name.alpha = 0;
+                name.center = CGPointMake(pX, pY + sz*0.75);
+                [_polaroidShot addSubview:name];
+                
+                POPBasicAnimation *alphaN = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
+                alphaN.toValue = @1;
+                alphaN.beginTime = move.beginTime + 0.25;
+                alphaN.duration = 0.15;
+                [name pop_addAnimation:alphaN forKey:@"alpha"];
+                
+                index++;
+            }
+        });
+    } else {
+        /* No receivers! */
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            UILabel *nofriends = [[UILabel alloc] initWithFrame:CGRectMake(0, _polaroidShot.bounds.size.height * 0.69, _polaroidShot.bounds.size.width, _polaroidShot.bounds.size.height * 0.3)];
+            nofriends.text = @"You have no Facebook friends\nconnected to Snap Roulette!";
+            nofriends.numberOfLines = 2;
+            nofriends.font = [UIFont fontWithName:@"Lato-Regular" size:24];
+            nofriends.textAlignment = NSTextAlignmentCenter;
+            nofriends.alpha = 0;
+            nofriends.minimumScaleFactor = 0.5;
+            [_polaroidShot addSubview:nofriends];
+            [UIView animateWithDuration:0.5 delay:0 options:0 animations:^{
+                nofriends.alpha = 1;
+            } completion:nil];
+        });
+    }
+    
+    
     NSMutableArray *recIds = [NSMutableArray array];
     for (PFUser *u in receivers) {
         [recIds addObject:u.objectId];
@@ -472,14 +490,16 @@
 	//NSData *iData = UIImagePNGRepresentation(image);
     NSData *iData = UIImageJPEGRepresentation(image, 0.4);
 	NSString *b64 = [iData base64EncodedStringWithOptions:0];
-	[PFCloud callFunctionInBackground:@"submit_snap" withParameters:@{@"receivers":recIds, @"snap_image_data":b64} block:^(id object, NSError *error) {
-		NSLog(@"submit_snap result obj: %@ error: %@", object, error);
-        
-        if (!error) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"SentSnap" object:self];
-        }
-	}];
-	
+    if (recIds.count) {
+        [PFCloud callFunctionInBackground:@"submit_snap" withParameters:@{@"receivers":recIds, @"snap_image_data":b64} block:^(id object, NSError *error) {
+            NSLog(@"submit_snap result obj: %@ error: %@", object, error);
+            
+            if (!error) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"SentSnap" object:self];
+            }
+        }];
+    }
+    
 	/* Create the dismissal layer */
 	UIButton *dismissButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	dismissButton.frame = self.view.bounds;

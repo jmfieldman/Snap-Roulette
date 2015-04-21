@@ -58,7 +58,7 @@
         [self.view addSubview:camera];
         
         _wheel = [[UIImageView alloc] initWithFrame:CGRectMake(10, 100, self.view.bounds.size.width * 0.29, self.view.bounds.size.width * 0.29)];
-        _wheel.center = CGPointMake(camera.center.x, camera.center.y + camera.frame.size.height*0.040);
+        _wheel.center = CGPointMake(camera.center.x, camera.center.y + camera.frame.size.height*0.0395);
         _wheel.image = [FlatWheelImage flatWheelImageWithSize:_wheel.bounds.size slices:19 green:YES];
         [self.view addSubview:_wheel];
         
@@ -120,6 +120,18 @@
 
 - (void) loginButtonPressed:(id)sender {
     
+    UILabel *connecting = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height * 0.1, self.view.bounds.size.width, self.view.bounds.size.height * 0.3)];
+    connecting.text = @"Connecting...";
+    connecting.numberOfLines = 1;
+    connecting.font = [UIFont fontWithName:@"Lato-Regular" size:24];
+    connecting.textAlignment = NSTextAlignmentCenter;
+    connecting.alpha = 1;
+    connecting.minimumScaleFactor = 0.5;
+    [self.view addSubview:connecting];
+    //[UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionRepeat | UIViewAnimationOptionAutoreverse animations:^{
+    //    connecting.alpha = 0.5;
+    //} completion:nil];
+    
     [PFFacebookUtils logInWithPermissions:@[@"public_profile", @"user_friends"] block:^(PFUser *user, NSError *error) {
         if (!user) {
             NSLog(@"Uh oh. The user cancelled the Facebook login.");
@@ -131,6 +143,7 @@
         
         
         if (user) {
+            
             [JFParseFBFriends updateCurrentUserWithCompletion:^(BOOL success, NSError *error) {
                 [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
                 [[MainSnapViewController sharedInstance] updateFriends];
