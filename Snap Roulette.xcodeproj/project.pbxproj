@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3547B8391AE54D22005C9A2C /* photolist@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3547B8381AE54D22005C9A2C /* photolist@2x.png */; };
 		3547B83D1AE6AD9C005C9A2C /* camera-white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3547B83C1AE6AD9C005C9A2C /* camera-white@2x.png */; };
+		3547B8401AE6BF61005C9A2C /* YLActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3547B83F1AE6BF61005C9A2C /* YLActivityIndicatorView.m */; };
 		354DBA6B1AE2D0B600FD02BB /* camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 354DBA6A1AE2D0B600FD02BB /* camera@2x.png */; };
 		354DBA6D1AE2D3EF00FD02BB /* login-facebook@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 354DBA6C1AE2D3EF00FD02BB /* login-facebook@2x.png */; };
 		354E91FC1AC7679800438ECA /* PreloadedSFX.m in Sources */ = {isa = PBXBuildFile; fileRef = 354E91FB1AC7679800438ECA /* PreloadedSFX.m */; };
@@ -56,6 +57,8 @@
 		238C12ACCCBE7E5D7252B156 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		3547B8381AE54D22005C9A2C /* photolist@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photolist@2x.png"; sourceTree = "<group>"; };
 		3547B83C1AE6AD9C005C9A2C /* camera-white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-white@2x.png"; sourceTree = "<group>"; };
+		3547B83E1AE6BF61005C9A2C /* YLActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLActivityIndicatorView.h; sourceTree = "<group>"; };
+		3547B83F1AE6BF61005C9A2C /* YLActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLActivityIndicatorView.m; sourceTree = "<group>"; };
 		354DBA6A1AE2D0B600FD02BB /* camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera@2x.png"; sourceTree = "<group>"; };
 		354DBA6C1AE2D3EF00FD02BB /* login-facebook@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-facebook@2x.png"; sourceTree = "<group>"; };
 		354E91FA1AC7679800438ECA /* PreloadedSFX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreloadedSFX.h; sourceTree = "<group>"; };
@@ -192,6 +195,8 @@
 		3560A11E1A9E5E2E005E29DE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3547B83E1AE6BF61005C9A2C /* YLActivityIndicatorView.h */,
+				3547B83F1AE6BF61005C9A2C /* YLActivityIndicatorView.m */,
 				35CAA79F1ADDA62B002ED2C8 /* SnapTableViewCell.h */,
 				35CAA7A01ADDA62B002ED2C8 /* SnapTableViewCell.m */,
 				35CAA88A1ADF17BF002ED2C8 /* RadialEmoteSelector.h */,
@@ -466,6 +471,7 @@
 			files = (
 				35F98A4A1AC1AD970058C346 /* FlatWheelImage.m in Sources */,
 				35B3988D1A96711900975CDD /* AppDelegate.m in Sources */,
+				3547B8401AE6BF61005C9A2C /* YLActivityIndicatorView.m in Sources */,
 				354E91FC1AC7679800438ECA /* PreloadedSFX.m in Sources */,
 				35F7D0341AC6589A00AF7438 /* RandomHelpers.m in Sources */,
 				3560A11C1A9E59A3005E29DE /* SnapListViewController.m in Sources */,

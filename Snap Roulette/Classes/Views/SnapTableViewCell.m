@@ -8,11 +8,13 @@
 
 #import "SnapTableViewCell.h"
 #import "RadialEmoteSelector.h"
+#import "YLActivityIndicatorView.h"
 
 @interface SnapTableViewCell ()
 
 @property (nonatomic, strong) RadialEmoteSelector *radialSelector;
 @property (nonatomic, strong) UIImageView *snapImageView;
+@property (nonatomic, strong) YLActivityIndicatorView *indicator;
 
 @property (nonatomic, strong) UIImageView *takerImageView;
 @property (nonatomic, strong) UILabel     *takerNameLabel;
@@ -41,6 +43,13 @@
         _radialSelector = [[RadialEmoteSelector alloc] initWithFrame:_snapImageView.bounds];
         _radialSelector.userInteractionEnabled = NO;
         [_snapImageView addSubview:_radialSelector];
+        
+        _indicator = [[YLActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
+        _indicator.center = CGPointMake(_snapImageView.bounds.size.width / 2, _snapImageView.bounds.size.height / 2);
+        _indicator.dotCount = 5;
+        _indicator.alpha = 0.8;
+        [_indicator startAnimating];
+        [_snapImageView addSubview:_indicator];
         
         __weak SnapTableViewCell *weakself = self;
         UITapGestureRecognizer *tap = [UITapGestureRecognizer bk_recognizerWithHandler:^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
@@ -204,8 +213,18 @@
     /* Snap */
     _snapImageView.image = nil;
     _snap.fileColumnName = @"data";
+    [_indicator startAnimating];
     [_snap getFileDataWithBlock:^(NSData *fileData, AKFileDataRetrievalType retrievalType) {
-        _snapImageView.image = [[UIImage alloc] initWithData:fileData];
+        if (fileData) {
+            [_indicator stopAnimating];
+            _snapImageView.image = [[UIImage alloc] initWithData:fileData];
+            if (retrievalType == AKFileDataRetrievalTypeRemote) {
+                _snapImageView.alpha = 0;
+                [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                    _snapImageView.alpha = 1;
+                } completion:nil];
+            }
+        }
     }];
     
     
