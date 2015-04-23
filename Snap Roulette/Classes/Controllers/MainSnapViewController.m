@@ -30,6 +30,9 @@
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer *capturePreviewLayer;
 @property (nonatomic, strong) AVCaptureConnection        *captureConnection;
 
+/* Tutorial */
+@property (nonatomic, strong) UIView *tutorial;
+
 @end
 
 @implementation MainSnapViewController
@@ -86,6 +89,23 @@
             v.backgroundColor = [UIColor clearColor];
             v.clipsToBounds = NO;
             [_photoCover addSubview:v];
+        }
+        
+        _tutorial = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width * 0.8, self.view.bounds.size.width * 0.6)];
+        _tutorial.center = CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height/2);
+        _tutorial.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
+        _tutorial.layer.cornerRadius = 10;
+        
+        UILabel *instr = [[UILabel alloc] initWithFrame:_tutorial.bounds];
+        instr.text = @"Tap the spinning roulette wheel.\n\nThe picture you take will be sent\nto five random Facebook friends\nthat have also installed this app.";
+        instr.numberOfLines = 0;
+        instr.font = [UIFont fontWithName:@"Lato-Regular" size:12];
+        instr.textColor = [UIColor whiteColor];
+        instr.textAlignment = NSTextAlignmentCenter;
+        [_tutorial addSubview:instr];
+        
+        if (![[NSUserDefaults standardUserDefaults] boolForKey:@"hasShownSnapTut"]) {
+            [self.view addSubview:_tutorial];
         }
         
         _takePhotoButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -258,6 +278,13 @@
 
 - (void) handleTakePhoto:(id)sender {
 	
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"hasShownSnapTut"]) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hasShownSnapTut"];
+        [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            _tutorial.alpha = 0;
+        } completion:nil];
+    }
+    
 	UIView *white = [[UIView alloc] initWithFrame:self.view.bounds];
 	white.backgroundColor = [UIColor whiteColor];
 	[self.view addSubview:white];

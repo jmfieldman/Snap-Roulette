@@ -45,10 +45,10 @@ static __strong NSString *s_emotes[NUM_EMOTES] = {@"😁", @"😂", @"😃", @"�
         [self addSubview:_closeButton];
         
         _flagButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _flagButton.frame = CGRectMake(10, 10, 80, 30);
-        _flagButton.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
+        _flagButton.frame = CGRectMake(10, 10, 30, 30);
+        //_flagButton.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
         _flagButton.alpha = 0;
-        [_flagButton setTitle:@"Flag Content" forState:UIControlStateNormal];
+        [_flagButton setTitle:@"Flag" forState:UIControlStateNormal];
         [_flagButton setTitleColor:[UIColor colorWithRed:1 green:0 blue:0 alpha:1] forState:UIControlStateNormal];
         _flagButton.titleLabel.font = [UIFont fontWithName:@"Lato-Regular" size:11];
         _flagButton.layer.cornerRadius = 15;
