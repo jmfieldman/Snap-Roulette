@@ -69,7 +69,7 @@ Parse.Cloud.define("submit_snap", function(request, response) {
 			taker.increment("snapCount");
 			taker.save();
 			
-			var msg = taker.get('firstname') + " sent you a random snap!";
+			var msg = "from " + taker.get('fullname');
 			
 			/* Now we have to make the SnapSent objects */
 			var sent_snaps = [];
