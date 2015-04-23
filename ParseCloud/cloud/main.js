@@ -8,7 +8,9 @@ function send_push_to_one(user, txt) {
 	Parse.Push.send({ 
 		where: query,
 		data: {
-			alert: txt
+			alert: txt,
+			badge: 1,
+			sound: 'silence.aiff'
 		}
 	});
 }
@@ -19,7 +21,9 @@ function send_push_to_all(users, txt) {
 	Parse.Push.send({ 
 		where: query,
 		data: {
-			alert: txt
+			alert: txt,
+			badge: 1,
+			sound: 'silence.aiff'
 		}
 	});
 }
@@ -174,9 +178,19 @@ Parse.Cloud.define("set_emote", function(request, response) {
 		query.equalTo("snap", snap);
 		query.equalTo("receiver", user);
 		query.include("snap");
+		query.include("taker");
+		query.include("receiver");		
 		
 		query.first({
 		  success: function(object) {
+			
+				var cur_emote = object.get("emote");
+				var new_emote = true;
+				if (typeof cur_emote != 'undefined') { new_emote = false; }
+			
+				var taker    = object.get("taker");
+				var receiver = object.get("receiver");
+			
 		    	object.set("emote", emote_val);
 				object.save(null, {
 					success: function(obj) {						
@@ -184,6 +198,11 @@ Parse.Cloud.define("set_emote", function(request, response) {
 						var s = object.get("snap");
 						s.save(null, {
 							success: function(obj2) {
+								
+								
+								var msg = "" + receiver.get("firstname") + " gave your pic a " + emote_val;
+								send_push_to_one(taker, msg);
+								
 								response.success("All good!");
 							},
 							error: function(error) {
