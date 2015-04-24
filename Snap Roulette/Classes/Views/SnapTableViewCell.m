@@ -163,6 +163,8 @@
             name.center = CGPointMake(portrait.center.x, portrait.center.y + prad * 1.7);
             name.textAlignment = NSTextAlignmentCenter;
             name.minimumScaleFactor = 0.5;
+            name.numberOfLines = 1;
+            name.font = [UIFont fontWithName:@"Lato-Regular" size:14];
             [self.contentView addSubview:name];
             [_receiverNames addObject:name];
             
