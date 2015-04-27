@@ -496,6 +496,7 @@
                 name.textColor = [UIColor colorWithWhite:0.2 alpha:1];
                 name.font = [UIFont fontWithName:@"Lato-Regular" size:14];
                 name.minimumScaleFactor = 0.5;
+                name.adjustsFontSizeToFitWidth = YES;
                 name.alpha = 0;
                 name.center = CGPointMake(pX, pY + sz*0.75);
                 [_polaroidShot addSubview:name];
