@@ -292,12 +292,13 @@ extern UINavigationController *nav = nil;
     
     /* Show login screen if we do not have a user */
     if (!PFUser.currentUser) {
-        LoginViewController *controller = [[LoginViewController alloc] init];
-        [self presentViewController:controller animated:NO completion:nil];
+        //LoginViewController *controller = [[LoginViewController alloc] init];
+        //[self.parentViewController presentViewController:controller animated:NO completion:nil];
     } else {
         /* Load snap list */
         dispatch_async(dispatch_get_main_queue(), ^{
-            [SnapListTabBarController sharedInstance];
+            //[SnapListTabBarController sharedInstance];
+            nav.viewControllers = @[ [SnapListTabBarController sharedInstance] ];
         });
     }
     

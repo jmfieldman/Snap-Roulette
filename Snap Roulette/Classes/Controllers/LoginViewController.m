@@ -152,6 +152,7 @@
             /* Load snap list */
             dispatch_async(dispatch_get_main_queue(), ^{
                 [SnapListTabBarController sharedInstance];
+                nav.viewControllers = @[ [SnapListTabBarController sharedInstance] ];
             });
         }
         

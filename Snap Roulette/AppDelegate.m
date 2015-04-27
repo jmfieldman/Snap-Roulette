@@ -13,7 +13,7 @@
 #import "AppDelegate.h"
 #import "MainSnapViewController.h"
 #import "SnapListTabBarController.h"
-
+#import "LoginViewController.h"
 
 
 @interface AppDelegate ()
@@ -45,7 +45,7 @@
     //pageController.viewControllers = @[ [MainSnapViewController sharedInstance], [SnapListTabBarController sharedInstance] ];
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        nav = _navController = [[UINavigationController alloc] initWithRootViewController:[SnapListTabBarController sharedInstance]];
+        nav = _navController = [[UINavigationController alloc] init];        
     });
     
     
@@ -64,6 +64,11 @@
     //self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[MainSnapViewController sharedInstance]];
     self.window.rootViewController = _pageController;
     [self.window makeKeyAndVisible];
+    
+    if (!PFUser.currentUser) {
+        [self.window.rootViewController presentViewController:[[LoginViewController alloc] init] animated:YES completion:nil];
+    }
+    
     
     //[_pageController didMoveToParentViewController:nil];
     
