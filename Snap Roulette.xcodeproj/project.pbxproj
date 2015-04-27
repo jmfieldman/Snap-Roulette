@@ -33,6 +33,7 @@
 		35CAA7A11ADDA62B002ED2C8 /* SnapTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CAA7A01ADDA62B002ED2C8 /* SnapTableViewCell.m */; };
 		35CAA88C1ADF17BF002ED2C8 /* RadialEmoteSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CAA88B1ADF17BF002ED2C8 /* RadialEmoteSelector.m */; };
 		35E6A47B1AEE881D0069DD75 /* snap_roulette@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35E6A47A1AEE881D0069DD75 /* snap_roulette@2x.png */; };
+		35E6A47F1AEE8EE50069DD75 /* screenshot_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 35E6A47E1AEE8EE50069DD75 /* screenshot_bg.png */; };
 		35F6C5901AE17D78009EA3F4 /* sent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35F6C58E1AE17D77009EA3F4 /* sent@2x.png */; };
 		35F6C5911AE17D78009EA3F4 /* recv@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35F6C58F1AE17D78009EA3F4 /* recv@2x.png */; };
 		35F6C5931AE1815B009EA3F4 /* glass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35F6C5921AE1815B009EA3F4 /* glass@2x.png */; };
@@ -99,6 +100,7 @@
 		35CAA88A1ADF17BF002ED2C8 /* RadialEmoteSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadialEmoteSelector.h; sourceTree = "<group>"; };
 		35CAA88B1ADF17BF002ED2C8 /* RadialEmoteSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadialEmoteSelector.m; sourceTree = "<group>"; };
 		35E6A47A1AEE881D0069DD75 /* snap_roulette@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "snap_roulette@2x.png"; sourceTree = "<group>"; };
+		35E6A47E1AEE8EE50069DD75 /* screenshot_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot_bg.png; sourceTree = "<group>"; };
 		35F6C58E1AE17D77009EA3F4 /* sent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sent@2x.png"; sourceTree = "<group>"; };
 		35F6C58F1AE17D78009EA3F4 /* recv@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recv@2x.png"; sourceTree = "<group>"; };
 		35F6C5921AE1815B009EA3F4 /* glass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "glass@2x.png"; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 		358A459E1AC33E360019EECC /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				35E6A47E1AEE8EE50069DD75 /* screenshot_bg.png */,
 				35E6A47A1AEE881D0069DD75 /* snap_roulette@2x.png */,
 				3547B83C1AE6AD9C005C9A2C /* camera-white@2x.png */,
 				3547B8381AE54D22005C9A2C /* photolist@2x.png */,
@@ -422,6 +425,7 @@
 				3547B8391AE54D22005C9A2C /* photolist@2x.png in Resources */,
 				35F7D0361AC65C5100AF7438 /* facebook_default_portrait.png in Resources */,
 				35F6C5901AE17D78009EA3F4 /* sent@2x.png in Resources */,
+				35E6A47F1AEE8EE50069DD75 /* screenshot_bg.png in Resources */,
 				35B398981A96711900975CDD /* LaunchScreen.xib in Resources */,
 				358A45A41AC458E90019EECC /* test.png in Resources */,
 				3550F0B71AE9B47C0026E3AE /* silence.wav in Resources */,

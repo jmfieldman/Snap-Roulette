@@ -51,6 +51,13 @@
         
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Snaps" style:UIBarButtonItemStyleDone target:self action:@selector(handleSnapList:)];
         
+        #if TARGET_IPHONE_SIMULATOR
+        UIImageView *sample = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"screenshot_bg"]];
+        sample.frame = self.view.bounds;
+        sample.contentMode = UIViewContentModeScaleAspectFill;
+        [self.view addSubview:sample];
+        #endif
+        
         /* Add preview */
         _previewView = [[UIView alloc] initWithFrame:self.view.bounds];
         _previewView.backgroundColor = [UIColor clearColor];
