@@ -244,6 +244,7 @@
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
+    NSLog(@"main willappear");
     
     [_takePhotoButton.layer removeAnimationForKey:@"rot"];
     
@@ -273,6 +274,8 @@
             [SnapListTabBarController sharedInstance];
         });
     }
+    
+    NSLog(@"main didappear");
     
 }
 

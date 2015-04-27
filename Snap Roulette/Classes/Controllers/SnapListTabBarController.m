@@ -22,9 +22,20 @@
     return singleton;
 }
 
+- (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.001 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.navigationController setNavigationBarHidden:NO animated:NO];
+    });
+    //self.navigationController.navigationBarHidden = NO;
+    NSLog(@"sub didappear");
+}
+
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
+    NSLog(@"sub willappear");
     
     /* Get remote notification token */
     UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
