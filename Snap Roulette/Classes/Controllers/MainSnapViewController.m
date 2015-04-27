@@ -108,6 +108,22 @@
             [self.view addSubview:_tutorial];
         }
         
+        UISwipeGestureRecognizer *swipeRec = [UISwipeGestureRecognizer bk_recognizerWithHandler:^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
+            [self snapListButtonPressed:nil];
+        }];
+        swipeRec.direction = UISwipeGestureRecognizerDirectionLeft;
+        
+        UITapGestureRecognizer *tapRec = [UITapGestureRecognizer bk_recognizerWithHandler:^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
+            [self switchCameraTapped:nil];
+        }];
+        tapRec.numberOfTapsRequired = 2;
+        
+        UIView *gestureCapture = [[UIView alloc] initWithFrame:self.view.bounds];
+        gestureCapture.backgroundColor = [UIColor clearColor];
+        [gestureCapture addGestureRecognizer:swipeRec];
+        [gestureCapture addGestureRecognizer:tapRec];
+        [self.view addSubview:gestureCapture];
+        
         _takePhotoButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _takePhotoButton.frame = CGRectMake(self.view.frame.size.width/2 - 40, self.view.frame.size.height - 120, 80, 80);
         _takePhotoButton.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height - (self.view.bounds.size.height - viewfinder_size)/4);
