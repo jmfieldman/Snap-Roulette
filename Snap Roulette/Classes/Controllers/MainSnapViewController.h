@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+extern UINavigationController *nav;
+
 @interface MainSnapViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (nonatomic, strong) UIButton *takePhotoButton;

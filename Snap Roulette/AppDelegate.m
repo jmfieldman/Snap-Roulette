@@ -14,6 +14,8 @@
 #import "MainSnapViewController.h"
 #import "SnapListTabBarController.h"
 
+
+
 @interface AppDelegate ()
 @property (nonatomic, strong) UINavigationController *navController;
 @end
@@ -32,21 +34,39 @@
     
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     
-    UIPageViewController *pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+    UIPageViewController *pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:@{UIPageViewControllerOptionSpineLocationKey:@(UIPageViewControllerSpineLocationMax),UIPageViewControllerOptionInterPageSpacingKey:@1}];
     pageController.delegate = self;
     pageController.dataSource = self;
     [pageController setViewControllers:@[ [MainSnapViewController sharedInstance] ] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     //pageController.viewControllers = @[ [MainSnapViewController sharedInstance], [SnapListTabBarController sharedInstance] ];
     
-    _navController = [[UINavigationController alloc] initWithRootViewController:[SnapListTabBarController sharedInstance]];
+    nav = _navController = [[UINavigationController alloc] initWithRootViewController:[SnapListTabBarController sharedInstance]];
+    
+    #if 0
+    for (UIView *view in pageController.view.subviews ) {
+        if ([view isKindOfClass:[UIScrollView class]]) {
+            UIScrollView *scroll = (UIScrollView *)view;
+            //scroll.alwaysBounceHorizontal = NO;
+        }
+    }
+    #endif
     
     /* Create window */
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.backgroundColor = [UIColor darkGrayColor];
     //self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[MainSnapViewController sharedInstance]];
     self.window.rootViewController = pageController;
     [self.window makeKeyAndVisible];
         
     return YES;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    NSLog(@"wtf %f", scrollView.contentOffset.x);
+    
+    if (scrollView.contentOffset.x < scrollView.bounds.size.width)// || scrollView.contentOffset.x > scrollView.bounds.size.width)
+        scrollView.contentOffset = CGPointMake(scrollView.bounds.size.width, 0);
+    
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController

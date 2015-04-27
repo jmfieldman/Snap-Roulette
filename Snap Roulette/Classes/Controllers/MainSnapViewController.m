@@ -12,6 +12,8 @@
 #import "FlatWheelImage.h"
 #import "RandomHelpers.h"
 
+extern UINavigationController *nav = nil;
+
 @interface MainSnapViewController ()
 
 @property (nonatomic, strong) NSArray *fbFriends;
@@ -55,6 +57,7 @@
         UIImageView *sample = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"screenshot_bg"]];
         sample.frame = self.view.bounds;
         sample.contentMode = UIViewContentModeScaleAspectFill;
+        sample.clipsToBounds = YES;
         [self.view addSubview:sample];
         #endif
         
@@ -672,7 +675,10 @@
 
 
 - (void) snapListButtonPressed:(id)sender {
-    [self.navigationController pushViewController:[SnapListTabBarController sharedInstance] animated:YES];
+    //[self.navigationController pushViewController:[SnapListTabBarController sharedInstance] animated:YES];
+    
+    UIPageViewController *p = (UIPageViewController*)self.parentViewController;
+    [p setViewControllers:@[ nav ] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
 }
 
 @end
