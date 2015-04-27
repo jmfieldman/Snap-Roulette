@@ -15,7 +15,7 @@
 #import "SnapListTabBarController.h"
 
 @interface AppDelegate ()
-
+@property (nonatomic, strong) UINavigationController *navController;
 @end
 
 @implementation AppDelegate
@@ -32,13 +32,40 @@
     
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     
+    UIPageViewController *pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+    pageController.delegate = self;
+    pageController.dataSource = self;
+    [pageController setViewControllers:@[ [MainSnapViewController sharedInstance] ] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    //pageController.viewControllers = @[ [MainSnapViewController sharedInstance], [SnapListTabBarController sharedInstance] ];
+    
+    _navController = [[UINavigationController alloc] initWithRootViewController:[SnapListTabBarController sharedInstance]];
+    
     /* Create window */
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[MainSnapViewController sharedInstance]];
+    //self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[MainSnapViewController sharedInstance]];
+    self.window.rootViewController = pageController;
     [self.window makeKeyAndVisible];
         
     return YES;
 }
+
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController
+      viewControllerBeforeViewController:(UIViewController *)viewController {
+
+    if (viewController == _navController) {
+        return [MainSnapViewController sharedInstance];
+    }
+    return nil;
+}
+
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController
+       viewControllerAfterViewController:(UIViewController *)viewController {
+    if (viewController == [MainSnapViewController sharedInstance]) {
+        return _navController;
+    }
+    return nil;
+}
+
 
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url

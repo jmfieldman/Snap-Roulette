@@ -127,7 +127,7 @@
         
         UIView *gestureCapture = [[UIView alloc] initWithFrame:self.view.bounds];
         gestureCapture.backgroundColor = [UIColor clearColor];
-        [gestureCapture addGestureRecognizer:swipeRec];
+        //[gestureCapture addGestureRecognizer:swipeRec];
         [gestureCapture addGestureRecognizer:tapRec];
         [self.view addSubview:gestureCapture];
         
@@ -298,7 +298,7 @@
         });
     }
     
-    NSLog(@"main didappear");
+    //NSLog(@"main didappear");
     
 }
 
