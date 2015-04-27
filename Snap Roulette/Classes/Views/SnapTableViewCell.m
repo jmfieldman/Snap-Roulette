@@ -129,7 +129,7 @@
         [self.contentView addSubview:_takerEmote];
         
         _takerNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 8, 260, 32)];
-        _takerNameLabel.font = [UIFont fontWithName:@"Lato Regular" size:14];
+        _takerNameLabel.font = [UIFont fontWithName:@"Avenir-Medium" size:14];
         _takerNameLabel.textColor = [UIColor colorWithWhite:0.1 alpha:1];
         [self.contentView addSubview:_takerNameLabel];
         
@@ -165,7 +165,7 @@
             name.minimumScaleFactor = 0.5;
             name.adjustsFontSizeToFitWidth = YES;
             name.numberOfLines = 1;
-            name.font = [UIFont fontWithName:@"Lato-Regular" size:14];
+            name.font = [UIFont fontWithName:@"Avenir-Medium" size:14];
             [self.contentView addSubview:name];
             [_receiverNames addObject:name];
             
@@ -208,9 +208,9 @@
     
     NSString *tstr = [NSString stringWithFormat:@"%@ ago", [RandomHelpers timeToAbbrev:time(0)-snap.createdAt.timeIntervalSince1970] ];
     
-    NSMutableAttributedString *namestr = [[NSMutableAttributedString alloc] initWithString:taker[@"fullname"] attributes:@{ NSFontAttributeName : [UIFont fontWithName:@"Lato-Regular" size:14] }];
+    NSMutableAttributedString *namestr = [[NSMutableAttributedString alloc] initWithString:taker[@"fullname"] attributes:@{ NSFontAttributeName : [UIFont fontWithName:@"Avenir-Medium" size:14] }];
     [namestr appendAttributedString:[[NSAttributedString alloc] initWithString:@" " attributes:@{}]];
-    [namestr appendAttributedString:[[NSAttributedString alloc] initWithString:tstr attributes:@{ NSFontAttributeName : [UIFont fontWithName:@"Lato-Regular" size:10], NSForegroundColorAttributeName : [UIColor colorWithRed:0 green:122.0/255.0 blue:1 alpha:1] }]];
+    [namestr appendAttributedString:[[NSAttributedString alloc] initWithString:tstr attributes:@{ NSFontAttributeName : [UIFont fontWithName:@"Avenir-Medium" size:10], NSForegroundColorAttributeName : [UIColor colorWithRed:0 green:122.0/255.0 blue:1 alpha:1] }]];
     _takerNameLabel.attributedText = namestr;
     
     /* Snap */

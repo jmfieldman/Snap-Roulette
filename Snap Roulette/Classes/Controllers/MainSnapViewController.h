@@ -19,5 +19,6 @@ extern UINavigationController *nav;
 + (MainSnapViewController*) sharedInstance;
 
 - (void) updateFriends;
+- (void) animWheel;
 
 @end

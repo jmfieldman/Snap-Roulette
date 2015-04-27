@@ -109,7 +109,7 @@ UINavigationController *nav = nil;
         UILabel *instr = [[UILabel alloc] initWithFrame:_tutorial.bounds];
         instr.text = @"Tap the spinning roulette wheel.\n\nThe picture you take will be sent\nto five random Facebook friends\nthat have also installed this app.";
         instr.numberOfLines = 0;
-        instr.font = [UIFont fontWithName:@"Lato-Regular" size:12];
+        instr.font = [UIFont fontWithName:@"Avenir-Medium" size:12];
         instr.textColor = [UIColor whiteColor];
         instr.textAlignment = NSTextAlignmentCenter;
         [_tutorial addSubview:instr];
@@ -272,6 +272,18 @@ UINavigationController *nav = nil;
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     NSLog(@"main willappear");
     
+    [_takePhotoButton.layer removeAnimationForKey:@"rot"];
+    
+    CABasicAnimation* rotationAnimation;
+    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    rotationAnimation.toValue = @(M_PI * 0.99 * 10000000);
+    rotationAnimation.duration = 5000000;
+    rotationAnimation.cumulative = YES;
+    rotationAnimation.repeatCount = 100000000;
+    [_takePhotoButton.layer addAnimation:rotationAnimation forKey:@"rot"];
+}
+
+- (void) animWheel {
     [_takePhotoButton.layer removeAnimationForKey:@"rot"];
     
     CABasicAnimation* rotationAnimation;
@@ -505,7 +517,7 @@ UINavigationController *nav = nil;
                 name.text = friend[@"firstname"];
                 name.textAlignment = NSTextAlignmentCenter;
                 name.textColor = [UIColor colorWithWhite:0.2 alpha:1];
-                name.font = [UIFont fontWithName:@"Lato-Regular" size:14];
+                name.font = [UIFont fontWithName:@"Avenir-Medium" size:14];
                 name.minimumScaleFactor = 0.5;
                 name.adjustsFontSizeToFitWidth = YES;
                 name.alpha = 0;

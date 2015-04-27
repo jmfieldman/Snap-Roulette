@@ -50,7 +50,7 @@ static __strong NSString *s_emotes[NUM_EMOTES] = {@"😁", @"😂", @"😃", @"�
         _flagButton.alpha = 0;
         [_flagButton setTitle:@"Flag" forState:UIControlStateNormal];
         [_flagButton setTitleColor:[UIColor colorWithRed:1 green:0 blue:0 alpha:1] forState:UIControlStateNormal];
-        _flagButton.titleLabel.font = [UIFont fontWithName:@"Lato-Regular" size:11];
+        _flagButton.titleLabel.font = [UIFont fontWithName:@"Avenir-Medium" size:11];
         _flagButton.layer.cornerRadius = 15;
         _flagButton.layer.borderColor = [UIColor redColor].CGColor;
         _flagButton.layer.borderWidth = 2;

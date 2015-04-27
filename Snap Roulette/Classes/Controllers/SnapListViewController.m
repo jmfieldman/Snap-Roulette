@@ -47,7 +47,7 @@
         _nosnapsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 50, self.view.bounds.size.width, 50)];
         _nosnapsLabel.text = _sent ? @"You have not sent any photos yet!" : @"You have not received any photos yet!";
         _nosnapsLabel.textAlignment = NSTextAlignmentCenter;
-        _nosnapsLabel.font = [UIFont fontWithName:@"Lato-Regular" size:14];
+        _nosnapsLabel.font = [UIFont fontWithName:@"Avenir-Medium" size:14];
         _nosnapsLabel.textColor = [UIColor colorWithWhite:0.1 alpha:1];
         _nosnapsLabel.alpha = 0;
         [self.view addSubview:_nosnapsLabel];

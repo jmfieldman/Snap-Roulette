@@ -61,6 +61,8 @@
     }
     //#endif
     
+    //NSLog(@"%@", [UIFont fontNamesForFamilyName:@"Avenir Next"]);
+    
     /* Create window */
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor darkGrayColor];

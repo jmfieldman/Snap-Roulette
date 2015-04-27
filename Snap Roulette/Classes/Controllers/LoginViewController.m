@@ -38,13 +38,13 @@
         
         UILabel *helloWorld = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height * 0.1, self.view.frame.size.width, 80)];
         helloWorld.text = @"Snap Routlette";
-        helloWorld.font = [UIFont fontWithName:@"Lato-Regular" size:36];
+        helloWorld.font = [UIFont fontWithName:@"Avenir-Medium" size:36];
         helloWorld.textAlignment = NSTextAlignmentCenter;
         //[self.view addSubview:helloWorld];
 
         UILabel *helloWorld2 = [[UILabel alloc] initWithFrame:CGRectMake(10, self.view.bounds.size.height * 0.75, self.view.frame.size.width - 20, 50)];
         helloWorld2.text = @"Snap Roulette needs to know who your friends are.\n We will never post to your wall.";
-        helloWorld2.font = [UIFont fontWithName:@"Lato-Regular" size:12];
+        helloWorld2.font = [UIFont fontWithName:@"Avenir-Medium" size:12];
         helloWorld2.textColor = [UIColor colorWithWhite:0 alpha:0.8];
         helloWorld2.numberOfLines = 2;
         helloWorld2.textAlignment = NSTextAlignmentCenter;
@@ -123,7 +123,7 @@
     UILabel *connecting = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height * 0.1, self.view.bounds.size.width, self.view.bounds.size.height * 0.3)];
     connecting.text = @"Connecting...";
     connecting.numberOfLines = 1;
-    connecting.font = [UIFont fontWithName:@"Lato-Regular" size:24];
+    connecting.font = [UIFont fontWithName:@"Avenir-Medium" size:24];
     connecting.textAlignment = NSTextAlignmentCenter;
     connecting.alpha = 1;
     connecting.minimumScaleFactor = 0.5;
@@ -147,6 +147,12 @@
             [JFParseFBFriends updateCurrentUserWithCompletion:^(BOOL success, NSError *error) {
                 [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
                 [[MainSnapViewController sharedInstance] updateFriends];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    
+
+                
+                    [[MainSnapViewController sharedInstance] animWheel];
+                });
             }];
             
             /* Load snap list */
