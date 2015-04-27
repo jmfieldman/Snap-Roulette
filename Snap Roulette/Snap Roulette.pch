@@ -23,7 +23,7 @@
 #import <BlocksKit+UIKit.h>
 #import <UIImageView+WebCache.h>
 #import "JFParseFBFriends.h"
-
+#import "Flurry.h"
 #import "RandomHelpers.h"
 #import "PreloadedSFX.h"
 #import "PFObject+AKLocalDatastore.h"

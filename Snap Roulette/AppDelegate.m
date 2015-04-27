@@ -14,7 +14,7 @@
 #import "MainSnapViewController.h"
 #import "SnapListTabBarController.h"
 #import "LoginViewController.h"
-
+#import "FlurryKey.h"
 
 @interface AppDelegate ()
 @property (nonatomic, strong) UIPageViewController *pageController;
@@ -28,6 +28,9 @@
     // Override point for customization after application launch.
 	//[PreloadedSFX initializePreloadedSFX];
 	
+    
+    [Flurry startSession:FLURRY_KEY];
+    
     /* Parse Activation */
     [Parse enableLocalDatastore];
     [Parse setApplicationId:@"mzrtdhojgIK8CdBWhfODDytlsrQRzWOrR7c9Bscf" clientKey:@"b7raZZ1FDwSPRTfbuIhAOT8NdW3jhrizcqKA51nn"];

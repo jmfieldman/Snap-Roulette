@@ -34,6 +34,16 @@
 		35CAA88C1ADF17BF002ED2C8 /* RadialEmoteSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CAA88B1ADF17BF002ED2C8 /* RadialEmoteSelector.m */; };
 		35E6A47B1AEE881D0069DD75 /* snap_roulette@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35E6A47A1AEE881D0069DD75 /* snap_roulette@2x.png */; };
 		35E6A47F1AEE8EE50069DD75 /* screenshot_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 35E6A47E1AEE8EE50069DD75 /* screenshot_bg.png */; };
+		35E6A48E1AEECFD50069DD75 /* libFlurry_6.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35E6A4831AEECFD50069DD75 /* libFlurry_6.3.0.a */; };
+		35E6A48F1AEECFD50069DD75 /* Avro-LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 35E6A4851AEECFD50069DD75 /* Avro-LICENSE.txt */; };
+		35E6A4901AEECFD50069DD75 /* Flurry Analytics Terms of Service.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 35E6A4861AEECFD50069DD75 /* Flurry Analytics Terms of Service.pdf */; };
+		35E6A4911AEECFD50069DD75 /* Flurry for Advertisers TOS.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 35E6A4871AEECFD50069DD75 /* Flurry for Advertisers TOS.pdf */; };
+		35E6A4921AEECFD50069DD75 /* Flurry for Publishers TOS.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 35E6A4881AEECFD50069DD75 /* Flurry for Publishers TOS.pdf */; };
+		35E6A4931AEECFD50069DD75 /* Flurry RTB Marketplace TOS.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 35E6A4891AEECFD50069DD75 /* Flurry RTB Marketplace TOS.pdf */; };
+		35E6A4941AEECFD50069DD75 /* Flurry-LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 35E6A48A1AEECFD50069DD75 /* Flurry-LICENSE.txt */; };
+		35E6A4951AEECFD50069DD75 /* Hogan.js-LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 35E6A48B1AEECFD50069DD75 /* Hogan.js-LICENSE.txt */; };
+		35E6A4961AEECFD50069DD75 /* Jansson-LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 35E6A48C1AEECFD50069DD75 /* Jansson-LICENSE.txt */; };
+		35E6A4971AEECFD50069DD75 /* PLCrashReporter-LICENSE.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 35E6A48D1AEECFD50069DD75 /* PLCrashReporter-LICENSE.rtf */; };
 		35F6C5901AE17D78009EA3F4 /* sent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35F6C58E1AE17D77009EA3F4 /* sent@2x.png */; };
 		35F6C5911AE17D78009EA3F4 /* recv@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35F6C58F1AE17D78009EA3F4 /* recv@2x.png */; };
 		35F6C5931AE1815B009EA3F4 /* glass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35F6C5921AE1815B009EA3F4 /* glass@2x.png */; };
@@ -101,6 +111,18 @@
 		35CAA88B1ADF17BF002ED2C8 /* RadialEmoteSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadialEmoteSelector.m; sourceTree = "<group>"; };
 		35E6A47A1AEE881D0069DD75 /* snap_roulette@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "snap_roulette@2x.png"; sourceTree = "<group>"; };
 		35E6A47E1AEE8EE50069DD75 /* screenshot_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot_bg.png; sourceTree = "<group>"; };
+		35E6A4821AEECFD50069DD75 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
+		35E6A4831AEECFD50069DD75 /* libFlurry_6.3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_6.3.0.a; sourceTree = "<group>"; };
+		35E6A4851AEECFD50069DD75 /* Avro-LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Avro-LICENSE.txt"; sourceTree = "<group>"; };
+		35E6A4861AEECFD50069DD75 /* Flurry Analytics Terms of Service.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Flurry Analytics Terms of Service.pdf"; sourceTree = "<group>"; };
+		35E6A4871AEECFD50069DD75 /* Flurry for Advertisers TOS.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Flurry for Advertisers TOS.pdf"; sourceTree = "<group>"; };
+		35E6A4881AEECFD50069DD75 /* Flurry for Publishers TOS.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Flurry for Publishers TOS.pdf"; sourceTree = "<group>"; };
+		35E6A4891AEECFD50069DD75 /* Flurry RTB Marketplace TOS.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Flurry RTB Marketplace TOS.pdf"; sourceTree = "<group>"; };
+		35E6A48A1AEECFD50069DD75 /* Flurry-LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Flurry-LICENSE.txt"; sourceTree = "<group>"; };
+		35E6A48B1AEECFD50069DD75 /* Hogan.js-LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Hogan.js-LICENSE.txt"; sourceTree = "<group>"; };
+		35E6A48C1AEECFD50069DD75 /* Jansson-LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Jansson-LICENSE.txt"; sourceTree = "<group>"; };
+		35E6A48D1AEECFD50069DD75 /* PLCrashReporter-LICENSE.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = "PLCrashReporter-LICENSE.rtf"; sourceTree = "<group>"; };
+		35E6A4981AEED0400069DD75 /* FlurryKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlurryKey.h; path = "Snap Roulette/FlurryKey.h"; sourceTree = SOURCE_ROOT; };
 		35F6C58E1AE17D77009EA3F4 /* sent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sent@2x.png"; sourceTree = "<group>"; };
 		35F6C58F1AE17D78009EA3F4 /* recv@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "recv@2x.png"; sourceTree = "<group>"; };
 		35F6C5921AE1815B009EA3F4 /* glass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "glass@2x.png"; sourceTree = "<group>"; };
@@ -124,6 +146,7 @@
 				35F98A4D1AC1EAD00058C346 /* AVFoundation.framework in Frameworks */,
 				35F98A4E1AC1EAD00058C346 /* AVKit.framework in Frameworks */,
 				7F4D1B9B0B931F10758A1355 /* libPods.a in Frameworks */,
+				35E6A48E1AEECFD50069DD75 /* libFlurry_6.3.0.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,6 +302,7 @@
 		35B398861A96711900975CDD /* Snap Roulette */ = {
 			isa = PBXGroup;
 			children = (
+				35E6A4801AEECFD50069DD75 /* Flurry-iOS-6.3.0 */,
 				3560A1051A9CD64B005E29DE /* Classes */,
 				35B3988B1A96711900975CDD /* AppDelegate.h */,
 				35B3988C1A96711900975CDD /* AppDelegate.m */,
@@ -318,6 +342,41 @@
 				35B398A21A96711900975CDD /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		35E6A4801AEECFD50069DD75 /* Flurry-iOS-6.3.0 */ = {
+			isa = PBXGroup;
+			children = (
+				35E6A4811AEECFD50069DD75 /* Flurry */,
+				35E6A4841AEECFD50069DD75 /* Licenses */,
+			);
+			path = "Flurry-iOS-6.3.0";
+			sourceTree = "<group>";
+		};
+		35E6A4811AEECFD50069DD75 /* Flurry */ = {
+			isa = PBXGroup;
+			children = (
+				35E6A4981AEED0400069DD75 /* FlurryKey.h */,
+				35E6A4821AEECFD50069DD75 /* Flurry.h */,
+				35E6A4831AEECFD50069DD75 /* libFlurry_6.3.0.a */,
+			);
+			path = Flurry;
+			sourceTree = "<group>";
+		};
+		35E6A4841AEECFD50069DD75 /* Licenses */ = {
+			isa = PBXGroup;
+			children = (
+				35E6A4851AEECFD50069DD75 /* Avro-LICENSE.txt */,
+				35E6A4861AEECFD50069DD75 /* Flurry Analytics Terms of Service.pdf */,
+				35E6A4871AEECFD50069DD75 /* Flurry for Advertisers TOS.pdf */,
+				35E6A4881AEECFD50069DD75 /* Flurry for Publishers TOS.pdf */,
+				35E6A4891AEECFD50069DD75 /* Flurry RTB Marketplace TOS.pdf */,
+				35E6A48A1AEECFD50069DD75 /* Flurry-LICENSE.txt */,
+				35E6A48B1AEECFD50069DD75 /* Hogan.js-LICENSE.txt */,
+				35E6A48C1AEECFD50069DD75 /* Jansson-LICENSE.txt */,
+				35E6A48D1AEECFD50069DD75 /* PLCrashReporter-LICENSE.rtf */,
+			);
+			path = Licenses;
 			sourceTree = "<group>";
 		};
 		35F7D0371AC6613F00AF7438 /* Fonts */ = {
@@ -421,23 +480,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				354DBA6D1AE2D3EF00FD02BB /* login-facebook@2x.png in Resources */,
+				35E6A4931AEECFD50069DD75 /* Flurry RTB Marketplace TOS.pdf in Resources */,
 				35F6C5911AE17D78009EA3F4 /* recv@2x.png in Resources */,
+				35E6A4901AEECFD50069DD75 /* Flurry Analytics Terms of Service.pdf in Resources */,
 				3547B8391AE54D22005C9A2C /* photolist@2x.png in Resources */,
+				35E6A4941AEECFD50069DD75 /* Flurry-LICENSE.txt in Resources */,
 				35F7D0361AC65C5100AF7438 /* facebook_default_portrait.png in Resources */,
 				35F6C5901AE17D78009EA3F4 /* sent@2x.png in Resources */,
 				35E6A47F1AEE8EE50069DD75 /* screenshot_bg.png in Resources */,
+				35E6A4911AEECFD50069DD75 /* Flurry for Advertisers TOS.pdf in Resources */,
 				35B398981A96711900975CDD /* LaunchScreen.xib in Resources */,
 				358A45A41AC458E90019EECC /* test.png in Resources */,
 				3550F0B71AE9B47C0026E3AE /* silence.wav in Resources */,
+				35E6A4971AEECFD50069DD75 /* PLCrashReporter-LICENSE.rtf in Resources */,
+				35E6A4961AEECFD50069DD75 /* Jansson-LICENSE.txt in Resources */,
 				3547B83D1AE6AD9C005C9A2C /* camera-white@2x.png in Resources */,
 				358A45A21AC455F00019EECC /* polaroid@2x.png in Resources */,
 				35F7D0391AC6613F00AF7438 /* Lato-Regular.ttf in Resources */,
 				35E6A47B1AEE881D0069DD75 /* snap_roulette@2x.png in Resources */,
 				35CAA7951ADD6787002ED2C8 /* switch@2x.png in Resources */,
+				35E6A48F1AEECFD50069DD75 /* Avro-LICENSE.txt in Resources */,
+				35E6A4921AEECFD50069DD75 /* Flurry for Publishers TOS.pdf in Resources */,
 				3550F0B91AE9B5F90026E3AE /* silence.aiff in Resources */,
 				354DBA6B1AE2D0B600FD02BB /* camera@2x.png in Resources */,
 				354E91FF1AC767A100438ECA /* shutter.wav in Resources */,
 				35B398951A96711900975CDD /* Images.xcassets in Resources */,
+				35E6A4951AEECFD50069DD75 /* Hogan.js-LICENSE.txt in Resources */,
 				35F6C5931AE1815B009EA3F4 /* glass@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -623,6 +691,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "Snap Roulette/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Snap",
+					"Roulette/Flurry-iOS-6.3.0/Flurry",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -635,6 +708,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "Snap Roulette/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Snap",
+					"Roulette/Flurry-iOS-6.3.0/Flurry",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
