@@ -17,6 +17,7 @@
 
 
 @interface AppDelegate ()
+@property (nonatomic, strong) UIPageViewController *pageController;
 @property (nonatomic, strong) UINavigationController *navController;
 @end
 
@@ -34,30 +35,38 @@
     
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     
-    UIPageViewController *pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:@{UIPageViewControllerOptionSpineLocationKey:@(UIPageViewControllerSpineLocationMax),UIPageViewControllerOptionInterPageSpacingKey:@1}];
-    pageController.delegate = self;
-    pageController.dataSource = self;
-    [pageController setViewControllers:@[ [MainSnapViewController sharedInstance] ] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    _pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:@{UIPageViewControllerOptionSpineLocationKey:@(UIPageViewControllerSpineLocationMax),UIPageViewControllerOptionInterPageSpacingKey:@1}];
+    _pageController.delegate = self;
+    _pageController.dataSource = self;
+    //dispatch_async(dispatch_get_main_queue(), ^{
+        [_pageController setViewControllers:@[ [MainSnapViewController sharedInstance] ] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    //});
+    //[pageController setViewControllers:@[ [MainSnapViewController sharedInstance] ] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     //pageController.viewControllers = @[ [MainSnapViewController sharedInstance], [SnapListTabBarController sharedInstance] ];
     
-    nav = _navController = [[UINavigationController alloc] initWithRootViewController:[SnapListTabBarController sharedInstance]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        nav = _navController = [[UINavigationController alloc] initWithRootViewController:[SnapListTabBarController sharedInstance]];
+    });
     
-    #if 0
-    for (UIView *view in pageController.view.subviews ) {
+    
+    //#if 0
+    for (UIView *view in _pageController.view.subviews ) {
         if ([view isKindOfClass:[UIScrollView class]]) {
             UIScrollView *scroll = (UIScrollView *)view;
-            //scroll.alwaysBounceHorizontal = NO;
+            scroll.contentOffset = CGPointMake(-40,0);
         }
     }
-    #endif
+    //#endif
     
     /* Create window */
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor darkGrayColor];
     //self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[MainSnapViewController sharedInstance]];
-    self.window.rootViewController = pageController;
+    self.window.rootViewController = _pageController;
     [self.window makeKeyAndVisible];
-        
+    
+    //[_pageController didMoveToParentViewController:nil];
+    
     return YES;
 }
 
@@ -71,7 +80,7 @@
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController
       viewControllerBeforeViewController:(UIViewController *)viewController {
-
+    //NSLog(@"before");
     if (viewController == _navController) {
         return [MainSnapViewController sharedInstance];
     }
@@ -80,6 +89,7 @@
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController
        viewControllerAfterViewController:(UIViewController *)viewController {
+    //NSLog(@"after");
     if (viewController == [MainSnapViewController sharedInstance]) {
         return _navController;
     }
