@@ -12,7 +12,7 @@
 #import "FlatWheelImage.h"
 #import "RandomHelpers.h"
 
-extern UINavigationController *nav = nil;
+UINavigationController *nav = nil;
 
 @interface MainSnapViewController ()
 
