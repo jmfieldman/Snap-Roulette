@@ -693,8 +693,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Snap",
-					"Roulette/Flurry-iOS-6.3.0/Flurry",
+					"\"$(PROJECT_DIR)/Snap Roulette/Flurry-iOS-6.3.0/Flurry\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -710,8 +709,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Snap",
-					"Roulette/Flurry-iOS-6.3.0/Flurry",
+					"\"$(PROJECT_DIR)/Snap Roulette/Flurry-iOS-6.3.0/Flurry\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
