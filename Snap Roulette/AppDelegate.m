@@ -28,8 +28,9 @@
     // Override point for customization after application launch.
 	//[PreloadedSFX initializePreloadedSFX];
 	
-    
+    #ifdef FLURRY_KEY
     [Flurry startSession:FLURRY_KEY];
+    #endif
     
     /* Parse Activation */
     [Parse enableLocalDatastore];
@@ -51,6 +52,9 @@
         nav = _navController = [[UINavigationController alloc] init];        
     });
     
+    UIView *f = [[UIView alloc] initWithFrame:CGRectMake(80, 80, 40, 40)];
+    f.backgroundColor = [UIColor redColor];
+    [_pageController.view addSubview:f];
     
     //#if 0
     for (UIView *view in _pageController.view.subviews ) {
