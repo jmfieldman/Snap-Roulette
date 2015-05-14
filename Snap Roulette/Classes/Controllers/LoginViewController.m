@@ -42,22 +42,22 @@
         helloWorld.textAlignment = NSTextAlignmentCenter;
         //[self.view addSubview:helloWorld];
 
-        UILabel *helloWorld2 = [[UILabel alloc] initWithFrame:CGRectMake(10, self.view.bounds.size.height * 0.75, self.view.frame.size.width - 20, 50)];
-        helloWorld2.text = @"Snap Roulette needs to know who your friends are.\n We will never post to your wall.";
+        UILabel *helloWorld2 = [[UILabel alloc] initWithFrame:CGRectMake(10, self.view.bounds.size.height * 0.55, self.view.frame.size.width - 20, 150)];
+        helloWorld2.text = @"Snap Roulette needs to know who your friends are.\n We will never post to your wall.\n\nBy logging in with Facebook you acknowledge that this app displays third-party content, and that there is no tolerance for objectionable content.  Objectionable content may be flagged for review and removed by moderators.  You grant Snap Roulette nonexclusive rights to redistribute any photos taken with this app.";
         helloWorld2.font = [UIFont fontWithName:@"Avenir-Medium" size:12];
         helloWorld2.textColor = [UIColor colorWithWhite:0 alpha:0.8];
-        helloWorld2.numberOfLines = 2;
+        helloWorld2.numberOfLines = 0;
         helloWorld2.textAlignment = NSTextAlignmentCenter;
         [self.view addSubview:helloWorld2];
 
         
         
-        UIImageView *camera = [[UIImageView alloc] initWithFrame:CGRectMake(10, 100, self.view.bounds.size.width * 0.6, self.view.bounds.size.width * 0.6)];
-        camera.center = CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height*0.5);
+        UIImageView *camera = [[UIImageView alloc] initWithFrame:CGRectMake(10, 60, self.view.bounds.size.width * 0.6, self.view.bounds.size.width * 0.6)];
+        camera.center = CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height*0.35);
         camera.image = [UIImage imageNamed:@"camera"];
         [self.view addSubview:camera];
         
-        _wheel = [[UIImageView alloc] initWithFrame:CGRectMake(10, 100, self.view.bounds.size.width * 0.29, self.view.bounds.size.width * 0.29)];
+        _wheel = [[UIImageView alloc] initWithFrame:CGRectMake(10, 60, self.view.bounds.size.width * 0.29, self.view.bounds.size.width * 0.29)];
         _wheel.center = CGPointMake(camera.center.x, camera.center.y + camera.frame.size.height*0.0395);
         _wheel.image = [FlatWheelImage flatWheelImageWithSize:_wheel.bounds.size slices:19 green:YES];
         [self.view addSubview:_wheel];
@@ -120,7 +120,7 @@
 
 - (void) loginButtonPressed:(id)sender {
     
-    UILabel *connecting = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height * 0.1, self.view.bounds.size.width, self.view.bounds.size.height * 0.3)];
+    UILabel *connecting = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height * 0.0, self.view.bounds.size.width, self.view.bounds.size.height * 0.3)];
     connecting.text = @"Connecting...";
     connecting.numberOfLines = 1;
     connecting.font = [UIFont fontWithName:@"Avenir-Medium" size:24];
