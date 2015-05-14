@@ -49,7 +49,7 @@ UINavigationController *nav = nil;
 
 - (id) init {
     if ((self = [super init])) {
-        self.view.backgroundColor = [UIColor orangeColor];                
+        self.view.backgroundColor = [UIColor blackColor];
         
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Snaps" style:UIBarButtonItemStyleDone target:self action:@selector(handleSnapList:)];
         
